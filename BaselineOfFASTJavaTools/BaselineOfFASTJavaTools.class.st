@@ -17,7 +17,7 @@ BaselineOfFASTJavaTools >> baseline: spec [
 BaselineOfFASTJavaTools >> fastJava: spec [
 
 	spec
-		baseline: 'FAST-Java'
+		baseline: 'FASTJava'
 		with: [ 
 		spec repository: 'github://moosetechnology/FAST-JAVA/src' ]
 ]
