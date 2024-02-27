@@ -9,8 +9,10 @@ BaselineOfFASTJavaTools >> baseline: spec [
 
 	<baseline>
 	spec for: #common do: [ 
-		spec package: 'Transformation-Tools'.
-		self fastJava: spec ]
+		self fastJava: spec.
+		spec
+			package: 'Transformation-Tools'
+			with: [ spec requires: #( 'FASTJava' ) ] ]
 ]
 
 { #category : #baselines }
@@ -19,5 +21,5 @@ BaselineOfFASTJavaTools >> fastJava: spec [
 	spec
 		baseline: 'FASTJava'
 		with: [ 
-		spec repository: 'github://moosetechnology/FAST-JAVA/src' ]
+		spec repository: 'github://moosetechnology/FAST-JAVA:v3/src' ]
 ]
