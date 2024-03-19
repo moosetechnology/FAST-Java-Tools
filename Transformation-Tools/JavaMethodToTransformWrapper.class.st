@@ -11,6 +11,18 @@ Class {
 	#category : #'Transformation-Tools'
 }
 
+{ #category : #'as yet unclassified' }
+JavaMethodToTransformWrapper class >> forFamixMethod: aFamixJavaMethod andFAST: aFASTJavaMethodEntity [
+
+	| copyVisitor |
+	copyVisitor := FASTJavaCopyVisitor new.
+	^ self new
+		  famixMethod: aFamixJavaMethod;
+		  originalFastMethod: aFASTJavaMethodEntity;
+		  transformedFastMethod: (copyVisitor copy: aFASTJavaMethodEntity);
+		  yourself
+]
+
 { #category : #adding }
 JavaMethodToTransformWrapper >> addOriginalFastNode: aFASTEntity [
 
