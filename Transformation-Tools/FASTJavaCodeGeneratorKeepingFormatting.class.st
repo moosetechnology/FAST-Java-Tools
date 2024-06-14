@@ -96,9 +96,9 @@ FASTJavaCodeGeneratorKeepingFormatting >> applyOperation: aTransformationOperati
 
 	originalEntity generateFastIfNotDoneAndBind.
 
-	fast := originalEntity class = FamixJavaClass
-		        ifTrue: [ originalEntity fastTypeDefinition ]
-		        ifFalse: [ originalEntity fast ].
+	fast := originalEntity class = FamixJavaMethod
+		        ifTrue: [ originalEntity fast ]
+		        ifFalse: [ originalEntity fastTypeDefinition ].
 
 	transformedCodeString := aTransformationOperation
 		                         applyOperationOnSource:

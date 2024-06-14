@@ -20,15 +20,29 @@ SignatureInsertionOperation >> applyOperation [
 ]
 
 { #category : #'applying operation' }
+SignatureInsertionOperation >> getClosingSignatureCharacterOfAnchorNode [
+
+	"if the signature to transform is a method declared in an interface or is abstract"
+	(anchorNode class = FASTJavaMethodEntity and: [ 
+		 anchorNode statementBlock isNil ]) ifTrue: [ ^ $; ].
+
+	"every other method or class"
+	^ ${
+]
+
+{ #category : #'applying operation' }
 SignatureInsertionOperation >> replaceSignature [
 
-	| generatedSignature indexOfOpeningBracket |
+	| generatedSignature searchedCharacter indexOfSearchedCharacter |
 	generatedSignature := self generateNode: transformedNode.
 
-	"removing the extra semi colon and cr in a method signature"
-	self parentNode class = FASTJavaMethodEntity ifTrue: [ 
-		generatedSignature := (generatedSignature allButLast: 2)
-		                      , String space ].
+	anchorNode class = FASTJavaMethodEntity ifTrue: [ 
+		anchorNode statementBlock
+			ifNil: [ "only removing the cr if the method is abstract or is declared in an interface"
+				generatedSignature := (generatedSignature allButLast: 2)
+				                      , String space ]
+			ifNotNil: [ "removing the extra semi colon and cr in a method signature" 
+				generatedSignature := generatedSignature allButLast ] ].
 
 	"copying only the signature for a class declaration, so everything before the opening bracket"
 	self parentNode class = FASTJavaClassDeclaration ifTrue: [ 
@@ -36,16 +50,30 @@ SignatureInsertionOperation >> replaceSignature [
 			                      copyFrom: 1
 			                      to: (generatedSignature indexOf: ${) - 1 ].
 
-	indexOfOpeningBracket := sourceCode indexOf: ${.
+	searchedCharacter := self getClosingSignatureCharacterOfAnchorNode.
+	indexOfSearchedCharacter := sourceCode
+		                            indexOf: searchedCharacter
+		                            startingAt:
+		                            anchorNode startPos + offsetToApply.
 
-	removedHighlight := 1 @ indexOfOpeningBracket.
-	addedHighlight := 1 @ generatedSignature size.
+	removedHighlight := anchorNode startPos
+	                    @ (indexOfSearchedCharacter - offsetToApply).
+	addedHighlight := anchorNode startPos + offsetToApply
+	                  @
+	                  (anchorNode startPos + offsetToApply
+	                   + generatedSignature size).
 
 	^ String streamContents: [ :s | 
 		  s
+			  nextPutAll:
+				  (sourceCode
+					   copyFrom: 1
+					   to: anchorNode startPos + offsetToApply - 1);
 			  nextPutAll: generatedSignature;
 			  nextPutAll:
-				  (sourceCode copyFrom: indexOfOpeningBracket to: sourceCode size);
+				  (sourceCode
+					   copyFrom: indexOfSearchedCharacter
+					   to: sourceCode size);
 			  yourself ]
 ]
 
@@ -56,7 +84,8 @@ SignatureInsertionOperation >> transformNodeIfNeeded [
 	emptyCopy := self copyNode: self parentNode.
 
 	"if the modified signature is for a method, remove the source code from it"
-	emptyCopy class = FASTJavaMethodEntity ifTrue: [ 
+	(emptyCopy class = FASTJavaMethodEntity and: [ 
+		 emptyCopy statementBlock isNotNil ]) ifTrue: [ 
 		emptyCopy statementBlock removeAllPotentialParentNode ].
 
 	"if the modified signature is for a class, remove the declarations of methods and variables"

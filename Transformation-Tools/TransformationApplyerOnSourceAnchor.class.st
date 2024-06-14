@@ -4,7 +4,8 @@ Class {
 	#instVars : [
 		'fileSourceText',
 		'classToTransform',
-		'dictEntitiesToTransform'
+		'dictEntitiesToTransform',
+		'importStrings'
 	],
 	#category : #'Transformation-Tools'
 }
@@ -34,6 +35,33 @@ TransformationApplyerOnSourceAnchor >> addEntityToTransform: aFamixJavaEntity wi
 ]
 
 { #category : #'as yet unclassified' }
+TransformationApplyerOnSourceAnchor >> addImportStringsIfNeeded [
+
+	| stringToInsert insertIndex |
+	importStrings ifEmpty: [ ^ self ].
+	
+	stringToInsert := ''.
+	importStrings do: [ :is | 
+		| current |
+		current := is trim.
+		current last = $; ifFalse: [ current := current , ';' ].
+		current := current , self carriageReturn.
+		stringToInsert := stringToInsert , current ].
+
+	insertIndex := fileSourceText findString: 'import'.
+
+	fileSourceText := String streamContents: [ :s | 
+		                  s
+			                  nextPutAll:
+				                  (fileSourceText copyFrom: 1 to: insertIndex - 1);
+			                  nextPutAll: stringToInsert;
+			                  nextPutAll:
+				                  (fileSourceText
+					                   copyFrom: insertIndex
+					                   to: fileSourceText size) ]
+]
+
+{ #category : #'as yet unclassified' }
 TransformationApplyerOnSourceAnchor >> buildFileReference [
 
 	^ (String streamContents: [ :s | 
@@ -41,6 +69,14 @@ TransformationApplyerOnSourceAnchor >> buildFileReference [
 			   nextPutAll: classToTransform mooseModel rootFolder pathString;
 			   nextPutAll: self adaptFilePathOfClassToTransform;
 			   yourself ]) asPath asFileReference
+]
+
+{ #category : #adding }
+TransformationApplyerOnSourceAnchor >> carriageReturn [
+
+	^ (fileSourceText includes: Character lf)
+		  ifTrue: [ String crlf ]
+		  ifFalse: [ String cr ]
 ]
 
 { #category : #accessing }
@@ -72,10 +108,23 @@ TransformationApplyerOnSourceAnchor >> fileNameOfClassToTransform [
 	^ classToTransform sourceAnchor fileName
 ]
 
+{ #category : #accessing }
+TransformationApplyerOnSourceAnchor >> importStrings [
+
+	^ importStrings
+]
+
+{ #category : #accessing }
+TransformationApplyerOnSourceAnchor >> importStrings: anObject [
+
+	importStrings := anObject
+]
+
 { #category : #adding }
 TransformationApplyerOnSourceAnchor >> initialize [ 
 		
 	dictEntitiesToTransform := Dictionary new.
+	importStrings := OrderedCollection new.
 ]
 
 { #category : #'as yet unclassified' }
@@ -85,6 +134,7 @@ TransformationApplyerOnSourceAnchor >> transformClass: aFamixJavaClass withNewSo
 
 	self copyOriginalFileContent.
 	self transformEntity: aFamixJavaClass withNewSource: aString.
+	self addImportStringsIfNeeded.
 	self transformSourceFile
 ]
 

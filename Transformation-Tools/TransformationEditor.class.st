@@ -145,8 +145,6 @@ TransformationEditor >> goToNextTransformationPointer [
 { #category : #interaction }
 TransformationEditor >> goToPointer: aTransformationPointerWrapper [
 
-	1 halt.
-
 	originalTextPresenter morph scrollPane vScrollbarValue:
 		(((originalText string lineNumberCorrespondingToIndex:
 			 aTransformationPointerWrapper oldVersionStartIndex - 1) 

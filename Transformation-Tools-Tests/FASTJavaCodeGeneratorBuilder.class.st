@@ -275,7 +275,7 @@ FASTJavaCodeGeneratorBuilder >> sourceClassWithTestMethodAndSuperclass [
 
 	^ 
 'public class Test extends House {
-	
+
 	public boolean testMethod() {
 		Cat cat = new Cat();
 		Table table = new Table();
