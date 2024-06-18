@@ -104,11 +104,21 @@ FASTJavaCodeGeneratorKeepingFormatting >> applyOperation: aTransformationOperati
 		                         applyOperationOnSource:
 		                         transformedCodeString
 		                         withOffset: offsetToApply.
-		
-	self addTransformationPointerIfNeededFor: aTransformationOperation withLastOffsetValue: offsetToApply.
 
-	offsetDict add:
-		newOffsetPos -> (transformedCodeString size - oldSourceSize)
+	self
+		addTransformationPointerIfNeededFor: aTransformationOperation
+		withLastOffsetValue: offsetToApply.
+
+	offsetDict
+		associationAt: newOffsetPos
+		ifPresent: [ 
+			offsetDict
+				at: newOffsetPos
+				put: (offsetDict at: newOffsetPos) + transformedCodeString size
+					- oldSourceSize ]
+		ifAbsent: [ 
+			offsetDict add:
+				newOffsetPos -> (transformedCodeString size - oldSourceSize) ]
 ]
 
 { #category : #'as yet unclassified' }

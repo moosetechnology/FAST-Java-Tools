@@ -36,6 +36,8 @@ SignatureInsertionOperation >> replaceSignature [
 	| generatedSignature searchedCharacter indexOfSearchedCharacter |
 	generatedSignature := self generateNode: transformedNode.
 
+	1halt.
+
 	anchorNode class = FASTJavaMethodEntity ifTrue: [ 
 		anchorNode statementBlock
 			ifNil: [ "only removing the cr if the method is abstract or is declared in an interface"

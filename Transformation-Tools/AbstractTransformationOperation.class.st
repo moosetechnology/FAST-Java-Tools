@@ -155,6 +155,7 @@ AbstractTransformationOperation >> removedHighlight: anObject [
 AbstractTransformationOperation >> replaceNode: aFASTNode [
 
 	| codeBeforeNode codeAfterNode transformedNodeCode |
+	
 	codeBeforeNode := sourceCode
 		                  copyFrom: 1
 		                  to: aFASTNode startPos + offsetToApply - 1.
