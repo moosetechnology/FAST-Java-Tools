@@ -145,23 +145,20 @@ TransformationEditor >> goToNextTransformationPointer [
 { #category : #interaction }
 TransformationEditor >> goToPointer: aTransformationPointerWrapper [
 
+
 	originalTextPresenter morph scrollPane vScrollbarValue:
 		(((originalText string lineNumberCorrespondingToIndex:
-			 aTransformationPointerWrapper oldVersionStartIndex - 1) 
+			 aTransformationPointerWrapper oldVersionStartIndex - 1)
 		/ originalText lineCount) asFloat round: 5) .
 
 	editingTextPresenter morph scrollPane vScrollbarValue:
 		(((transformedText string lineNumberCorrespondingToIndex:
 			 aTransformationPointerWrapper newVersionStartIndex - 1)
 		/ transformedText string lineCount )asFloat round: 5).
-
-	"originalTextPresenter morph scrollPane vScrollbarValue:
-		aTransformationPointerWrapper oldVersionStartIndex asFloat
-		/ originalText size asFloat.
 		
-	editingTextPresenter morph scrollPane vScrollbarValue:
-		aTransformationPointerWrapper newVersionStartIndex asFloat
-		/ transformedText size asFloat"
+	"updating scrollbars to set to new value"
+	originalTextPresenter morph scrollPane updateScrollbars.
+	editingTextPresenter morph scrollPane updateScrollbars 
 ]
 
 { #category : #initialization }
