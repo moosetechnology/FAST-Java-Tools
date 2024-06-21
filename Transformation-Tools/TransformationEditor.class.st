@@ -144,17 +144,19 @@ TransformationEditor >> goToNextTransformationPointer [
 
 { #category : #interaction }
 TransformationEditor >> goToPointer: aTransformationPointerWrapper [
-
-
-	originalTextPresenter morph scrollPane vScrollbarValue:
-		(((originalText string lineNumberCorrespondingToIndex:
-			 aTransformationPointerWrapper oldVersionStartIndex - 1)
-		/ originalText lineCount) asFloat round: 5) .
-
-	editingTextPresenter morph scrollPane vScrollbarValue:
-		(((transformedText string lineNumberCorrespondingToIndex:
-			 aTransformationPointerWrapper newVersionStartIndex - 1)
-		/ transformedText string lineCount )asFloat round: 5).
+"uses morph to jump to next transfomation pointer (made by Rémi Dufloer)"		
+	| originalVScrollPane originalLineToIndex editingVScrollPane editingLineToIndex |
+    originalVScrollPane := originalTextPresenter morph scrollPane.
+    originalLineToIndex := (originalText string lineNumberCorrespondingToIndex: aTransformationPointerWrapper oldVersionStartIndex) -1 .
+    
+    editingVScrollPane := editingTextPresenter morph scrollPane.
+    editingLineToIndex := (transformedText string lineNumberCorrespondingToIndex: aTransformationPointerWrapper newVersionStartIndex) -1 .
+    
+    originalVScrollPane vScrollbar setValue:
+     ((originalLineToIndex  + ( originalLineToIndex * originalVScrollPane vScrollbarInterval ) ) / originalText lineCount).
+    
+    editingVScrollPane vScrollbar setValue:
+     ((editingLineToIndex  + ( editingLineToIndex * editingVScrollPane vScrollbarInterval ) ) / transformedText lineCount).
 		
 	"updating scrollbars to set to new value"
 	originalTextPresenter morph scrollPane updateScrollbars.
