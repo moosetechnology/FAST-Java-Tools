@@ -4,6 +4,14 @@ Class {
 	#category : #'Transformation-Tools-Tests'
 }
 
+{ #category : #'as yet unclassified' }
+FASTJavaCodeGeneratorBuilder >> codeGeneratorFor: sourceCode withOps: aCollection [
+
+	^ FASTJavaCodeGeneratorKeepingFormatting
+		  onSourceCode: sourceCode
+		  forOperations: aCollection
+]
+
 { #category : #test }
 FASTJavaCodeGeneratorBuilder >> declarationInsertionOperation1 [
 
@@ -62,8 +70,7 @@ FASTJavaCodeGeneratorBuilder >> deleteOperation1 [
 	nodeToDelete := self fastMethodGetEdgesIfNode.
 
 	^ DeleteOperation new
-		  transformedNode: nodeToDelete;
-		  parentNode: nodeToDelete parentNode;
+		  anchorNode: nodeToDelete;
 		  yourself
 ]
 
@@ -291,7 +298,7 @@ FASTJavaCodeGeneratorBuilder >> sourceClassWithTestMethodAndSuperclassAndInterfa
 
 	^ 
 'public class Test extends House implements TestCase {
-	
+
 	public boolean testMethod() {
 		Cat cat = new Cat();
 		Table table = new Table();
@@ -305,30 +312,33 @@ FASTJavaCodeGeneratorBuilder >> sourceClassWithTestMethodAndSuperclassAndInterfa
 { #category : #'as yet unclassified' }
 FASTJavaCodeGeneratorBuilder >> sourceMethodGetEdges [
 
-	^ 'public List getEdges() {
-        if (getGraphModel() != null) {
-            return getGraphModel().getEdges();
-        }
-        return super.getEdges();
+	^ 
+'public List getEdges() {
+	if (getGraphModel() != null) {
+		return getGraphModel().getEdges();
+	}
+	return super.getEdges();
 }'
 ]
 
 { #category : #'as yet unclassified' }
 FASTJavaCodeGeneratorBuilder >> sourceMethodGetEdgesDeletingIf [
 
-	^ 'public List getEdges() {
-        return super.getEdges();
+	^ 
+'public List getEdges() {
+	return super.getEdges();
 }'
 ]
 
 { #category : #'as yet unclassified' }
 FASTJavaCodeGeneratorBuilder >> sourceMethodGetEdgesReplacingSuperNode [
 
-	^ 'public List getEdges() {
-        if (getGraphModel() != null) {
-            return getGraphModel().getEdges();
-        }
-        return getOtherGraphModel().getEdges();
+	^ 
+'public List getEdges() {
+	if (getGraphModel() != null) {
+		return getGraphModel().getEdges();
+	}
+	return getOtherGraphModel().getEdges();
 }'
 ]
 
@@ -367,6 +377,18 @@ FASTJavaCodeGeneratorBuilder >> sourceMethodTestMethodWithCatMeows [
 ]
 
 { #category : #'as yet unclassified' }
+FASTJavaCodeGeneratorBuilder >> sourceMethodTestMethodWithCatMeowsBeforeTable [
+
+	^ 'public boolean testMethod() {
+	Cat cat = new Cat();
+	cat.meows();
+	Table table = new Table();
+	cat.sits(table);
+	return table.isClear();
+}'
+]
+
+{ #category : #'as yet unclassified' }
 FASTJavaCodeGeneratorBuilder >> sourceMethodTestMethodWithException [
 
 	^ 'public boolean testMethod()  throws NotFedError {
@@ -394,5 +416,26 @@ FASTJavaCodeGeneratorBuilder >> statementInsertionOperation1 [
 	^ StatementInsertionOperation new
 		  anchorNode: anchorNode;
 		  transformedNode: newNode;
+		  yourself
+]
+
+{ #category : #test }
+FASTJavaCodeGeneratorBuilder >> statementInsertionOperation2 [
+
+	| anchorNode newNode |
+	anchorNode := self fastMethodTestMethodTableNode.
+
+	newNode := FASTJavaExpressionStatement new expression:
+		           (FASTJavaMethodInvocation new
+			            receiver: (FASTJavaIdentifier new
+					             name: 'cat';
+					             yourself);
+			            name: 'meows';
+			            yourself).
+
+	^ StatementInsertionOperation new
+		  anchorNode: anchorNode;
+		  transformedNode: newNode;
+		  insertBefore: true;
 		  yourself
 ]

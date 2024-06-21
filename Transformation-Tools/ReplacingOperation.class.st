@@ -12,15 +12,9 @@ Class {
 }
 
 { #category : #'applying operation' }
-ReplacingOperation >> applyOperation [
-
-	^ self replaceNode: self originalNode
-]
-
-{ #category : #'as yet unclassified' }
-ReplacingOperation >> findNewOffsetPosWithOffsetDict: aDictionary [
-
-	^ self originalNode startPos
+ReplacingOperation >> buildNewNode [
+	"returns the new node created using the anchor and transformed node"
+	^ transformedNode
 ]
 
 { #category : #'as yet unclassified' }
@@ -39,10 +33,4 @@ ReplacingOperation >> originalNode [
 ReplacingOperation >> originalNode: anObject [
 
 	anchorNode := anObject
-]
-
-{ #category : #'applying operation' }
-ReplacingOperation >> transformNodeIfNeeded [
-
-	"nothing to do"
 ]

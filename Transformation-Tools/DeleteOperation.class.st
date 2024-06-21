@@ -13,59 +13,23 @@ Class {
 }
 
 { #category : #'applying operation' }
-DeleteOperation >> applyOperation [
+DeleteOperation >> buildNewNode [
 
-	removedHighlight := transformedNode startPos @ transformedNode endPos.
+	"returns the new node created using the anchor and transformed node"
 
-	^ (self checkIfWholeLineMustBeRemovedInSourceCode: sourceCode)
-		  ifTrue: [ 
-		  self removeLineInSourceCode: sourceCode withOffset: offsetToApply ]
+	"returns nil if the whole node must be deleted, returns the transformed parent node otherwise"
+
+	^ ({ 
+		   FASTJavaClassDeclaration.
+		   FASTJavaStatementBlock } includes: anchorNode parentNode class)
+		  ifTrue: [ nil ]
 		  ifFalse: [ 
-			  self
-				  transformAndReplaceParentNodeInSourceWithOffset: offsetToApply ]
-]
-
-{ #category : #'as yet unclassified' }
-DeleteOperation >> checkIfWholeLineMustBeRemovedInSourceCode: sourceCode [
-
-	| beforeIndex afterIndex |
-	beforeIndex := transformedNode startPos - 1.
-	[ 
-	{ 
-		Character cr.
-		Character lf } includes: (sourceCode at: beforeIndex) ] whileFalse: [ 
-		({ 
-			 Character space.
-			 Character tab } includes: (sourceCode at: beforeIndex))
-			ifTrue: [ beforeIndex := beforeIndex - 1 ]
-			ifFalse: [ ^ false ] ].
-
-	afterIndex := transformedNode endPos + 1.
-	[ (sourceCode at: afterIndex) = Character cr ] whileFalse: [ 
-		({ 
-			 Character space.
-			 Character tab.
-			 $; } includes: (sourceCode at: afterIndex))
-			ifTrue: [ afterIndex := afterIndex + 1 ]
-			ifFalse: [ ^ false ] ].
-	
-	^ true
-]
-
-{ #category : #'as yet unclassified' }
-DeleteOperation >> findNewOffsetPosWithOffsetDict: aDictionary [
-
-	^ self parentNode class = FASTJavaStatementBlock
-		  ifTrue: [
-			"if the parent is a statement block, then the whole statement will be removed" 
-			  self
-				  computeOffsetWithOriginalPos: transformedNode startPos
-				  andOffsetDict: aDictionary ]
-		  ifFalse: [ 
-			"otherwise, the parent node will be transformed"
-			  self
-				  computeOffsetWithOriginalPos: self parentNode startPos
-				  andOffsetDict: aDictionary ]
+			  | parentNode |
+			  parentNode := self copyNode: anchorNode.
+			  (transformedNode
+				   attributeAt: #copy
+				   ifAbsent: [ "sholud not happen" ]) removeAllPotentialParentNode.
+			  parentNode ]
 ]
 
 { #category : #'as yet unclassified' }
@@ -84,47 +48,4 @@ DeleteOperation >> parentNode [
 DeleteOperation >> parentNode: anObject [
 
 	anchorNode := anObject
-]
-
-{ #category : #'applying operation' }
-DeleteOperation >> removeLineInSourceCode: sourceCode withOffset: anInt [
-
-	| beforeIndex afterIndex |
-	beforeIndex := transformedNode startPos - 1.
-	[ (sourceCode at: beforeIndex) = Character cr ] whileFalse: [ 
-		beforeIndex := beforeIndex - 1 ].
-
-	afterIndex := transformedNode endPos + 1.
-	[ (sourceCode at: afterIndex) = Character cr ] whileFalse: [ 
-		afterIndex := afterIndex + 1 ].
-
-	^ '' join: { 
-			  (sourceCode copyFrom: 1 to: beforeIndex - 1).
-			  (sourceCode copyFrom: afterIndex to: sourceCode size) }
-]
-
-{ #category : #'applying operation' }
-DeleteOperation >> transformAndReplaceParentNodeInSourceWithOffset: offset [
-
-	| codeBeforeNode codeAfterNode |
-	codeBeforeNode := sourceCode
-		                  copyFrom: 1
-		                  to: self parentNode startPos + offset - 1.
-	codeAfterNode := sourceCode
-		                 copyFrom: self parentNode endPos + offset + 1
-		                 to: sourceCode size.
-
-	^ '' join: { 
-			  codeBeforeNode.
-			  self generateNode: self parentNode.
-			  codeAfterNode }
-]
-
-{ #category : #'applying operation' }
-DeleteOperation >> transformNodeIfNeeded [
-
-	(self checkIfWholeLineMustBeRemovedInSourceCode: sourceCode) 
-		ifFalse: [ 
-			"removing the node from its parent" 
-			transformedNode removeAllPotentialParentNode ]
 ]

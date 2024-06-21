@@ -25,26 +25,10 @@ Class {
 	#superclass : #Object,
 	#instVars : [
 		'transformedNode',
-		'anchorNode',
-		'sourceCode',
-		'offsetToApply',
-		'removedHighlight',
-		'addedHighlight'
+		'anchorNode'
 	],
 	#category : #'Transformation-Tools'
 }
-
-{ #category : #accessing }
-AbstractTransformationOperation >> addedHighlight [
-
-	^ addedHighlight
-]
-
-{ #category : #accessing }
-AbstractTransformationOperation >> addedHighlight: anObject [
-
-	addedHighlight := anObject
-]
 
 { #category : #accessing }
 AbstractTransformationOperation >> anchorNode [
@@ -59,30 +43,9 @@ AbstractTransformationOperation >> anchorNode: anObject [
 ]
 
 { #category : #'applying operation' }
-AbstractTransformationOperation >> applyOperation [
-
+AbstractTransformationOperation >> buildNewNode [
+	"returns the new node created using the anchor and transformed node"
 	^ self subclassResponsibility
-]
-
-{ #category : #'applying operation' }
-AbstractTransformationOperation >> applyOperationOnSource: aCodeString withOffset: anInt [
-	
-	sourceCode := aCodeString.
-	offsetToApply := anInt.
-	self transformNodeIfNeeded.
-	^ self applyOperation.
-]
-
-{ #category : #'as yet unclassified' }
-AbstractTransformationOperation >> computeOffsetWithOriginalPos: originalPos andOffsetDict: aDictionary [
-
-	| offset |
-	offset := 0.
-	aDictionary keysAndValuesDo: [ :k :v | 
-		k <= originalPos
-			ifTrue: [ offset := offset + v ]
-			ifFalse: [ ^ offset ] ].
-	^ offset
 ]
 
 { #category : #'as yet unclassified' }
@@ -104,95 +67,9 @@ AbstractTransformationOperation >> copyTransformedNodeParent [
 ]
 
 { #category : #'as yet unclassified' }
-AbstractTransformationOperation >> findNewOffsetPosWithOffsetDict: aDictionary [.
-	
-	^ self subclassResponsibility 
-]
-
-{ #category : #'as yet unclassified' }
-AbstractTransformationOperation >> generateNode: aFASTJavaNode [
-
-	^ FASTJavaExportVisitor new export: aFASTJavaNode 
-]
-
-{ #category : #'as yet unclassified' }
-AbstractTransformationOperation >> generateTransformedNode [
-
-	^ self generateNode: transformedNode 
-]
-
-{ #category : #'as yet unclassified' }
-AbstractTransformationOperation >> generateTransformedNodeParent [
-
-	^ self generateNode: transformedNode parentNode
-]
-
-{ #category : #'as yet unclassified' }
 AbstractTransformationOperation >> getPosForSorting [
 	"returns a position in the source code string, used to sort the operation list"
 	^ self subclassResponsibility 
-]
-
-{ #category : #initialization }
-AbstractTransformationOperation >> initialize [ 
-
-	offsetToApply := 0
-]
-
-{ #category : #accessing }
-AbstractTransformationOperation >> removedHighlight [
-
-	^ removedHighlight
-]
-
-{ #category : #accessing }
-AbstractTransformationOperation >> removedHighlight: anObject [
-
-	removedHighlight := anObject
-]
-
-{ #category : #'as yet unclassified' }
-AbstractTransformationOperation >> replaceNode: aFASTNode [
-
-	| codeBeforeNode codeAfterNode transformedNodeCode |
-	
-	codeBeforeNode := sourceCode
-		                  copyFrom: 1
-		                  to: aFASTNode startPos + offsetToApply - 1.
-	codeAfterNode := sourceCode
-		                 copyFrom: aFASTNode endPos + offsetToApply + 1
-		                 to: sourceCode size.
-
-	transformedNodeCode := self generateTransformedNode.
-
-	removedHighlight := aFASTNode startPos @ aFASTNode endPos.
-	addedHighlight := aFASTNode startPos + offsetToApply
-	                  @
-	                  (aFASTNode startPos + transformedNodeCode size
-	                   + offsetToApply).
-
-	^ '' join: { 
-			  codeBeforeNode.
-			  transformedNodeCode.
-			  codeAfterNode }
-]
-
-{ #category : #accessing }
-AbstractTransformationOperation >> sourceCode [
-
-	^ sourceCode
-]
-
-{ #category : #accessing }
-AbstractTransformationOperation >> sourceCode: anObject [
-
-	sourceCode := anObject
-]
-
-{ #category : #'applying operation' }
-AbstractTransformationOperation >> transformNodeIfNeeded [
-
-	^ self subclassResponsibility
 ]
 
 { #category : #accessing }

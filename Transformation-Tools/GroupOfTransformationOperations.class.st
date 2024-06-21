@@ -14,34 +14,24 @@ Class {
 	#category : #'Transformation-Tools'
 }
 
-{ #category : #accessing }
-GroupOfTransformationOperations >> addedHighlight [ 
-
-	^ operations last addedHighlight
-]
-
 { #category : #'applying operation' }
-GroupOfTransformationOperations >> applyOperationOnSource: aCodeString withOffset: anInt [
+GroupOfTransformationOperations >> buildNewNode [
+
+	"returns the new node created using the anchor and transformed node"
 
 	| currentAnchorNode |
 	currentAnchorNode := operations first anchorNode.
+	
+	"setting original anchor node just in case"
+	self anchorNode: currentAnchorNode. 
 
 	operations allButLast do: [ :op | 
 		op anchorNode: currentAnchorNode.
-		op transformNodeIfNeeded.
-		currentAnchorNode := op transformedNode ].
+		currentAnchorNode := op buildNewNode ].
 
 	operations last anchorNode: currentAnchorNode.
 
-	^ operations last
-		  applyOperationOnSource: aCodeString
-		  withOffset: anInt
-]
-
-{ #category : #'as yet unclassified' }
-GroupOfTransformationOperations >> findNewOffsetPosWithOffsetDict: aDictionary [.
-	"operations should all apply on the same node, so any operation should have a good return value"
-	^ self operations first findNewOffsetPosWithOffsetDict: aDictionary 
+	^ operations last buildNewNode
 ]
 
 { #category : #'as yet unclassified' }
@@ -61,10 +51,4 @@ GroupOfTransformationOperations >> operations [
 GroupOfTransformationOperations >> operations: aCollection [
 
 	operations := aCollection
-]
-
-{ #category : #accessing }
-GroupOfTransformationOperations >> removedHighlight [ 
-
-	^ operations last removedHighlight
 ]

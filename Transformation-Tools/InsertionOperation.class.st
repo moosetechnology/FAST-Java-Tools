@@ -16,18 +16,14 @@ Class {
 }
 
 { #category : #'applying operation' }
-InsertionOperation >> applyOperation [
+InsertionOperation >> buildNewNode [
+	"returns the new node created using the anchor and transformed node"
+	| parentCopy |
+	parentCopy := self copyNode: self parentNode.
 
-	"replacing the parent node by the transformed parent node (with the new node inserted)"
-	^ self replaceNode: self parentNode
-]
-
-{ #category : #'as yet unclassified' }
-InsertionOperation >> findNewOffsetPosWithOffsetDict: aDictionary [.
+	parentCopy perform: selector withArguments: { transformedNode }.
 	
-	^ self parentNode class = FASTJavaStatementBlock
-		  ifTrue: [ self parentNode endPos ]
-		  ifFalse: [ self parentNode startPos ] 
+	^ parentCopy.
 ]
 
 { #category : #'as yet unclassified' }
@@ -62,16 +58,4 @@ InsertionOperation >> selector [
 InsertionOperation >> selector: anObject [
 
 	selector := anObject
-]
-
-{ #category : #'applying operation' }
-InsertionOperation >> transformNodeIfNeeded [
-
-	| parentCopy |
-	parentCopy := self copyNode: self parentNode.
-
-	parentCopy perform: selector withArguments: { transformedNode }.
-	
-	"setting the copy as transformedNode to use it when replacing the parent node"
-	transformedNode := parentCopy.
 ]
