@@ -1,9 +1,24 @@
+"
+I receive a collection of transformation operations and the source code of an entity to apply the transformations on this source code.
+These operations do not modify the FAST of the entities that are transformed, but use the information within those nodes (most notably, their `startPos` and `endPos` attribute), in order to properly transform the code as necessary.
+
+This way of transforming the code allows us to maintain the ""aspect"" of the code, namely the indentation, comments and empty lines, which would be lost if we were to regenerate the code of the entire FAST tree.
+
+The operations must use anchor nodes that are found at their `startPos` and `endPos` in the given source code for the transformation to be successful.
+
+The easiest way to instantiate this class is by using the class method `onSourceCode: aString forOperations: operationsList`.
+After that, using the method `applyCodeTransformation` will process and apply every given transformation operation before returning the fully transformed source code.
+
+Once a transformation is completed, the tool has additional data available through several accessors :
+- `addedHighlights` : Contains a collection of `Point` instances, with the start position of a transformed portion of code in `x` and the end position in `y`. This allows to highlight every modification in the transformed code string, using the `TransformationEditor` modal window.
+- `removedHighlights` : Contains a collection of `Point` instances, with the start position of a transformed portion of code in `x` and the end position in `y`. This allows to highlight every modification in the original code string, using the `TransformationEditor` modal window.
+- `transformedEntitiesPosition` : Contains a collection of `TransformationPointerWrapper`, with an index for the original code string and an index for the transformed code string, as well as the pointed FAST entity. This allows to easily jump from transformed method to transformed method inside a transfored class, using the `TransformationEditor` modal window.
+"
 Class {
 	#name : #FASTJavaCodeGeneratorKeepingFormatting,
 	#superclass : #Object,
 	#instVars : [
 		'operationList',
-		'offsetDict',
 		'offsetToApply',
 		'removedHighlights',
 		'addedHighlights',
@@ -23,7 +38,7 @@ FASTJavaCodeGeneratorKeepingFormatting class >> onSourceCode: aString forOperati
 		  yourself
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #'setting pointer' }
 FASTJavaCodeGeneratorKeepingFormatting >> addTransformationPointerIfNeeded [
 
 	| parentEntity |
@@ -55,7 +70,7 @@ FASTJavaCodeGeneratorKeepingFormatting >> addedHighlights [
 	^ addedHighlights
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #execute }
 FASTJavaCodeGeneratorKeepingFormatting >> applyCodeTransformation [
 
 	"sort to simplify the calculus of offset and highlights"
@@ -68,7 +83,7 @@ FASTJavaCodeGeneratorKeepingFormatting >> applyCodeTransformation [
 	^ sourceCode
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #'applying operation' }
 FASTJavaCodeGeneratorKeepingFormatting >> applyDeleteOperation [
 
 	| lineBeginIndex nextLineBeginIndex |
@@ -94,7 +109,7 @@ FASTJavaCodeGeneratorKeepingFormatting >> applyDeleteOperation [
 	self newRemovedHighlightOnAnchor
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #'applying operation' }
 FASTJavaCodeGeneratorKeepingFormatting >> applyReplacingOperation [
 
 	| anchorNode newNodeCode codeBeforeNode codeAfterNode |
@@ -121,7 +136,7 @@ FASTJavaCodeGeneratorKeepingFormatting >> applyReplacingOperation [
 		end: anchorNode startPos + newNodeCode size
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #'applying operation' }
 FASTJavaCodeGeneratorKeepingFormatting >> applySignatureInsertionOperation [
 
 	| generatedSignature anchorNode searchedCharacter indexOfSearchedCharacter |
@@ -156,7 +171,7 @@ FASTJavaCodeGeneratorKeepingFormatting >> applySignatureInsertionOperation [
 		end: anchorNode startPos + generatedSignature size
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #'applying operation' }
 FASTJavaCodeGeneratorKeepingFormatting >> applyStatementOrDeclarationInsertionOperation [
 
 	| insertIndex oldSourceSize |
@@ -181,7 +196,7 @@ FASTJavaCodeGeneratorKeepingFormatting >> applyStatementOrDeclarationInsertionOp
 		end: insertIndex + sourceCode size - oldSourceSize
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #parsing }
 FASTJavaCodeGeneratorKeepingFormatting >> findIndexOfLineBegginingFrom: anIndex [
 
 	| index |
@@ -198,7 +213,7 @@ FASTJavaCodeGeneratorKeepingFormatting >> findIndexOfLineBegginingFrom: anIndex 
 	^ index + 1
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #parsing }
 FASTJavaCodeGeneratorKeepingFormatting >> findIndexOfStartOfNextLineFrom: anIndex [
 
 	| index |
@@ -218,7 +233,7 @@ FASTJavaCodeGeneratorKeepingFormatting >> findIndexOfStartOfNextLineFrom: anInde
 	^ index
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #'string generation' }
 FASTJavaCodeGeneratorKeepingFormatting >> generateAndCleanForInsertedNode: aFASTNode [
 
 	| newCodeString indentOfAnchorDeclaration joinString |
@@ -238,7 +253,7 @@ FASTJavaCodeGeneratorKeepingFormatting >> generateAndCleanForInsertedNode: aFAST
 	^ newCodeString
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #'string generation' }
 FASTJavaCodeGeneratorKeepingFormatting >> generateAndCleanSignatureForNode: aFASTNode [
 
 	| generatedSignature anchorNode |
@@ -259,19 +274,19 @@ FASTJavaCodeGeneratorKeepingFormatting >> generateAndCleanSignatureForNode: aFAS
 	^ generatedSignature
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #'string generation' }
 FASTJavaCodeGeneratorKeepingFormatting >> generateCurrentTransformedNode [
 
 	^ self generateNode: currentOperation transformedNode
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #'string generation' }
 FASTJavaCodeGeneratorKeepingFormatting >> generateNode: aFASTJavaNode [
 
 	^ FASTJavaExportVisitor new export: aFASTJavaNode
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #'string generation' }
 FASTJavaCodeGeneratorKeepingFormatting >> generateNodeToInsert: aFASTNode [
 
 	^ String streamContents: [ :s | 
@@ -282,7 +297,7 @@ FASTJavaCodeGeneratorKeepingFormatting >> generateNodeToInsert: aFASTNode [
 			  yourself ]
 ]
 
-{ #category : #'applying operation' }
+{ #category : #parsing }
 FASTJavaCodeGeneratorKeepingFormatting >> getClosingSignatureCharacterOfAnchorNode [
 
 	"if the signature to transform is a method declared in an interface or is abstract"
@@ -293,7 +308,7 @@ FASTJavaCodeGeneratorKeepingFormatting >> getClosingSignatureCharacterOfAnchorNo
 	^ ${
 ]
 
-{ #category : #'applying operation' }
+{ #category : #parsing }
 FASTJavaCodeGeneratorKeepingFormatting >> getIndentFromAnchorStatement [
 
 	^ sourceCode
@@ -302,7 +317,7 @@ FASTJavaCodeGeneratorKeepingFormatting >> getIndentFromAnchorStatement [
 		  to: currentOperation anchorNode startPos + offsetToApply - 1
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #'lookup elements' }
 FASTJavaCodeGeneratorKeepingFormatting >> getParentEntityFor: aTransformationOperation [
 
 	| currentNode |
@@ -320,14 +335,13 @@ FASTJavaCodeGeneratorKeepingFormatting >> getParentEntityFor: aTransformationOpe
 FASTJavaCodeGeneratorKeepingFormatting >> initialize [
 
 	operationList := OrderedCollection new.
-	offsetDict := OrderedDictionary new.
 	removedHighlights := OrderedCollection new.
 	addedHighlights := OrderedCollection new.
 	transformedEntitiesPosition := OrderedCollection new.
 	offsetToApply := 0
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #'string generation' }
 FASTJavaCodeGeneratorKeepingFormatting >> insertNewNodeString: newCodeString at: anIndex [
 
 	sourceCode := String streamContents: [ :s | 
@@ -339,7 +353,7 @@ FASTJavaCodeGeneratorKeepingFormatting >> insertNewNodeString: newCodeString at:
 			              yourself ]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #'string generation' }
 FASTJavaCodeGeneratorKeepingFormatting >> insertedStringPrefix [
 
 	^ String streamContents: [ :s | 
@@ -352,7 +366,7 @@ FASTJavaCodeGeneratorKeepingFormatting >> insertedStringPrefix [
 			  ifFalse: [ s nextPutAll: self getIndentFromAnchorStatement ] ]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #'string generation' }
 FASTJavaCodeGeneratorKeepingFormatting >> insertedStringSuffix [
 
 	^ String streamContents: [ :s | 
@@ -363,7 +377,7 @@ FASTJavaCodeGeneratorKeepingFormatting >> insertedStringSuffix [
 			  s nextPutAll: self lineDelimetersUsedInSourceCode ] ]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #'string generation' }
 FASTJavaCodeGeneratorKeepingFormatting >> lineDelimetersUsedInSourceCode [
 
 	^ (sourceCode includes: Character lf)
@@ -371,7 +385,7 @@ FASTJavaCodeGeneratorKeepingFormatting >> lineDelimetersUsedInSourceCode [
 		  ifFalse: [ String cr ]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #highlighting }
 FASTJavaCodeGeneratorKeepingFormatting >> newAddedHighlightApplyingOffsetStart: startIndex end: endIndex [
 
 	self
@@ -380,7 +394,7 @@ FASTJavaCodeGeneratorKeepingFormatting >> newAddedHighlightApplyingOffsetStart: 
 		end: endIndex + offsetToApply
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #highlighting }
 FASTJavaCodeGeneratorKeepingFormatting >> newAddedHighlightStart: startIndex end: endIndex [
 
 	self
@@ -389,13 +403,13 @@ FASTJavaCodeGeneratorKeepingFormatting >> newAddedHighlightStart: startIndex end
 		end: endIndex
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #highlighting }
 FASTJavaCodeGeneratorKeepingFormatting >> newHighlightInCollection: aCollection start: startIndex end: endIndex [
 
 	aCollection add: startIndex @ endIndex
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #highlighting }
 FASTJavaCodeGeneratorKeepingFormatting >> newRemovedHighlightOnAnchor [
 
 	self
@@ -403,7 +417,7 @@ FASTJavaCodeGeneratorKeepingFormatting >> newRemovedHighlightOnAnchor [
 		end: currentOperation anchorNode endPos
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #highlighting }
 FASTJavaCodeGeneratorKeepingFormatting >> newRemovedHighlightStart: startIndex end: endIndex [
 
 	self
@@ -424,7 +438,7 @@ FASTJavaCodeGeneratorKeepingFormatting >> operationList: anObject [
 	operationList := anObject
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #processing }
 FASTJavaCodeGeneratorKeepingFormatting >> processDeleteOperation [
 
 	currentOperation buildNewNode
@@ -434,7 +448,7 @@ FASTJavaCodeGeneratorKeepingFormatting >> processDeleteOperation [
 		ifNotNil: [ self applyReplacingOperation ]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #processing }
 FASTJavaCodeGeneratorKeepingFormatting >> processGroupOperation [
 	"a group operation is only for replacing, so either signature insertion or replacing is called"
 	(currentOperation operations anySatisfy: [ :o | 
@@ -443,7 +457,7 @@ FASTJavaCodeGeneratorKeepingFormatting >> processGroupOperation [
 		ifFalse: [ self applyReplacingOperation ]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #processing }
 FASTJavaCodeGeneratorKeepingFormatting >> processInsertionOperation [
 
 	currentOperation class = SignatureInsertionOperation ifTrue: [ 
@@ -453,7 +467,7 @@ FASTJavaCodeGeneratorKeepingFormatting >> processInsertionOperation [
 	self applyStatementOrDeclarationInsertionOperation 
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #processing }
 FASTJavaCodeGeneratorKeepingFormatting >> processOperation: aTransformationOperation [
 
 	| oldSourceSize |
@@ -467,7 +481,7 @@ FASTJavaCodeGeneratorKeepingFormatting >> processOperation: aTransformationOpera
 	offsetToApply := offsetToApply + (sourceCode size - oldSourceSize)
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #processing }
 FASTJavaCodeGeneratorKeepingFormatting >> processOperationByType [
 
 	"InsertionOperation actually replace the parent node, so true insertion behaviour is only used for its subclasses"

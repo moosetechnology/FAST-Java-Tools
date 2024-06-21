@@ -1,5 +1,5 @@
 "
-This transformation operation is used to replace the source code of a node (and its eventual children nodes) using the generated source code of a new node.
+This transformation operation is used to replace a node (and its eventual children nodes) for a new node (and its eventual children nodes).
 
 This operation requires to be given as the `transformedNode` the node to use as replacement, and the original node using the `originalNode:` or `anchorNode:` setter.
 
@@ -17,7 +17,7 @@ ReplacingOperation >> buildNewNode [
 	^ transformedNode
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #sorting }
 ReplacingOperation >> getPosForSorting [
 	"returns a position in the source code string, used to sort the operation list"
 	^ self originalNode startPos

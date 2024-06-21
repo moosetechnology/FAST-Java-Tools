@@ -1,22 +1,18 @@
 "
-This class represents an abstract operation of code transformation on FAST trees. 
-These operations do not modify the FAST of the entities that are transformed, but use the information within those nodes (most notably, their `startPos` and `endPos` attribute), in order to properly transform the code as necessary.
+I represent an abstract operation of transformation on FAST trees. 
+These operations do not modify the FAST of the entities that are transformed, but use the information within the given nodes to create new nodes representing the result of a transformation operation.
 
-This way of transforming the code allows us to maintain the ""aspect"" of the code, namely the indentation, comments and empty lines, which would be lost if we were to regenerate the code of the entire FAST tree.
+The two instance variables are both used to contain FAST nodes used to perform the FAST transformation :
+- `anchorNode` : A FAST node found in the entity that will be transformed. It is either actively being used (copied and modified for a simple insertion, replaced in a replacing operation) or only used as a pointer to locate where to apply the transformation (for a statement or declaration operation)
+- `transformedNode` : A FAST node created to be used in the transformation operation. The way to use it depends a lot from the nature of the operation (it can be a node to insert, or a node used to replace the anchor node). It can also be `nil` (for the delete operation)
 
-The API of those operations includes :
-- `applyOperationOnSource: sourceCode withOffset: offset` : Calling this method transforms and return the transformed code string of the entity (given as `sourceCode`). The offset parameter is used to ajust the localisation of the code for the entity to transform, which will change as the code string evolves with each transformation.
-- `addedHighlight` : After a transformation, this selector will return a `Point`, with the start position of a transformed portion of code in `x` and the end position in `y`. This allows to highlight every modification in the transformed code string, using the `TransformationEditor` modal window.
-- `removedHighlight` : After a transformation, this selector will return a `Point`, with the start position of a transformed portion of code in `x` and the end position in `y`. This allows to highlight every modification in the original code string, using the `TransformationEditor` modal window.
+The API of those operations includes : 
 - `copyNode: aFASTNode` : This method copies the given node and children of this node using the `FASTJavaCopyVisitor`. The `copyTransformedNode` and `copyTransformedNodeParent` use this method on the specified node in their name.
-- `generateNode: aFASTNode` : This method generates the code string representing the given node and children of this node using the `FASTJavaExportVisitor`. The `generateTransformedNode` and `generateTransformedNodeParent` use this method on the specified node in their name.
-- `replaceNode: aFASTNode` : This method replaces in the code string the code snippet representing the given node, with the generated code from the `transformedNode` variable. 
+- accessors for the two different nodes
 
 The methods that subclasses must implements are :
+- `buildNewNode` : Creates a new node from the anchor node and transformed node, to be used by the `FASTJavaCodeGeneratorKeepingFormatting` to modify the source code of the given entity.
 - `getPosForSorting` : This method returns an index representing a position in the source code. Using this index allows to sort all operations applied to the same entity to properly calculate the offset to apply on string edits.
-- `findNewOffsetPosWithOffsetDict: aDictionary` : ???
-- `transformNodeIfNeeded` : This method is the one in which the FAST (specifically, the anchor and transformed node) may be copied and modified, in order to create the node representing the new code snippet to insert in the original code string. The code string is however, not modified at this point. The node (or tree) resulting should be stored in the `transformedNode` variable.
-- `applyOperation` : This method is responsable for the edition of the code string, using the result of the `transformNodeIfNeeded` method.
 
 
 "
@@ -48,25 +44,25 @@ AbstractTransformationOperation >> buildNewNode [
 	^ self subclassResponsibility
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #copying }
 AbstractTransformationOperation >> copyNode: aFASTJavaNode [
 
 	^ FASTJavaCopyVisitor new copy: aFASTJavaNode 
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #copying }
 AbstractTransformationOperation >> copyTransformedNode [
 
 	^ self copyNode: transformedNode 
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #copying }
 AbstractTransformationOperation >> copyTransformedNodeParent [
 
 	^ self copyNode: transformedNode parentNode
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #sorting }
 AbstractTransformationOperation >> getPosForSorting [
 	"returns a position in the source code string, used to sort the operation list"
 	^ self subclassResponsibility 

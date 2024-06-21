@@ -1,5 +1,5 @@
 "
-This transformation operation is used to insert a node (and its eventual children nodes) into the source code of its parent entity.
+This transformation operation is used to insert a node (and its eventual children nodes) into the given anchor node.
 
 This operation requires to be given as the `transformedNode` the node to insert, and its parent using the `parentNode:` or `anchorNode:` setter.
 The selector used to insert the `transformedNode` to the `anchorNode` must also be specified as a symbol (check `FASTJavaCodeGeneratorBuilder` `>> insertionOperation1`).
@@ -26,7 +26,7 @@ InsertionOperation >> buildNewNode [
 	^ parentCopy.
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #sorting }
 InsertionOperation >> getPosForSorting [
 
 	"returns a position in the source code string, used to sort the operation list"

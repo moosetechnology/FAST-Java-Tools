@@ -1,10 +1,10 @@
 "
 This transformation operation is used to delete a node (and its eventual children nodes) from the source code of its parent entity.
 
-This operation requires to be given as the `transformedNode` the node to delete, and its parent using the `parentNode:` or `anchorNode:` setter.
+This operation requires to be given as the `anchorNode` the node to delete. The transformed node is not used by this operation.
 
-If the node to delete represents a full line of code (typically a statement), then the whole line, including the carriage return will be deleted.
-Otherwise, the parent node will be generated after deleting the node to delete, and this code string will replace the orignal code string representing the parent node.
+If the node to delete represents a full line of code (typically a statement), then the whole line, including the carriage return will be deleted. To do so, `buildNewNode` will return `nil`.
+Otherwise, the parent node will be copied and returned after removing the node to delete. The code string generated from this node will replace the orignal code string representing the parent node.
 "
 Class {
 	#name : #DeleteOperation,
@@ -32,7 +32,7 @@ DeleteOperation >> buildNewNode [
 			  parentNode ]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #sorting }
 DeleteOperation >> getPosForSorting [
 	"returns a position in the source code string, used to sort the operation list"
 	^ transformedNode startPos
