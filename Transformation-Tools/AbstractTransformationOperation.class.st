@@ -45,21 +45,15 @@ AbstractTransformationOperation >> buildNewNode [
 ]
 
 { #category : #copying }
+AbstractTransformationOperation >> copyAnchorNode [
+
+	^ self copyNode: anchorNode 
+]
+
+{ #category : #copying }
 AbstractTransformationOperation >> copyNode: aFASTJavaNode [
 
 	^ FASTJavaCopyVisitor new copy: aFASTJavaNode 
-]
-
-{ #category : #copying }
-AbstractTransformationOperation >> copyTransformedNode [
-
-	^ self copyNode: transformedNode 
-]
-
-{ #category : #copying }
-AbstractTransformationOperation >> copyTransformedNodeParent [
-
-	^ self copyNode: transformedNode parentNode
 ]
 
 { #category : #sorting }
