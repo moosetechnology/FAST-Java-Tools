@@ -22,9 +22,9 @@ Class {
 		'offsetToApply',
 		'removedHighlights',
 		'addedHighlights',
-		'transformedEntitiesPosition',
 		'sourceCode',
-		'currentOperation'
+		'currentOperation',
+		'transformationPointers'
 	],
 	#category : #'Transformation-Tools'
 }
@@ -45,7 +45,7 @@ FASTJavaCodeGeneratorKeepingFormatting >> addTransformationPointerIfNeeded [
 	"if it's a new declaration, add it without entity"
 	currentOperation class = DeclarationInsertionOperation 
 		ifTrue: [ 
-			transformedEntitiesPosition add: (TransformationPointerWrapper new
+			transformationPointers add: (TransformationPointerWrapper new
 					 newVersionStartIndex: addedHighlights last x;
 					 oldVersionStartIndex:
 						 addedHighlights last x - offsetToApply).
@@ -54,11 +54,11 @@ FASTJavaCodeGeneratorKeepingFormatting >> addTransformationPointerIfNeeded [
 	parentEntity := self getParentEntityFor: currentOperation.
 
 	"operations are ordered, so if the last entity with a pointer is not the parent entity, there's no pointer for it"
-	(transformedEntitiesPosition isNotEmpty and: [ 
-		 transformedEntitiesPosition last entity = parentEntity ]) ifTrue: [ 
+	(transformationPointers isNotEmpty and: [ 
+		 transformationPointers last entity = parentEntity ]) ifTrue: [ 
 		^ self ].
 
-	transformedEntitiesPosition add: (TransformationPointerWrapper new
+	transformationPointers add: (TransformationPointerWrapper new
 			 entity: parentEntity;
 			 newVersionStartIndex: parentEntity startPos + offsetToApply;
 			 oldVersionStartIndex: parentEntity startPos)
@@ -337,7 +337,7 @@ FASTJavaCodeGeneratorKeepingFormatting >> initialize [
 	operationList := OrderedCollection new.
 	removedHighlights := OrderedCollection new.
 	addedHighlights := OrderedCollection new.
-	transformedEntitiesPosition := OrderedCollection new.
+	transformationPointers := OrderedCollection new.
 	offsetToApply := 0
 ]
 
@@ -519,7 +519,7 @@ FASTJavaCodeGeneratorKeepingFormatting >> sourceCode: anObject [
 ]
 
 { #category : #accessing }
-FASTJavaCodeGeneratorKeepingFormatting >> transformedEntitiesPosition [
+FASTJavaCodeGeneratorKeepingFormatting >> transformationPointers [
 
-	^ transformedEntitiesPosition
+	^ transformationPointers
 ]

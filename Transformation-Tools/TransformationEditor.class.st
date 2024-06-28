@@ -11,8 +11,8 @@ Class {
 		'originalEntity',
 		'removedHighlights',
 		'addedHighlights',
-		'transformedEntitiesPosition',
-		'currentPointer'
+		'currentPointer',
+		'transformationPointers'
 	],
 	#category : #'Transformation-Tools'
 }
@@ -130,13 +130,13 @@ TransformationEditor >> editingTextPresenter [
 TransformationEditor >> goToNextTransformationPointer [
 
 	(currentPointer isNil or: [ 
-		 currentPointer = transformedEntitiesPosition last ]) ifTrue: [ 
-		currentPointer := transformedEntitiesPosition first.
+		 currentPointer = transformationPointers last ]) ifTrue: [ 
+		currentPointer := transformationPointers first.
 		self goToPointer: currentPointer.
 		^ self ].
 
-	currentPointer := transformedEntitiesPosition at:
-		                  (transformedEntitiesPosition indexOf:
+	currentPointer := transformationPointers at:
+		                  (transformationPointers indexOf:
 			                   currentPointer) + 1.
 
 	self goToPointer: currentPointer
@@ -168,7 +168,7 @@ TransformationEditor >> initialize [
 
 	super initialize.
 	
-	transformedEntitiesPosition := OrderedCollection new.
+	transformationPointers := OrderedCollection new.
 ]
 
 { #category : #initialization }
@@ -303,15 +303,15 @@ TransformationEditor >> setTextValuesWithHighlights [
 ]
 
 { #category : #accessing }
-TransformationEditor >> transformedEntitiesPosition [
+TransformationEditor >> transformationPointers [
 
-	^ transformedEntitiesPosition
+	^ transformationPointers
 ]
 
 { #category : #accessing }
 TransformationEditor >> transformedEntitiesPosition: anObject [
 
-	transformedEntitiesPosition := anObject
+	transformationPointers := anObject
 ]
 
 { #category : #accessing }
