@@ -24,18 +24,18 @@ DeleteOperation >> buildNewNode [
 		   FASTJavaStatementBlock } includes: anchorNode parentNode class)
 		  ifTrue: [ nil ]
 		  ifFalse: [ 
-			  | parentNode |
-			  parentNode := self copyNode: anchorNode.
-			  (transformedNode
+			  | newNode |
+			  newNode := self copyNode: anchorNode parentNode.
+			  (anchorNode
 				   attributeAt: #copy
 				   ifAbsent: [ "sholud not happen" ]) removeAllPotentialParentNode.
-			  parentNode ]
+			  newNode ]
 ]
 
 { #category : #sorting }
 DeleteOperation >> getPosForSorting [
 	"returns a position in the source code string, used to sort the operation list"
-	^ transformedNode startPos
+	^ anchorNode startPos
 ]
 
 { #category : #accessing }

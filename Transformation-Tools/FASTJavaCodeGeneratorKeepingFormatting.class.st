@@ -40,16 +40,15 @@ FASTJavaCodeGeneratorKeepingFormatting class >> onSourceCode: aString forOperati
 
 { #category : #'setting pointer' }
 FASTJavaCodeGeneratorKeepingFormatting >> addTransformationPointerIfNeeded [
+"creates a TransformationPointerWrapper if the parent declaration is on its first transformation operation"
 
 	| parentEntity |
 	"if it's a new declaration, add it without entity"
-	currentOperation class = DeclarationInsertionOperation 
-		ifTrue: [ 
-			transformationPointers add: (TransformationPointerWrapper new
-					 newVersionStartIndex: addedHighlights last x;
-					 oldVersionStartIndex:
-						 addedHighlights last x - offsetToApply).
-			^ self ].
+	currentOperation class = DeclarationInsertionOperation ifTrue: [ 
+		transformationPointers add: (TransformationPointerWrapper new
+				 newVersionStartIndex: addedHighlights last x;
+				 oldVersionStartIndex: addedHighlights last x - offsetToApply).
+		^ self ].
 
 	parentEntity := self getParentEntityFor: currentOperation.
 

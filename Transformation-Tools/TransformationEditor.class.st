@@ -76,6 +76,23 @@ TransformationEditor class >> openForOriginalText: originalCode transformed: tra
 	^ modalWindow
 ]
 
+{ #category : #'as yet unclassified' }
+TransformationEditor class >> openForOriginalText: originalCode transformed: transformedCode tool: tool service: service originalEntity: originalEntity [
+
+	| modalWindow |
+
+	modalWindow := self new
+		  originalText: originalCode;
+		  transformedText: transformedCode;
+		  tool: tool;
+		  service: service;
+		  originalEntity: originalEntity;
+		  setTextValues;
+		  openModal.
+	
+	^ modalWindow
+]
+
 { #category : #accessing }
 TransformationEditor >> addedHighlights [
 

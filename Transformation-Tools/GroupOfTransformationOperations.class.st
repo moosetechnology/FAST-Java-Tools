@@ -14,6 +14,12 @@ Class {
 	#category : #'Transformation-Tools'
 }
 
+{ #category : #initialization }
+GroupOfTransformationOperations >> addOperation: anOperation [
+
+	operations add: anOperation 
+]
+
 { #category : #'applying operation' }
 GroupOfTransformationOperations >> buildNewNode [
 
@@ -39,6 +45,13 @@ GroupOfTransformationOperations >> getPosForSorting [
 	"returns a position in the source code string, used to sort the operation list"
 	"operations should all apply on the same node, so any operation should have a good return value"
 	^ self operations first getPosForSorting
+]
+
+{ #category : #initialization }
+GroupOfTransformationOperations >> initialize [ 
+
+	super initialize.
+	operations := OrderedCollection new
 ]
 
 { #category : #accessing }

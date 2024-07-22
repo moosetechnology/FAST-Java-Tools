@@ -12,6 +12,23 @@ FASTJavaCodeGeneratorBuilder >> codeGeneratorFor: sourceCode withOps: aCollectio
 		  forOperations: aCollection
 ]
 
+{ #category : #'as yet unclassified' }
+FASTJavaCodeGeneratorBuilder >> collectionOfAllTransformations [
+
+	^ OrderedCollection new
+		  add: self deleteOperation2;
+		  add: (GroupOfTransformationOperations new
+				   addOperation: self signatureInsertionOperation2;
+				   addOperation: self signatureInsertionOperation3;
+				   yourself);
+		  add: self signatureInsertionOperation4;
+		  add: self declarationInsertionOperation1;
+		  add: self insertionOperation2;
+		  add: self statementInsertionOperation3;
+		  add: self replacingOperation2;
+		  yourself
+]
+
 { #category : #test }
 FASTJavaCodeGeneratorBuilder >> declarationInsertionOperation1 [
 
@@ -72,6 +89,51 @@ FASTJavaCodeGeneratorBuilder >> deleteOperation1 [
 	^ DeleteOperation new
 		  anchorNode: nodeToDelete;
 		  yourself
+]
+
+{ #category : #test }
+FASTJavaCodeGeneratorBuilder >> deleteOperation2 [
+
+	| nodeToDelete |
+	nodeToDelete := self fastClassGetSitsExpression.
+
+	^ DeleteOperation new
+		  anchorNode: nodeToDelete;
+		  yourself
+]
+
+{ #category : #test }
+FASTJavaCodeGeneratorBuilder >> fastClassGetCat [
+
+	^ self fastClassWithTestMethod allChildren do: [ :s | 
+		  (s class = FASTJavaVarDeclStatement and: [ 
+			   s declarators first variable name = 'cat' ]) ifTrue: [ 
+			  ^ s declarators first expression ] ]
+]
+
+{ #category : #test }
+FASTJavaCodeGeneratorBuilder >> fastClassGetReturnExpression [
+
+	^ self fastClassWithTestMethod allChildren do: [ :s | 
+		  s class = FASTJavaReturnStatement ifTrue: [ 
+			  ^ s expression ] ]
+]
+
+{ #category : #'as yet unclassified' }
+FASTJavaCodeGeneratorBuilder >> fastClassGetSitsExpression [
+
+	^ self fastClassWithTestMethod allChildren do: [ :s | 
+		  (s class = FASTJavaMethodInvocation and: [ s name = 'sits' ]) 
+			  ifTrue: [ ^ s expressionStatementOwner ] ]
+]
+
+{ #category : #test }
+FASTJavaCodeGeneratorBuilder >> fastClassMethodTableNode [
+
+	^ self fastClassWithTestMethod allChildren do: [ :s | 
+		  (s class = FASTJavaVarDeclStatement and: [ 
+			   s declarators first variable name = 'table' ]) ifTrue: [ 
+			  ^ s ] ]
 ]
 
 { #category : #'as yet unclassified' }
@@ -152,6 +214,23 @@ FASTJavaCodeGeneratorBuilder >> insertionOperation1 [
 ]
 
 { #category : #test }
+FASTJavaCodeGeneratorBuilder >> insertionOperation2 [
+
+	| parentNode newNode |
+	parentNode := self fastClassGetCat.
+
+	newNode := FASTJavaStringLiteral new
+		           primitiveValue: 'black';
+		           yourself.
+
+	^ InsertionOperation new
+		  parentNode: parentNode;
+		  transformedNode: newNode;
+		  selector: #addArgument:
+		  yourself
+]
+
+{ #category : #test }
 FASTJavaCodeGeneratorBuilder >> replacingOperation1 [
 
 	| nodeToReplace newNode |
@@ -159,6 +238,25 @@ FASTJavaCodeGeneratorBuilder >> replacingOperation1 [
 
 	newNode := FASTJavaMethodInvocation new
 		           name: 'getOtherGraphModel';
+		           yourself.
+
+	^ ReplacingOperation new
+		  originalNode: nodeToReplace;
+		  transformedNode: newNode;
+		  yourself
+]
+
+{ #category : #test }
+FASTJavaCodeGeneratorBuilder >> replacingOperation2 [
+
+	| nodeToReplace newNode |
+	nodeToReplace := self fastClassGetReturnExpression.
+
+	newNode := FASTJavaMethodInvocation new
+		           name: 'hasBeenFed';
+		           receiver: (FASTJavaVariableExpression new
+				            name: 'cat';
+				            yourself);
 		           yourself.
 
 	^ ReplacingOperation new
@@ -221,6 +319,24 @@ FASTJavaCodeGeneratorBuilder >> signatureInsertionOperation3 [
 		  selector: #addInterface: yourself
 ]
 
+{ #category : #test }
+FASTJavaCodeGeneratorBuilder >> signatureInsertionOperation4 [
+
+	| parentNode newNode |
+	parentNode := self fastClassWithTestMethodMethod.
+
+	newNode := FASTJavaClassTypeExpression new
+		           typeName: (FASTJavaTypeName new
+				            name: 'NotFedError';
+				            yourself);
+		           yourself.
+
+	^ SignatureInsertionOperation new
+		  parentNode: parentNode;
+		  transformedNode: newNode;
+		  selector: #addThrow: yourself
+]
+
 { #category : #'as yet unclassified' }
 FASTJavaCodeGeneratorBuilder >> sourceClassWithTestMethod [
 
@@ -232,6 +348,26 @@ FASTJavaCodeGeneratorBuilder >> sourceClassWithTestMethod [
 		Table table = new Table();
 		cat.sits(table);
 		return table.isClear();
+	}
+	
+}'
+]
+
+{ #category : #'as yet unclassified' }
+FASTJavaCodeGeneratorBuilder >> sourceClassWithTestMethodAndAllTransformations [
+
+	^ 
+'public class Test extends House implements TestCase {
+
+	public Test() {
+	  GlobalLogger.log("Created class.");
+	}
+
+	public boolean testMethod()  throws NotFedError {
+		Cat cat = new Cat("black");
+		Table table = new Table();
+		cat.meows();
+		return cat.hasBeenFed();
 	}
 	
 }'
@@ -437,5 +573,25 @@ FASTJavaCodeGeneratorBuilder >> statementInsertionOperation2 [
 		  anchorNode: anchorNode;
 		  transformedNode: newNode;
 		  insertBefore: true;
+		  yourself
+]
+
+{ #category : #test }
+FASTJavaCodeGeneratorBuilder >> statementInsertionOperation3 [
+
+	| anchorNode newNode |
+	anchorNode := self fastClassMethodTableNode.
+
+	newNode := FASTJavaExpressionStatement new expression:
+		           (FASTJavaMethodInvocation new
+			            receiver: (FASTJavaIdentifier new
+					             name: 'cat';
+					             yourself);
+			            name: 'meows';
+			            yourself).
+
+	^ StatementInsertionOperation new
+		  anchorNode: anchorNode;
+		  transformedNode: newNode;
 		  yourself
 ]

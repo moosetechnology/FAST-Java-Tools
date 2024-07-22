@@ -77,10 +77,14 @@ FASTJavaCodeGeneratorKeepingFormattingTest >> applyReplacingOperationTest [
 		        withOps: (OrderedCollection new
 				         add: op;
 				         yourself).
-	
+
 	self
 		assert: tool applyCodeTransformation
-		equals: builder sourceMethodGetEdgesReplacingSuperNode
+		equals: builder sourceMethodGetEdgesReplacingSuperNode.
+
+	self
+		assertRemovedHighlight: tool removedHighlights first
+		IsOnAnchorNodePos: op anchorNode
 ]
 
 { #category : #test }
@@ -97,7 +101,11 @@ FASTJavaCodeGeneratorKeepingFormattingTest >> applySimpleInsertionOperationTest 
 
 	self
 		assert: tool applyCodeTransformation
-		equals: builder sourceMethodTestMethodWithCatColor
+		equals: builder sourceMethodTestMethodWithCatColor.
+
+	self
+		assertRemovedHighlight: tool removedHighlights first
+		IsOnAnchorNodePos: op anchorNode
 ]
 
 { #category : #test }
@@ -158,12 +166,36 @@ FASTJavaCodeGeneratorKeepingFormattingTest >> applyStatementInsertionOperationTe
 		equals: builder sourceMethodTestMethodWithCatMeowsBeforeTable.
 ]
 
+{ #category : #asserting }
+FASTJavaCodeGeneratorKeepingFormattingTest >> assertRemovedHighlight: aPoint IsOnAnchorNodePos: aFASTNode [
+
+	self assert: aPoint x equals: aFASTNode startPos.
+	self assert: aPoint y equals: aFASTNode endPos
+]
+
 { #category : #running }
 FASTJavaCodeGeneratorKeepingFormattingTest >> setUp [
 	super setUp.
 	
 	"Put here a common initialization logic for tests"
 	builder := FASTJavaCodeGeneratorBuilder new.
+]
+
+{ #category : #test }
+FASTJavaCodeGeneratorKeepingFormattingTest >> testApplyCodeTransformation [
+
+	| tool fastClass opList |
+	fastClass := builder sourceClassWithTestMethod.
+	opList := builder collectionOfAllTransformations.
+
+	"making sure that the list is unsorted"
+	opList shuffle.
+
+	tool := builder codeGeneratorFor: fastClass withOps: opList.
+
+	self
+		assert: tool applyCodeTransformation
+		equals: builder sourceClassWithTestMethodAndAllTransformations
 ]
 
 { #category : #test }
@@ -180,7 +212,11 @@ FASTJavaCodeGeneratorKeepingFormattingTest >> testApplyDeleteOperation [
 
 	self
 		assert: tool applyCodeTransformation
-		equals: builder sourceMethodGetEdgesDeletingIf
+		equals: builder sourceMethodGetEdgesDeletingIf.
+
+	self
+		assertRemovedHighlight: tool removedHighlights first
+		IsOnAnchorNodePos: op anchorNode
 ]
 
 { #category : #test }
