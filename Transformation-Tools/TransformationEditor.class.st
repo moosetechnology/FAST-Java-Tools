@@ -192,9 +192,12 @@ TransformationEditor >> initialize [
 TransformationEditor >> initializeDialogWindow: aDialogWindowPresenter [
 	"Used to initialize the model in the case of the use into a dialog window.
 	 Override this to set buttons other than the default (Ok, Cancel)."
-	
+
 	aDialogWindowPresenter
-		addButton: 'Apply changes' do: [ :presenter | presenter triggerOkAction. ];
+		addButton: 'Reject changes'
+		do: [ :presenter | presenter triggerCancelAction ];
+		addButton: 'Accept changes'
+		do: [ :presenter | presenter triggerOkAction ];
 		centered
 ]
 
@@ -306,14 +309,14 @@ TransformationEditor >> setTextValuesWithHighlights [
 	addedHighlights do: [ :h | 
 		transformedText
 			addAttribute: (TextBackgroundColor color: Color lightGreen)
-			from: h x
-			to: h y ].
+			from: h first
+			to: h stop ].
 		
 	removedHighlights do: [ :h | 
 		originalText
 			addAttribute: (TextBackgroundColor color: Color lightRed)
-			from: h x
-			to: h y ].
+			from: h first
+			to: h stop ].
 
 	originalTextPresenter morph setText: originalText.
 	editingTextPresenter morph setText: transformedText
