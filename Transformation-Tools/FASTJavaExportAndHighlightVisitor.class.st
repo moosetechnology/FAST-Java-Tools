@@ -16,12 +16,12 @@ Class {
 { #category : #'as yet unclassified' }
 FASTJavaExportAndHighlightVisitor >> checkIfDoneHighlightingEntity: aFASTEntity [
 
-	highlightOn ifTrue: [ 
-		currentlyHiglightedEntity = aFASTEntity ifTrue: [ 
+	highlightOn ifTrue: [
+		currentlyHiglightedEntity = aFASTEntity ifTrue: [
 			highlightOn := false.
 			highlights add:
-				startOfCurrentHighlight
-				@ (charCount - nOfCharToTrimAtEndOfHighlight) ] ]
+				(startOfCurrentHighlight to:
+				 charCount - nOfCharToTrimAtEndOfHighlight) ] ]
 ]
 
 { #category : #'as yet unclassified' }
@@ -64,8 +64,8 @@ FASTJavaExportAndHighlightVisitor >> exportAsHighlightedText: aFASTNode withColo
 	highlights do: [ :h | 
 		output
 			addAttribute: (TextBackgroundColor color: aColor)
-			from: h x
-			to: h y ].
+			from: h start
+			to: h stop ].
 
 	^ output
 ]

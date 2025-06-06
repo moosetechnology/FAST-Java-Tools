@@ -18,13 +18,17 @@ Class {
 }
 
 { #category : #'as yet unclassified' }
-TransformationEditor class >> openForOriginal: originalCode andTransformed: transformedCode [
+TransformationEditor class >> openForOriginalText: originalCode andTransformed: transformedCode [
 
-	^ self new
+	| modalWindow |
+
+	modalWindow := self new
 		  originalText: originalCode;
 		  transformedText: transformedCode;
 		  setTextValues;
-		  openModal
+		  openModal.
+		
+	^ modalWindow 
 ]
 
 { #category : #'as yet unclassified' }
@@ -73,23 +77,6 @@ TransformationEditor class >> openForOriginalText: originalCode transformed: tra
 		               setTextValuesWithHighlights;
 		               openModal.
 
-	^ modalWindow
-]
-
-{ #category : #'as yet unclassified' }
-TransformationEditor class >> openForOriginalText: originalCode transformed: transformedCode tool: tool service: service originalEntity: originalEntity [
-
-	| modalWindow |
-
-	modalWindow := self new
-		  originalText: originalCode;
-		  transformedText: transformedCode;
-		  tool: tool;
-		  service: service;
-		  originalEntity: originalEntity;
-		  setTextValues;
-		  openModal.
-	
 	^ modalWindow
 ]
 

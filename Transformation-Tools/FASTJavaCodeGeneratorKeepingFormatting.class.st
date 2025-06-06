@@ -46,8 +46,8 @@ FASTJavaCodeGeneratorKeepingFormatting >> addTransformationPointerIfNeeded [
 	"if it's a new declaration, add it without entity"
 	currentOperation class = DeclarationInsertionOperation ifTrue: [ 
 		transformationPointers add: (TransformationPointerWrapper new
-				 newVersionStartIndex: addedHighlights last x;
-				 oldVersionStartIndex: addedHighlights last x - offsetToApply).
+				 newVersionStartIndex: addedHighlights last start;
+				 oldVersionStartIndex: addedHighlights last start - offsetToApply).
 		^ self ].
 
 	parentEntity := self getParentEntityFor: currentOperation.
@@ -405,7 +405,7 @@ FASTJavaCodeGeneratorKeepingFormatting >> newAddedHighlightStart: startIndex end
 { #category : #highlighting }
 FASTJavaCodeGeneratorKeepingFormatting >> newHighlightInCollection: aCollection start: startIndex end: endIndex [
 
-	aCollection add: startIndex @ endIndex
+	aCollection add: (startIndex to: endIndex)
 ]
 
 { #category : #highlighting }
