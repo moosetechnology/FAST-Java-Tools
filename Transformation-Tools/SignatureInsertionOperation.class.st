@@ -8,12 +8,13 @@ The selector used to insert the `transformedNode` to the `anchorNode` must also 
 An example of use is shown in the test in the class `SignatureInsertionOperationTest`.
 "
 Class {
-	#name : #SignatureInsertionOperation,
-	#superclass : #InsertionOperation,
-	#category : #'Transformation-Tools'
+	#name : 'SignatureInsertionOperation',
+	#superclass : 'InsertionOperation',
+	#category : 'Transformation-Tools',
+	#package : 'Transformation-Tools'
 }
 
-{ #category : #'applying operation' }
+{ #category : 'applying operation' }
 SignatureInsertionOperation >> buildNewNode [
 	"returns the new node created using the anchor and transformed node"
 	| emptyCopy |

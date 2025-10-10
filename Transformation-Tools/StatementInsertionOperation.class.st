@@ -9,21 +9,22 @@ This operation also has an `insertBefore` instance variable, by default set to f
 An example of use is shown in the test in the method `applyStatementInsertionOperationTest` of class `FASTJavaCodeGeneratorKeepingFormattingTest`.
 "
 Class {
-	#name : #StatementInsertionOperation,
-	#superclass : #InsertionOperation,
+	#name : 'StatementInsertionOperation',
+	#superclass : 'InsertionOperation',
 	#instVars : [
 		'insertBefore'
 	],
-	#category : #'Transformation-Tools'
+	#category : 'Transformation-Tools',
+	#package : 'Transformation-Tools'
 }
 
-{ #category : #'applying operation' }
+{ #category : 'applying operation' }
 StatementInsertionOperation >> buildNewNode [
 	"returns the new node created using the anchor and transformed node"
 	^ transformedNode
 ]
 
-{ #category : #sorting }
+{ #category : 'sorting' }
 StatementInsertionOperation >> getPosForSorting [
 
 	"returns a position in the source code string, used to sort the operation list"
@@ -35,7 +36,7 @@ StatementInsertionOperation >> getPosForSorting [
 		ifFalse: [ anchorNode endPos + 1 ]
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 StatementInsertionOperation >> initialize [ 
 
 	super initialize.
@@ -43,13 +44,13 @@ StatementInsertionOperation >> initialize [
 	insertBefore := false
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 StatementInsertionOperation >> insertBefore [
 
 	^ insertBefore
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 StatementInsertionOperation >> insertBefore: aBoolean [
 
 	insertBefore := aBoolean

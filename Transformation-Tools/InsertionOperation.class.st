@@ -7,15 +7,16 @@ The selector used to insert the `transformedNode` to the `anchorNode` must also 
 This operation must be used for node insertions that will only modify one (already existing) line of code. For example, adding a variable to be used as a parameter in a method invocation (as shown in the test in `InsertionOperationTest`).
 "
 Class {
-	#name : #InsertionOperation,
-	#superclass : #AbstractTransformationOperation,
+	#name : 'InsertionOperation',
+	#superclass : 'AbstractTransformationOperation',
 	#instVars : [
 		'selector'
 	],
-	#category : #'Transformation-Tools'
+	#category : 'Transformation-Tools',
+	#package : 'Transformation-Tools'
 }
 
-{ #category : #'applying operation' }
+{ #category : 'applying operation' }
 InsertionOperation >> buildNewNode [
 	"returns the new node created using the anchor and transformed node"
 	| parentCopy |
@@ -26,7 +27,7 @@ InsertionOperation >> buildNewNode [
 	^ parentCopy.
 ]
 
-{ #category : #sorting }
+{ #category : 'sorting' }
 InsertionOperation >> getPosForSorting [
 
 	"returns a position in the source code string, used to sort the operation list"
@@ -36,25 +37,25 @@ InsertionOperation >> getPosForSorting [
 		  ifFalse: [ self parentNode startPos ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 InsertionOperation >> parentNode [
 
 	^ anchorNode
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 InsertionOperation >> parentNode: anObject [
 
 	anchorNode := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 InsertionOperation >> selector [
 
 	^ selector
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 InsertionOperation >> selector: anObject [
 
 	selector := anObject

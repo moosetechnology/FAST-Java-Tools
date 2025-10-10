@@ -1,6 +1,6 @@
 Class {
-	#name : #FASTJavaExportAndHighlightVisitor,
-	#superclass : #FASTJavaExportVisitor,
+	#name : 'FASTJavaExportAndHighlightVisitor',
+	#superclass : 'FASTJavaExportVisitor',
 	#instVars : [
 		'charCount',
 		'highlightOn',
@@ -10,10 +10,11 @@ Class {
 		'entitiesToHighlight',
 		'highlights'
 	],
-	#category : #'Transformation-Tools'
+	#category : 'Transformation-Tools',
+	#package : 'Transformation-Tools'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 FASTJavaExportAndHighlightVisitor >> checkIfDoneHighlightingEntity: aFASTEntity [
 
 	highlightOn ifTrue: [
@@ -24,7 +25,7 @@ FASTJavaExportAndHighlightVisitor >> checkIfDoneHighlightingEntity: aFASTEntity 
 				 charCount - nOfCharToTrimAtEndOfHighlight) ] ]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 FASTJavaExportAndHighlightVisitor >> checkIfHighlightingEntity: aFASTEntity [
 
 	highlightOn ifFalse: [ 
@@ -35,26 +36,26 @@ FASTJavaExportAndHighlightVisitor >> checkIfHighlightingEntity: aFASTEntity [
 			currentlyHiglightedEntity := aFASTEntity ] ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 FASTJavaExportAndHighlightVisitor >> entitiesToHighlight [
 
 	^ entitiesToHighlight
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 FASTJavaExportAndHighlightVisitor >> entitiesToHighlight: anObject [
 
 	entitiesToHighlight := anObject
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 FASTJavaExportAndHighlightVisitor >> export: aFASTNode [
 
 	self setDefaultVariables.
 	^ super export: aFASTNode
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 FASTJavaExportAndHighlightVisitor >> exportAsHighlightedText: aFASTNode withColor: aColor [
 
 	| output |
@@ -70,26 +71,26 @@ FASTJavaExportAndHighlightVisitor >> exportAsHighlightedText: aFASTNode withColo
 	^ output
 ]
 
-{ #category : #outputting }
+{ #category : 'outputting' }
 FASTJavaExportAndHighlightVisitor >> goBack: aNumber [
 
 	charCount := charCount - aNumber.
 	super goBack: aNumber
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 FASTJavaExportAndHighlightVisitor >> highlights [
 
 	^ highlights
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 FASTJavaExportAndHighlightVisitor >> initialize [
 
 	self setDefaultVariables
 ]
 
-{ #category : #outputting }
+{ #category : 'outputting' }
 FASTJavaExportAndHighlightVisitor >> newLine [
 
 	"remove it from the highlighting"
@@ -102,7 +103,7 @@ FASTJavaExportAndHighlightVisitor >> newLine [
 	self output: Character cr asString
 ]
 
-{ #category : #outputting }
+{ #category : 'outputting' }
 FASTJavaExportAndHighlightVisitor >> output: aPrintable [
 
 	aPrintable class = Character
@@ -111,7 +112,7 @@ FASTJavaExportAndHighlightVisitor >> output: aPrintable [
 	super output: aPrintable
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 FASTJavaExportAndHighlightVisitor >> setDefaultVariables [
 
 	charCount := 0.
@@ -122,7 +123,7 @@ FASTJavaExportAndHighlightVisitor >> setDefaultVariables [
 	nOfCharToTrimAtEndOfHighlight := 0
 ]
 
-{ #category : #outputting }
+{ #category : 'outputting' }
 FASTJavaExportAndHighlightVisitor >> space [
 
 	"remove it from the highlighting"
@@ -135,7 +136,7 @@ FASTJavaExportAndHighlightVisitor >> space [
 	super space
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 FASTJavaExportAndHighlightVisitor >> visitFASTJavaAnnotation: aFASTJavaAnnotation [
 
 	self checkIfHighlightingEntity: aFASTJavaAnnotation.
@@ -143,7 +144,7 @@ FASTJavaExportAndHighlightVisitor >> visitFASTJavaAnnotation: aFASTJavaAnnotatio
 	self checkIfDoneHighlightingEntity: aFASTJavaAnnotation 
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 FASTJavaExportAndHighlightVisitor >> visitFASTJavaArgumentsList: aFASTJavaArgumentList [
 
 	self checkIfHighlightingEntity: aFASTJavaArgumentList.
@@ -151,7 +152,7 @@ FASTJavaExportAndHighlightVisitor >> visitFASTJavaArgumentsList: aFASTJavaArgume
 	self checkIfDoneHighlightingEntity: aFASTJavaArgumentList 
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 FASTJavaExportAndHighlightVisitor >> visitFASTJavaArrayAccess: aFASTJavaArrayAccess [
 
 	self checkIfHighlightingEntity: aFASTJavaArrayAccess.
@@ -159,7 +160,7 @@ FASTJavaExportAndHighlightVisitor >> visitFASTJavaArrayAccess: aFASTJavaArrayAcc
 	self checkIfDoneHighlightingEntity: aFASTJavaArrayAccess 
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 FASTJavaExportAndHighlightVisitor >> visitFASTJavaArrayAnnotationElement: aFASTJavaArrayAnnotationElement [
 
 	self checkIfHighlightingEntity: aFASTJavaArrayAnnotationElement.
@@ -167,7 +168,7 @@ FASTJavaExportAndHighlightVisitor >> visitFASTJavaArrayAnnotationElement: aFASTJ
 	self checkIfDoneHighlightingEntity: aFASTJavaArrayAnnotationElement 
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 FASTJavaExportAndHighlightVisitor >> visitFASTJavaArrayInitializer: aFASTJavaArrayInitializer [
 
 	self checkIfHighlightingEntity: aFASTJavaArrayInitializer.
@@ -175,7 +176,7 @@ FASTJavaExportAndHighlightVisitor >> visitFASTJavaArrayInitializer: aFASTJavaArr
 	self checkIfDoneHighlightingEntity: aFASTJavaArrayInitializer 
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 FASTJavaExportAndHighlightVisitor >> visitFASTJavaArrayTypeExpression: aFASTJavaArrayTypeExpression [
 
 	self checkIfHighlightingEntity: aFASTJavaArrayTypeExpression.
@@ -183,7 +184,7 @@ FASTJavaExportAndHighlightVisitor >> visitFASTJavaArrayTypeExpression: aFASTJava
 	self checkIfDoneHighlightingEntity: aFASTJavaArrayTypeExpression 
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 FASTJavaExportAndHighlightVisitor >> visitFASTJavaAssertStatement: aFASTJavaAssertStatement [
 
 	self checkIfHighlightingEntity: aFASTJavaAssertStatement.
@@ -191,7 +192,7 @@ FASTJavaExportAndHighlightVisitor >> visitFASTJavaAssertStatement: aFASTJavaAsse
 	self checkIfDoneHighlightingEntity: aFASTJavaAssertStatement 
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 FASTJavaExportAndHighlightVisitor >> visitFASTJavaAssignmentExpression: aFASTJavaAssignmentExpression [
 
 	self checkIfHighlightingEntity: aFASTJavaAssignmentExpression.
@@ -199,7 +200,7 @@ FASTJavaExportAndHighlightVisitor >> visitFASTJavaAssignmentExpression: aFASTJav
 	self checkIfDoneHighlightingEntity: aFASTJavaAssignmentExpression 
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 FASTJavaExportAndHighlightVisitor >> visitFASTJavaBlockOrStatement: aFASTJavaStatement [
 
 	self checkIfHighlightingEntity: aFASTJavaStatement.
@@ -207,7 +208,7 @@ FASTJavaExportAndHighlightVisitor >> visitFASTJavaBlockOrStatement: aFASTJavaSta
 	self checkIfDoneHighlightingEntity: aFASTJavaStatement 
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 FASTJavaExportAndHighlightVisitor >> visitFASTJavaBooleanTypeExpression: aFASTJavaBooleanTypeExpression [
 
 	self checkIfHighlightingEntity: aFASTJavaBooleanTypeExpression.
@@ -215,7 +216,7 @@ FASTJavaExportAndHighlightVisitor >> visitFASTJavaBooleanTypeExpression: aFASTJa
 	self checkIfDoneHighlightingEntity: aFASTJavaBooleanTypeExpression 
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 FASTJavaExportAndHighlightVisitor >> visitFASTJavaBreakStatement: aFASTJavaBreakStatement [
 
 	self checkIfHighlightingEntity: aFASTJavaBreakStatement.
@@ -223,7 +224,7 @@ FASTJavaExportAndHighlightVisitor >> visitFASTJavaBreakStatement: aFASTJavaBreak
 	self checkIfDoneHighlightingEntity: aFASTJavaBreakStatement 
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 FASTJavaExportAndHighlightVisitor >> visitFASTJavaByteTypeExpression: aFASTJavaByteTypeExpression [
 
 	self checkIfHighlightingEntity: aFASTJavaByteTypeExpression.
@@ -231,7 +232,7 @@ FASTJavaExportAndHighlightVisitor >> visitFASTJavaByteTypeExpression: aFASTJavaB
 	self checkIfDoneHighlightingEntity: aFASTJavaByteTypeExpression 
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 FASTJavaExportAndHighlightVisitor >> visitFASTJavaCastExpression: aFASTJavaCastExpression [
 
 	self checkIfHighlightingEntity: aFASTJavaCastExpression.
@@ -239,7 +240,7 @@ FASTJavaExportAndHighlightVisitor >> visitFASTJavaCastExpression: aFASTJavaCastE
 	self checkIfDoneHighlightingEntity: aFASTJavaCastExpression 
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 FASTJavaExportAndHighlightVisitor >> visitFASTJavaCatchPartStatement: aFASTJavaCatchPartStatement [
 
 	self checkIfHighlightingEntity: aFASTJavaCatchPartStatement.
@@ -247,7 +248,7 @@ FASTJavaExportAndHighlightVisitor >> visitFASTJavaCatchPartStatement: aFASTJavaC
 	self checkIfDoneHighlightingEntity: aFASTJavaCatchPartStatement 
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 FASTJavaExportAndHighlightVisitor >> visitFASTJavaCharTypeExpression: aFASTJavaCharTypeExpression [
 
 	self checkIfHighlightingEntity: aFASTJavaCharTypeExpression.
@@ -255,7 +256,7 @@ FASTJavaExportAndHighlightVisitor >> visitFASTJavaCharTypeExpression: aFASTJavaC
 	self checkIfDoneHighlightingEntity: aFASTJavaCharTypeExpression 
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 FASTJavaExportAndHighlightVisitor >> visitFASTJavaCharacterLiteral: aFASTJavaCharacterLiteral [
 
 	self checkIfHighlightingEntity: aFASTJavaCharacterLiteral.
@@ -263,7 +264,7 @@ FASTJavaExportAndHighlightVisitor >> visitFASTJavaCharacterLiteral: aFASTJavaCha
 	self checkIfDoneHighlightingEntity: aFASTJavaCharacterLiteral 
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 FASTJavaExportAndHighlightVisitor >> visitFASTJavaClassDeclaration: aFASTJavaClassDeclaration [
 
 	self checkIfHighlightingEntity: aFASTJavaClassDeclaration.
@@ -271,7 +272,7 @@ FASTJavaExportAndHighlightVisitor >> visitFASTJavaClassDeclaration: aFASTJavaCla
 	self checkIfDoneHighlightingEntity: aFASTJavaClassDeclaration 
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 FASTJavaExportAndHighlightVisitor >> visitFASTJavaClassProperty: aFASTJavaClassProperty [
 
 	self checkIfHighlightingEntity: aFASTJavaClassProperty.
@@ -279,7 +280,7 @@ FASTJavaExportAndHighlightVisitor >> visitFASTJavaClassProperty: aFASTJavaClassP
 	self checkIfDoneHighlightingEntity: aFASTJavaClassProperty 
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 FASTJavaExportAndHighlightVisitor >> visitFASTJavaClassTypeExpression: aFASTJavaClassTypeExpression [
 
 	self checkIfHighlightingEntity: aFASTJavaClassTypeExpression.
@@ -287,7 +288,7 @@ FASTJavaExportAndHighlightVisitor >> visitFASTJavaClassTypeExpression: aFASTJava
 	self checkIfDoneHighlightingEntity: aFASTJavaClassTypeExpression 
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 FASTJavaExportAndHighlightVisitor >> visitFASTJavaCompilationUnit: aFASTJavaCompilationUnit [
 
 	self checkIfHighlightingEntity: aFASTJavaCompilationUnit.
@@ -295,7 +296,7 @@ FASTJavaExportAndHighlightVisitor >> visitFASTJavaCompilationUnit: aFASTJavaComp
 	self checkIfDoneHighlightingEntity: aFASTJavaCompilationUnit 
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 FASTJavaExportAndHighlightVisitor >> visitFASTJavaConditionalExpression: aFASTJavaConditionalExpression [
 
 	self checkIfHighlightingEntity: aFASTJavaConditionalExpression.
@@ -303,7 +304,7 @@ FASTJavaExportAndHighlightVisitor >> visitFASTJavaConditionalExpression: aFASTJa
 	self checkIfDoneHighlightingEntity: aFASTJavaConditionalExpression 
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 FASTJavaExportAndHighlightVisitor >> visitFASTJavaContinueStatement: aFASTJavaContinueStatement [
 
 	self checkIfHighlightingEntity: aFASTJavaContinueStatement.
@@ -311,7 +312,7 @@ FASTJavaExportAndHighlightVisitor >> visitFASTJavaContinueStatement: aFASTJavaCo
 	self checkIfDoneHighlightingEntity: aFASTJavaContinueStatement 
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 FASTJavaExportAndHighlightVisitor >> visitFASTJavaDefaultCaseStatement: aFASTJavaDefaultCaseStatement [
 
 	self checkIfHighlightingEntity: aFASTJavaDefaultCaseStatement.
@@ -319,7 +320,7 @@ FASTJavaExportAndHighlightVisitor >> visitFASTJavaDefaultCaseStatement: aFASTJav
 	self checkIfDoneHighlightingEntity: aFASTJavaDefaultCaseStatement 
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 FASTJavaExportAndHighlightVisitor >> visitFASTJavaDoWhileStatement: aFASTJavaDoWhileStatement [
 
 	self checkIfHighlightingEntity: aFASTJavaDoWhileStatement.
@@ -327,7 +328,7 @@ FASTJavaExportAndHighlightVisitor >> visitFASTJavaDoWhileStatement: aFASTJavaDoW
 	self checkIfDoneHighlightingEntity: aFASTJavaDoWhileStatement 
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 FASTJavaExportAndHighlightVisitor >> visitFASTJavaDoubleTypeExpression: aFASTJavaDoubleTypeExpression [
 
 	self checkIfHighlightingEntity: aFASTJavaDoubleTypeExpression.
@@ -335,7 +336,7 @@ FASTJavaExportAndHighlightVisitor >> visitFASTJavaDoubleTypeExpression: aFASTJav
 	self checkIfDoneHighlightingEntity: aFASTJavaDoubleTypeExpression 
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 FASTJavaExportAndHighlightVisitor >> visitFASTJavaElsePartStatement: aFASTJavaStatement [
 
 	self checkIfHighlightingEntity: aFASTJavaStatement.
@@ -343,7 +344,7 @@ FASTJavaExportAndHighlightVisitor >> visitFASTJavaElsePartStatement: aFASTJavaSt
 	self checkIfDoneHighlightingEntity: aFASTJavaStatement 
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 FASTJavaExportAndHighlightVisitor >> visitFASTJavaEmptyMethodDeclaration: aFASTJavaEmptyMethodDeclaration [
 
 	self checkIfHighlightingEntity: aFASTJavaEmptyMethodDeclaration.
@@ -351,7 +352,7 @@ FASTJavaExportAndHighlightVisitor >> visitFASTJavaEmptyMethodDeclaration: aFASTJ
 	self checkIfDoneHighlightingEntity: aFASTJavaEmptyMethodDeclaration 
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 FASTJavaExportAndHighlightVisitor >> visitFASTJavaEnumConstant: aFASTJavaEnumConstant [
 
 	self checkIfHighlightingEntity: aFASTJavaEnumConstant.
@@ -359,7 +360,7 @@ FASTJavaExportAndHighlightVisitor >> visitFASTJavaEnumConstant: aFASTJavaEnumCon
 	self checkIfDoneHighlightingEntity: aFASTJavaEnumConstant 
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 FASTJavaExportAndHighlightVisitor >> visitFASTJavaEnumDeclaration: aFASTJavaEnumDeclaration [
 
 	self checkIfHighlightingEntity: aFASTJavaEnumDeclaration.
@@ -367,7 +368,7 @@ FASTJavaExportAndHighlightVisitor >> visitFASTJavaEnumDeclaration: aFASTJavaEnum
 	self checkIfDoneHighlightingEntity: aFASTJavaEnumDeclaration 
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 FASTJavaExportAndHighlightVisitor >> visitFASTJavaFieldAccess: aFASTJavaFieldAccess [
 
 	self checkIfHighlightingEntity: aFASTJavaFieldAccess.
@@ -375,7 +376,7 @@ FASTJavaExportAndHighlightVisitor >> visitFASTJavaFieldAccess: aFASTJavaFieldAcc
 	self checkIfDoneHighlightingEntity: aFASTJavaFieldAccess 
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 FASTJavaExportAndHighlightVisitor >> visitFASTJavaFloatLiteral: aFASTJavaFloatLiteral [
 
 	self checkIfHighlightingEntity: aFASTJavaFloatLiteral.
@@ -383,7 +384,7 @@ FASTJavaExportAndHighlightVisitor >> visitFASTJavaFloatLiteral: aFASTJavaFloatLi
 	self checkIfDoneHighlightingEntity: aFASTJavaFloatLiteral 
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 FASTJavaExportAndHighlightVisitor >> visitFASTJavaFloatTypeExpression: aFASTJavaFloatTypeExpression [
 
 	self checkIfHighlightingEntity: aFASTJavaFloatTypeExpression.
@@ -391,7 +392,7 @@ FASTJavaExportAndHighlightVisitor >> visitFASTJavaFloatTypeExpression: aFASTJava
 	self checkIfDoneHighlightingEntity: aFASTJavaFloatTypeExpression 
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 FASTJavaExportAndHighlightVisitor >> visitFASTJavaForEachStatement: aFASTJavaForEachStatement [
 
 	self checkIfHighlightingEntity: aFASTJavaForEachStatement.
@@ -399,7 +400,7 @@ FASTJavaExportAndHighlightVisitor >> visitFASTJavaForEachStatement: aFASTJavaFor
 	self checkIfDoneHighlightingEntity: aFASTJavaForEachStatement 
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 FASTJavaExportAndHighlightVisitor >> visitFASTJavaForStatement: aFASTJavaForStatement [
 
 	self checkIfHighlightingEntity: aFASTJavaForStatement.
@@ -407,7 +408,7 @@ FASTJavaExportAndHighlightVisitor >> visitFASTJavaForStatement: aFASTJavaForStat
 	self checkIfDoneHighlightingEntity: aFASTJavaForStatement 
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 FASTJavaExportAndHighlightVisitor >> visitFASTJavaForStatementCondition: aFASTJavaForStatementCondition [
 
 	self checkIfHighlightingEntity: aFASTJavaForStatementCondition.
@@ -415,7 +416,7 @@ FASTJavaExportAndHighlightVisitor >> visitFASTJavaForStatementCondition: aFASTJa
 	self checkIfDoneHighlightingEntity: aFASTJavaForStatementCondition 
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 FASTJavaExportAndHighlightVisitor >> visitFASTJavaForStatementIncrementor: aFASTJavaForStatementIncrementor [
 
 	self checkIfHighlightingEntity: aFASTJavaForStatementIncrementor.
@@ -423,7 +424,7 @@ FASTJavaExportAndHighlightVisitor >> visitFASTJavaForStatementIncrementor: aFAST
 	self checkIfDoneHighlightingEntity: aFASTJavaForStatementIncrementor 
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 FASTJavaExportAndHighlightVisitor >> visitFASTJavaForStatementInitializer: aFASTJavaForStatementInitializer [
 
 	self checkIfHighlightingEntity: aFASTJavaForStatementInitializer.
@@ -431,7 +432,7 @@ FASTJavaExportAndHighlightVisitor >> visitFASTJavaForStatementInitializer: aFAST
 	self checkIfDoneHighlightingEntity: aFASTJavaForStatementInitializer 
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 FASTJavaExportAndHighlightVisitor >> visitFASTJavaIdentifier: aFASTJavaIdentifier [
 
 	self checkIfHighlightingEntity: aFASTJavaIdentifier.
@@ -439,7 +440,7 @@ FASTJavaExportAndHighlightVisitor >> visitFASTJavaIdentifier: aFASTJavaIdentifie
 	self checkIfDoneHighlightingEntity: aFASTJavaIdentifier 
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 FASTJavaExportAndHighlightVisitor >> visitFASTJavaIfStatement: aFASTJavaIfStatement [
 
 	self checkIfHighlightingEntity: aFASTJavaIfStatement.
@@ -447,7 +448,7 @@ FASTJavaExportAndHighlightVisitor >> visitFASTJavaIfStatement: aFASTJavaIfStatem
 	self checkIfDoneHighlightingEntity: aFASTJavaIfStatement 
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 FASTJavaExportAndHighlightVisitor >> visitFASTJavaImportDeclaration: aFASTJavaImportDeclaration [
 
 	self checkIfHighlightingEntity: aFASTJavaImportDeclaration.
@@ -455,7 +456,7 @@ FASTJavaExportAndHighlightVisitor >> visitFASTJavaImportDeclaration: aFASTJavaIm
 	self checkIfDoneHighlightingEntity: aFASTJavaImportDeclaration 
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 FASTJavaExportAndHighlightVisitor >> visitFASTJavaInfixOperation: aFASTJavaInfixOperation [
 
 	self checkIfHighlightingEntity: aFASTJavaInfixOperation.
@@ -463,7 +464,7 @@ FASTJavaExportAndHighlightVisitor >> visitFASTJavaInfixOperation: aFASTJavaInfix
 	self checkIfDoneHighlightingEntity: aFASTJavaInfixOperation 
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 FASTJavaExportAndHighlightVisitor >> visitFASTJavaIntTypeExpression: aFASTJavaIntTypeExpression [
 
 	self checkIfHighlightingEntity: aFASTJavaIntTypeExpression.
@@ -471,7 +472,7 @@ FASTJavaExportAndHighlightVisitor >> visitFASTJavaIntTypeExpression: aFASTJavaIn
 	self checkIfDoneHighlightingEntity: aFASTJavaIntTypeExpression 
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 FASTJavaExportAndHighlightVisitor >> visitFASTJavaInterfaceDeclaration: aFASTJavaInterfaceDeclaration [
 
 	self checkIfHighlightingEntity: aFASTJavaInterfaceDeclaration.
@@ -479,7 +480,7 @@ FASTJavaExportAndHighlightVisitor >> visitFASTJavaInterfaceDeclaration: aFASTJav
 	self checkIfDoneHighlightingEntity: aFASTJavaInterfaceDeclaration 
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 FASTJavaExportAndHighlightVisitor >> visitFASTJavaLabeledCaseStatement: aFASTJavaLabeledCaseStatement [
 
 	self checkIfHighlightingEntity: aFASTJavaLabeledCaseStatement.
@@ -487,7 +488,7 @@ FASTJavaExportAndHighlightVisitor >> visitFASTJavaLabeledCaseStatement: aFASTJav
 	self checkIfDoneHighlightingEntity: aFASTJavaLabeledCaseStatement 
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 FASTJavaExportAndHighlightVisitor >> visitFASTJavaLabeledStatement: aFASTJavaLabeledStatement [
 
 	self checkIfHighlightingEntity: aFASTJavaLabeledStatement.
@@ -495,7 +496,7 @@ FASTJavaExportAndHighlightVisitor >> visitFASTJavaLabeledStatement: aFASTJavaLab
 	self checkIfDoneHighlightingEntity: aFASTJavaLabeledStatement 
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 FASTJavaExportAndHighlightVisitor >> visitFASTJavaLambdaExpression: aFASTJavaLambdaExpression [
 
 	self checkIfHighlightingEntity: aFASTJavaLambdaExpression.
@@ -503,7 +504,7 @@ FASTJavaExportAndHighlightVisitor >> visitFASTJavaLambdaExpression: aFASTJavaLam
 	self checkIfDoneHighlightingEntity: aFASTJavaLambdaExpression 
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 FASTJavaExportAndHighlightVisitor >> visitFASTJavaLongLiteral: aFASTJavaLongLiteral [
 
 	self checkIfHighlightingEntity: aFASTJavaLongLiteral.
@@ -511,7 +512,7 @@ FASTJavaExportAndHighlightVisitor >> visitFASTJavaLongLiteral: aFASTJavaLongLite
 	self checkIfDoneHighlightingEntity: aFASTJavaLongLiteral 
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 FASTJavaExportAndHighlightVisitor >> visitFASTJavaLongTypeExpression: aFASTJavaLongTypeExpression [
 
 	self checkIfHighlightingEntity: aFASTJavaLongTypeExpression.
@@ -519,7 +520,7 @@ FASTJavaExportAndHighlightVisitor >> visitFASTJavaLongTypeExpression: aFASTJavaL
 	self checkIfDoneHighlightingEntity: aFASTJavaLongTypeExpression 
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 FASTJavaExportAndHighlightVisitor >> visitFASTJavaMethodEntity: aFASTJavaMethodEntity [
 
 	self checkIfHighlightingEntity: aFASTJavaMethodEntity.
@@ -527,7 +528,7 @@ FASTJavaExportAndHighlightVisitor >> visitFASTJavaMethodEntity: aFASTJavaMethodE
 	self checkIfDoneHighlightingEntity: aFASTJavaMethodEntity 
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 FASTJavaExportAndHighlightVisitor >> visitFASTJavaMethodInvocation: aFASTJavaMethodInvocation [
 
 	self checkIfHighlightingEntity: aFASTJavaMethodInvocation.
@@ -535,7 +536,7 @@ FASTJavaExportAndHighlightVisitor >> visitFASTJavaMethodInvocation: aFASTJavaMet
 	self checkIfDoneHighlightingEntity: aFASTJavaMethodInvocation 
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 FASTJavaExportAndHighlightVisitor >> visitFASTJavaMethodInvocationReceiver: aFASTJavaMethodInvocation [
 
 	self checkIfHighlightingEntity: aFASTJavaMethodInvocation.
@@ -543,7 +544,7 @@ FASTJavaExportAndHighlightVisitor >> visitFASTJavaMethodInvocationReceiver: aFAS
 	self checkIfDoneHighlightingEntity: aFASTJavaMethodInvocation 
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 FASTJavaExportAndHighlightVisitor >> visitFASTJavaMethodThrows: aFASTJavaThrownExceptionsCollection [
 
 	self checkIfHighlightingEntity: aFASTJavaThrownExceptionsCollection.
@@ -551,7 +552,7 @@ FASTJavaExportAndHighlightVisitor >> visitFASTJavaMethodThrows: aFASTJavaThrownE
 	self checkIfDoneHighlightingEntity: aFASTJavaThrownExceptionsCollection 
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 FASTJavaExportAndHighlightVisitor >> visitFASTJavaModifier: aFASTJavaModifier [
 
 	self checkIfHighlightingEntity: aFASTJavaModifier.
@@ -559,7 +560,7 @@ FASTJavaExportAndHighlightVisitor >> visitFASTJavaModifier: aFASTJavaModifier [
 	self checkIfDoneHighlightingEntity: aFASTJavaModifier 
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 FASTJavaExportAndHighlightVisitor >> visitFASTJavaModifiers: aFASTJavaModifierCollection [
 
 	self checkIfHighlightingEntity: aFASTJavaModifierCollection.
@@ -567,7 +568,7 @@ FASTJavaExportAndHighlightVisitor >> visitFASTJavaModifiers: aFASTJavaModifierCo
 	self checkIfDoneHighlightingEntity: aFASTJavaModifierCollection 
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 FASTJavaExportAndHighlightVisitor >> visitFASTJavaNewArray: aFASTJavaNewArray [
 
 	self checkIfHighlightingEntity: aFASTJavaNewArray.
@@ -575,7 +576,7 @@ FASTJavaExportAndHighlightVisitor >> visitFASTJavaNewArray: aFASTJavaNewArray [
 	self checkIfDoneHighlightingEntity: aFASTJavaNewArray 
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 FASTJavaExportAndHighlightVisitor >> visitFASTJavaNewClassExpression: aFASTJavaNewClassExpression [
 
 	self checkIfHighlightingEntity: aFASTJavaNewClassExpression.
@@ -583,7 +584,7 @@ FASTJavaExportAndHighlightVisitor >> visitFASTJavaNewClassExpression: aFASTJavaN
 	self checkIfDoneHighlightingEntity: aFASTJavaNewClassExpression 
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 FASTJavaExportAndHighlightVisitor >> visitFASTJavaNewExpression: aFASTJavaNewExpression [
 
 	self checkIfHighlightingEntity: aFASTJavaNewExpression.
@@ -591,7 +592,7 @@ FASTJavaExportAndHighlightVisitor >> visitFASTJavaNewExpression: aFASTJavaNewExp
 	self checkIfDoneHighlightingEntity: aFASTJavaNewExpression 
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 FASTJavaExportAndHighlightVisitor >> visitFASTJavaNullLiteral: aFASTJavaNullLiteral [
 
 	self checkIfHighlightingEntity: aFASTJavaNullLiteral.
@@ -599,7 +600,7 @@ FASTJavaExportAndHighlightVisitor >> visitFASTJavaNullLiteral: aFASTJavaNullLite
 	self checkIfDoneHighlightingEntity: aFASTJavaNullLiteral 
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 FASTJavaExportAndHighlightVisitor >> visitFASTJavaOuterThis: aFASTJavaOuterThis [
 
 	self checkIfHighlightingEntity: aFASTJavaOuterThis.
@@ -607,7 +608,7 @@ FASTJavaExportAndHighlightVisitor >> visitFASTJavaOuterThis: aFASTJavaOuterThis 
 	self checkIfDoneHighlightingEntity: aFASTJavaOuterThis 
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 FASTJavaExportAndHighlightVisitor >> visitFASTJavaPackageDeclaration: aFASTJavaPackageDeclaration [
 
 	self checkIfHighlightingEntity: aFASTJavaPackageDeclaration.
@@ -615,7 +616,7 @@ FASTJavaExportAndHighlightVisitor >> visitFASTJavaPackageDeclaration: aFASTJavaP
 	self checkIfDoneHighlightingEntity: aFASTJavaPackageDeclaration 
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 FASTJavaExportAndHighlightVisitor >> visitFASTJavaParameter: aFASTJavaParameter [
 
 	self checkIfHighlightingEntity: aFASTJavaParameter.
@@ -623,7 +624,7 @@ FASTJavaExportAndHighlightVisitor >> visitFASTJavaParameter: aFASTJavaParameter 
 	self checkIfDoneHighlightingEntity: aFASTJavaParameter 
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 FASTJavaExportAndHighlightVisitor >> visitFASTJavaParameters: aFASTJavaParameterCollection [
 
 	self checkIfHighlightingEntity: aFASTJavaParameterCollection.
@@ -631,7 +632,7 @@ FASTJavaExportAndHighlightVisitor >> visitFASTJavaParameters: aFASTJavaParameter
 	self checkIfDoneHighlightingEntity: aFASTJavaParameterCollection 
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 FASTJavaExportAndHighlightVisitor >> visitFASTJavaQualifiedName: aFASTJavaQualifiedName [
 
 	self checkIfHighlightingEntity: aFASTJavaQualifiedName.
@@ -639,7 +640,7 @@ FASTJavaExportAndHighlightVisitor >> visitFASTJavaQualifiedName: aFASTJavaQualif
 	self checkIfDoneHighlightingEntity: aFASTJavaQualifiedName 
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 FASTJavaExportAndHighlightVisitor >> visitFASTJavaQualifiedTypeName: aFASTJavaQualifiedTypeName [
 
 	self checkIfHighlightingEntity: aFASTJavaQualifiedTypeName.
@@ -647,7 +648,7 @@ FASTJavaExportAndHighlightVisitor >> visitFASTJavaQualifiedTypeName: aFASTJavaQu
 	self checkIfDoneHighlightingEntity: aFASTJavaQualifiedTypeName 
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 FASTJavaExportAndHighlightVisitor >> visitFASTJavaShortTypeExpression: aFASTJavaShortTypeExpression [
 
 	self checkIfHighlightingEntity: aFASTJavaShortTypeExpression.
@@ -655,7 +656,7 @@ FASTJavaExportAndHighlightVisitor >> visitFASTJavaShortTypeExpression: aFASTJava
 	self checkIfDoneHighlightingEntity: aFASTJavaShortTypeExpression 
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 FASTJavaExportAndHighlightVisitor >> visitFASTJavaStatement: aFASTJavaStatement [
 
 	self checkIfHighlightingEntity: aFASTJavaStatement.
@@ -663,7 +664,7 @@ FASTJavaExportAndHighlightVisitor >> visitFASTJavaStatement: aFASTJavaStatement 
 	self checkIfDoneHighlightingEntity: aFASTJavaStatement 
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 FASTJavaExportAndHighlightVisitor >> visitFASTJavaStringLiteral: aFASTJavaStringLiteral [
 
 	self checkIfHighlightingEntity: aFASTJavaStringLiteral.
@@ -671,7 +672,7 @@ FASTJavaExportAndHighlightVisitor >> visitFASTJavaStringLiteral: aFASTJavaString
 	self checkIfDoneHighlightingEntity: aFASTJavaStringLiteral 
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 FASTJavaExportAndHighlightVisitor >> visitFASTJavaSwitchStatement: aFASTJavaSwitchStatement [
 
 	self checkIfHighlightingEntity: aFASTJavaSwitchStatement.
@@ -679,7 +680,7 @@ FASTJavaExportAndHighlightVisitor >> visitFASTJavaSwitchStatement: aFASTJavaSwit
 	self checkIfDoneHighlightingEntity: aFASTJavaSwitchStatement 
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 FASTJavaExportAndHighlightVisitor >> visitFASTJavaSynchronizedStatement: aFASTJavaSynchronizedStatement [
 
 	self checkIfHighlightingEntity: aFASTJavaSynchronizedStatement.
@@ -687,7 +688,7 @@ FASTJavaExportAndHighlightVisitor >> visitFASTJavaSynchronizedStatement: aFASTJa
 	self checkIfDoneHighlightingEntity: aFASTJavaSynchronizedStatement 
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 FASTJavaExportAndHighlightVisitor >> visitFASTJavaThenPartStatement: aFASTJavaStatement [
 
 	self checkIfHighlightingEntity: aFASTJavaStatement.
@@ -695,7 +696,7 @@ FASTJavaExportAndHighlightVisitor >> visitFASTJavaThenPartStatement: aFASTJavaSt
 	self checkIfDoneHighlightingEntity: aFASTJavaStatement 
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 FASTJavaExportAndHighlightVisitor >> visitFASTJavaThrowStatement: aFASTJavaThrowStatement [
 
 	self checkIfHighlightingEntity: aFASTJavaThrowStatement.
@@ -703,7 +704,7 @@ FASTJavaExportAndHighlightVisitor >> visitFASTJavaThrowStatement: aFASTJavaThrow
 	self checkIfDoneHighlightingEntity: aFASTJavaThrowStatement 
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 FASTJavaExportAndHighlightVisitor >> visitFASTJavaTryCatchStatement: aFASTJavaTryCatchStatement [
 
 	self checkIfHighlightingEntity: aFASTJavaTryCatchStatement.
@@ -711,7 +712,7 @@ FASTJavaExportAndHighlightVisitor >> visitFASTJavaTryCatchStatement: aFASTJavaTr
 	self checkIfDoneHighlightingEntity: aFASTJavaTryCatchStatement 
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 FASTJavaExportAndHighlightVisitor >> visitFASTJavaTypeName: aFASTJavaTypeName [
 
 	self checkIfHighlightingEntity: aFASTJavaTypeName.
@@ -719,7 +720,7 @@ FASTJavaExportAndHighlightVisitor >> visitFASTJavaTypeName: aFASTJavaTypeName [
 	self checkIfDoneHighlightingEntity: aFASTJavaTypeName 
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 FASTJavaExportAndHighlightVisitor >> visitFASTJavaTypeParameter: aFASTJavaTypeParameterExpression [
 
 	self checkIfHighlightingEntity: aFASTJavaTypeParameterExpression.
@@ -727,7 +728,7 @@ FASTJavaExportAndHighlightVisitor >> visitFASTJavaTypeParameter: aFASTJavaTypePa
 	self checkIfDoneHighlightingEntity: aFASTJavaTypeParameterExpression 
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 FASTJavaExportAndHighlightVisitor >> visitFASTJavaUnaryExpression: aFASTJavaUnaryExpression [
 
 	self checkIfHighlightingEntity: aFASTJavaUnaryExpression.
@@ -735,7 +736,7 @@ FASTJavaExportAndHighlightVisitor >> visitFASTJavaUnaryExpression: aFASTJavaUnar
 	self checkIfDoneHighlightingEntity: aFASTJavaUnaryExpression 
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 FASTJavaExportAndHighlightVisitor >> visitFASTJavaVarDeclStatement: aFASTJavaVarDeclStatement [
 
 	self checkIfHighlightingEntity: aFASTJavaVarDeclStatement.
@@ -743,7 +744,7 @@ FASTJavaExportAndHighlightVisitor >> visitFASTJavaVarDeclStatement: aFASTJavaVar
 	self checkIfDoneHighlightingEntity: aFASTJavaVarDeclStatement 
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 FASTJavaExportAndHighlightVisitor >> visitFASTJavaVariableDeclarator: aFASTJavaVariableDeclarator [
 
 	self checkIfHighlightingEntity: aFASTJavaVariableDeclarator.
@@ -751,7 +752,7 @@ FASTJavaExportAndHighlightVisitor >> visitFASTJavaVariableDeclarator: aFASTJavaV
 	self checkIfDoneHighlightingEntity: aFASTJavaVariableDeclarator 
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 FASTJavaExportAndHighlightVisitor >> visitFASTJavaVariableExpression: aFASTJavaVariableExpression [
 
 	self checkIfHighlightingEntity: aFASTJavaVariableExpression.
@@ -759,7 +760,7 @@ FASTJavaExportAndHighlightVisitor >> visitFASTJavaVariableExpression: aFASTJavaV
 	self checkIfDoneHighlightingEntity: aFASTJavaVariableExpression 
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 FASTJavaExportAndHighlightVisitor >> visitFASTJavaVoidTypeExpression: aFASTJavaBooleanTypeExpression [
 
 	self checkIfHighlightingEntity: aFASTJavaBooleanTypeExpression.
@@ -767,7 +768,7 @@ FASTJavaExportAndHighlightVisitor >> visitFASTJavaVoidTypeExpression: aFASTJavaB
 	self checkIfDoneHighlightingEntity: aFASTJavaBooleanTypeExpression 
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 FASTJavaExportAndHighlightVisitor >> visitFASTJavaWhileStatement: aFASTJavaWhileStatement [
 
 	self checkIfHighlightingEntity: aFASTJavaWhileStatement.
@@ -775,7 +776,7 @@ FASTJavaExportAndHighlightVisitor >> visitFASTJavaWhileStatement: aFASTJavaWhile
 	self checkIfDoneHighlightingEntity: aFASTJavaWhileStatement 
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 FASTJavaExportAndHighlightVisitor >> visitFASTTExpressionStatement: aFASTTExpressionStatement [
 
 	self checkIfHighlightingEntity: aFASTTExpressionStatement.
@@ -783,7 +784,7 @@ FASTJavaExportAndHighlightVisitor >> visitFASTTExpressionStatement: aFASTTExpres
 	self checkIfDoneHighlightingEntity: aFASTTExpressionStatement 
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 FASTJavaExportAndHighlightVisitor >> visitFASTTLiteral: aFASTTLiteral [
 
 	self checkIfHighlightingEntity: aFASTTLiteral.
@@ -791,7 +792,7 @@ FASTJavaExportAndHighlightVisitor >> visitFASTTLiteral: aFASTTLiteral [
 	self checkIfDoneHighlightingEntity: aFASTTLiteral 
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 FASTJavaExportAndHighlightVisitor >> visitFASTTReturnStatement: aFASTTReturnStatement [
 
 	self checkIfHighlightingEntity: aFASTTReturnStatement.
@@ -799,7 +800,7 @@ FASTJavaExportAndHighlightVisitor >> visitFASTTReturnStatement: aFASTTReturnStat
 	self checkIfDoneHighlightingEntity: aFASTTReturnStatement 
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 FASTJavaExportAndHighlightVisitor >> visitFASTTStatementBlock: aFASTJavaStatementBlock [
 
 	self checkIfHighlightingEntity: aFASTJavaStatementBlock.
@@ -807,7 +808,7 @@ FASTJavaExportAndHighlightVisitor >> visitFASTTStatementBlock: aFASTJavaStatemen
 	self checkIfDoneHighlightingEntity: aFASTJavaStatementBlock 
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 FASTJavaExportAndHighlightVisitor >> visitJavaClassMemberDeclarations: classDeclarationsList [
 
 	self checkIfHighlightingEntity: classDeclarationsList.
@@ -815,7 +816,7 @@ FASTJavaExportAndHighlightVisitor >> visitJavaClassMemberDeclarations: classDecl
 	self checkIfDoneHighlightingEntity: classDeclarationsList 
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 FASTJavaExportAndHighlightVisitor >> visitNodeListSeparatedByCommas: aCollection [
 	"pas bien, à refaire"
 	self checkIfHighlightingEntity: aCollection.
@@ -823,7 +824,7 @@ FASTJavaExportAndHighlightVisitor >> visitNodeListSeparatedByCommas: aCollection
 	self checkIfDoneHighlightingEntity: aCollection 
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 FASTJavaExportAndHighlightVisitor >> visitTryResources: tryResources [
 	"pas bien, à refaire"
 	self checkIfHighlightingEntity: tryResources.

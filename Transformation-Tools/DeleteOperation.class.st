@@ -7,12 +7,13 @@ If the node to delete represents a full line of code (typically a statement), th
 Otherwise, the parent node will be copied and returned after removing the node to delete. The code string generated from this node will replace the orignal code string representing the parent node.
 "
 Class {
-	#name : #DeleteOperation,
-	#superclass : #AbstractTransformationOperation,
-	#category : #'Transformation-Tools'
+	#name : 'DeleteOperation',
+	#superclass : 'AbstractTransformationOperation',
+	#category : 'Transformation-Tools',
+	#package : 'Transformation-Tools'
 }
 
-{ #category : #'applying operation' }
+{ #category : 'applying operation' }
 DeleteOperation >> buildNewNode [
 
 	"returns the new node created using the anchor and transformed node"
@@ -32,19 +33,19 @@ DeleteOperation >> buildNewNode [
 			  newNode ]
 ]
 
-{ #category : #sorting }
+{ #category : 'sorting' }
 DeleteOperation >> getPosForSorting [
 	"returns a position in the source code string, used to sort the operation list"
 	^ anchorNode startPos
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 DeleteOperation >> parentNode [
 
 	^ anchorNode
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 DeleteOperation >> parentNode: anObject [
 
 	anchorNode := anObject

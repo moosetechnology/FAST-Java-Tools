@@ -2,28 +2,29 @@
 A TransformationApplyerOnSourceAnchorTest is a test class for testing the behavior of TransformationApplyerOnSourceAnchor
 "
 Class {
-	#name : #TransformationApplyerOnSourceAnchorTest,
-	#superclass : #TestCase,
+	#name : 'TransformationApplyerOnSourceAnchorTest',
+	#superclass : 'TestCase',
 	#instVars : [
 		'builder',
 		'transformationTool'
 	],
-	#category : #'Transformation-Tools-Tests'
+	#category : 'Transformation-Tools-Tests',
+	#package : 'Transformation-Tools-Tests'
 }
 
-{ #category : #asserting }
+{ #category : 'asserting' }
 TransformationApplyerOnSourceAnchorTest >> assertEntity: anEntity movedWithOffset: anOffset original: originalText [
 
 	self assert: anEntity sourceText equals: originalText.
 ]
 
-{ #category : #asserting }
+{ #category : 'asserting' }
 TransformationApplyerOnSourceAnchorTest >> assertEntitySourceText: anEntity equalsOriginal: originalText [
 
 	self assert: anEntity sourceText equals: originalText.
 ]
 
-{ #category : #running }
+{ #category : 'running' }
 TransformationApplyerOnSourceAnchorTest >> setUp [
 	super setUp.
 
@@ -32,7 +33,7 @@ TransformationApplyerOnSourceAnchorTest >> setUp [
 	transformationTool := TransformationApplyerOnSourceAnchor new
 ]
 
-{ #category : #test }
+{ #category : 'test' }
 TransformationApplyerOnSourceAnchorTest >> testAddImportStringsIfNeeded [
 
 	"testing in a file without any imports"
@@ -50,7 +51,7 @@ TransformationApplyerOnSourceAnchorTest >> testAddImportStringsIfNeeded [
 	self assert: transformationTool fileSourceText equals: builder classTextWithAllImports.
 ]
 
-{ #category : #test }
+{ #category : 'test' }
 TransformationApplyerOnSourceAnchorTest >> testCopyOriginalFileContent [
 
 	transformationTool entityToTransform: builder testClass.
@@ -59,7 +60,7 @@ TransformationApplyerOnSourceAnchorTest >> testCopyOriginalFileContent [
 	self assert: transformationTool fileSourceText equals: builder classText
 ]
 
-{ #category : #test }
+{ #category : 'test' }
 TransformationApplyerOnSourceAnchorTest >> testFindAndUpdatePosOfNextEntitiesInFile [
 
 	| fileContent stream |
@@ -104,7 +105,7 @@ TransformationApplyerOnSourceAnchorTest >> testFindAndUpdatePosOfNextEntitiesInF
 	
 ]
 
-{ #category : #test }
+{ #category : 'test' }
 TransformationApplyerOnSourceAnchorTest >> testFindRootClass [
 
 	transformationTool entityToTransform: builder testClass.
@@ -114,7 +115,7 @@ TransformationApplyerOnSourceAnchorTest >> testFindRootClass [
 	self assert: transformationTool findRootClass equals: builder testClass.
 ]
 
-{ #category : #test }
+{ #category : 'test' }
 TransformationApplyerOnSourceAnchorTest >> testTransformClassWithNewSource [
 
 	transformationTool transformClass: builder testClass withNewSource: builder classTextWithNewMethod.
@@ -122,7 +123,7 @@ TransformationApplyerOnSourceAnchorTest >> testTransformClassWithNewSource [
 	self assert: builder testClass sourceText equals: builder classTextWithNewMethod. 
 ]
 
-{ #category : #test }
+{ #category : 'test' }
 TransformationApplyerOnSourceAnchorTest >> testTransformMethodWithNewSource [
 
 	transformationTool

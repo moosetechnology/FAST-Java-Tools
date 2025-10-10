@@ -1,6 +1,6 @@
 Class {
-	#name : #TransformationEditor,
-	#superclass : #SpPresenter,
+	#name : 'TransformationEditor',
+	#superclass : 'SpPresenter',
 	#instVars : [
 		'originalText',
 		'originalTextPresenter',
@@ -14,10 +14,11 @@ Class {
 		'currentPointer',
 		'transformationPointers'
 	],
-	#category : #'Transformation-Tools'
+	#category : 'Transformation-Tools',
+	#package : 'Transformation-Tools'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 TransformationEditor class >> openForOriginalText: originalCode andTransformed: transformedCode [
 
 	| modalWindow |
@@ -31,7 +32,7 @@ TransformationEditor class >> openForOriginalText: originalCode andTransformed: 
 	^ modalWindow 
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 TransformationEditor class >> openForOriginalText: originalCode transformed: transformedCode originalEntity: originalEntity [
 
 	| modalWindow |
@@ -46,7 +47,7 @@ TransformationEditor class >> openForOriginalText: originalCode transformed: tra
 	^ modalWindow
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 TransformationEditor class >> openForOriginalText: originalCode transformed: transformedCode removedHighlights: removedHighlights addedHighlights: addedHighLights originalEntity: originalEntity [
 
 	| modalWindow |
@@ -62,7 +63,7 @@ TransformationEditor class >> openForOriginalText: originalCode transformed: tra
 	^ modalWindow
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 TransformationEditor class >> openForOriginalText: originalCode transformed: transformedCode removedHighlights: removedHighlights addedHighlights: addedHighLights originalEntity: originalEntity transformationPointers: transformationPointersList [
 
 	| modalWindow |
@@ -80,19 +81,19 @@ TransformationEditor class >> openForOriginalText: originalCode transformed: tra
 	^ modalWindow
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 TransformationEditor >> addedHighlights [
 
 	^ addedHighlights
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 TransformationEditor >> addedHighlights: anObject [
 
 	addedHighlights := anObject
 ]
 
-{ #category : #layout }
+{ #category : 'layout' }
 TransformationEditor >> defaultLayout [
 
 	^ SpBoxLayout newTopToBottom
@@ -118,19 +119,19 @@ TransformationEditor >> defaultLayout [
 		  yourself
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 TransformationEditor >> defaultTitle [
 
 	^ 'Transformation Editor'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 TransformationEditor >> editingTextPresenter [
 
 	^ editingTextPresenter
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 TransformationEditor >> goToNextTransformationPointer [
 
 	(currentPointer isNil or: [ 
@@ -146,7 +147,7 @@ TransformationEditor >> goToNextTransformationPointer [
 	self goToPointer: currentPointer
 ]
 
-{ #category : #interaction }
+{ #category : 'interaction' }
 TransformationEditor >> goToPointer: aTransformationPointerWrapper [
 "uses morph to jump to next transfomation pointer (made by Rémi Dufloer)"		
 	| originalVScrollPane originalLineToIndex editingVScrollPane editingLineToIndex |
@@ -167,7 +168,7 @@ TransformationEditor >> goToPointer: aTransformationPointerWrapper [
 	editingTextPresenter morph scrollPane updateScrollbars 
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 TransformationEditor >> initialize [
 
 	super initialize.
@@ -175,7 +176,7 @@ TransformationEditor >> initialize [
 	transformationPointers := OrderedCollection new.
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 TransformationEditor >> initializeDialogWindow: aDialogWindowPresenter [
 	"Used to initialize the model in the case of the use into a dialog window.
 	 Override this to set buttons other than the default (Ok, Cancel)."
@@ -188,7 +189,7 @@ TransformationEditor >> initializeDialogWindow: aDialogWindowPresenter [
 		centered
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 TransformationEditor >> initializePresenters [
 
 	super initializePresenters.
@@ -214,7 +215,7 @@ TransformationEditor >> initializePresenters [
 		            yourself
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 TransformationEditor >> initializeToolbar [
 
 	toolbar := self newToolbar
@@ -223,7 +224,7 @@ TransformationEditor >> initializeToolbar [
 		           yourself
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 TransformationEditor >> initializeWindow: aWindowPresenter [	
 	super initializeWindow: aWindowPresenter.
 	aWindowPresenter
@@ -231,7 +232,7 @@ TransformationEditor >> initializeWindow: aWindowPresenter [
 		initialExtent: 1920 @ 1080
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 TransformationEditor >> inspectOriginalEntity [
 
 	^ self newToolbarButton
@@ -241,7 +242,7 @@ TransformationEditor >> inspectOriginalEntity [
 		  yourself
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 TransformationEditor >> nextEntityButton [
 
 	^ self newToolbarButton
@@ -251,38 +252,38 @@ TransformationEditor >> nextEntityButton [
 		  yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 TransformationEditor >> originalEntity: anObject [
 
 	originalEntity := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 TransformationEditor >> originalText: anObject [
 
 	originalText := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 TransformationEditor >> removedHighlights [
 
 	^ removedHighlights
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 TransformationEditor >> removedHighlights: anObject [
 
 	removedHighlights := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 TransformationEditor >> setTextValues [
 
 	originalTextPresenter morph setText: originalText.
 	editingTextPresenter morph setText: transformedText
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 TransformationEditor >> setTextValuesWithHighlights [
 
 	originalText := originalText class = Text
@@ -309,25 +310,25 @@ TransformationEditor >> setTextValuesWithHighlights [
 	editingTextPresenter morph setText: transformedText
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 TransformationEditor >> transformationPointers [
 
 	^ transformationPointers
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 TransformationEditor >> transformedEntitiesPosition: anObject [
 
 	transformationPointers := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 TransformationEditor >> transformedText [
 
 	^ transformedText
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 TransformationEditor >> transformedText: anObject [
 
 	transformedText := anObject

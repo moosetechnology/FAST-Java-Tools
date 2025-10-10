@@ -4,47 +4,48 @@ I am a wrapper containing a Famix or FAST entity, and the starting index for thi
 I am used by the `TransformationEditor` window in order to easily jump to the next transformed entity when the transformations are applied on the whole source code.
 "
 Class {
-	#name : #TransformationPointerWrapper,
-	#superclass : #Object,
+	#name : 'TransformationPointerWrapper',
+	#superclass : 'Object',
 	#instVars : [
 		'entity',
 		'oldVersionStartIndex',
 		'newVersionStartIndex'
 	],
-	#category : #'Transformation-Tools'
+	#category : 'Transformation-Tools',
+	#package : 'Transformation-Tools'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 TransformationPointerWrapper >> entity [
 
 	^ entity
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 TransformationPointerWrapper >> entity: anObject [
 
 	entity := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 TransformationPointerWrapper >> newVersionStartIndex [
 
 	^ newVersionStartIndex
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 TransformationPointerWrapper >> newVersionStartIndex: anObject [
 
 	newVersionStartIndex := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 TransformationPointerWrapper >> oldVersionStartIndex [
 
 	^ oldVersionStartIndex
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 TransformationPointerWrapper >> oldVersionStartIndex: anObject [
 
 	oldVersionStartIndex := anObject

@@ -1,6 +1,6 @@
 Class {
-	#name : #JavaMethodToTransformWrapper,
-	#superclass : #Object,
+	#name : 'JavaMethodToTransformWrapper',
+	#superclass : 'Object',
 	#instVars : [
 		'famixMethod',
 		'originalFastMethod',
@@ -8,10 +8,11 @@ Class {
 		'originalFastNodes',
 		'transformedFastNodes'
 	],
-	#category : #'Transformation-Tools'
+	#category : 'Transformation-Tools',
+	#package : 'Transformation-Tools'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 JavaMethodToTransformWrapper class >> forFamixMethod: aFamixJavaMethod andFAST: aFASTJavaMethodEntity [
 
 	| copyVisitor |
@@ -23,86 +24,86 @@ JavaMethodToTransformWrapper class >> forFamixMethod: aFamixJavaMethod andFAST: 
 		  yourself
 ]
 
-{ #category : #adding }
+{ #category : 'adding' }
 JavaMethodToTransformWrapper >> addOriginalFastNode: aFASTEntity [
 
 	originalFastNodes add: aFASTEntity
 ]
 
-{ #category : #adding }
+{ #category : 'adding' }
 JavaMethodToTransformWrapper >> addTransformedFastNode: aFASTEntity [
 
 	transformedFastNodes add: aFASTEntity
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 JavaMethodToTransformWrapper >> famixMethod [
 
 	^ famixMethod
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 JavaMethodToTransformWrapper >> famixMethod: anObject [
 
 	famixMethod := anObject
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 JavaMethodToTransformWrapper >> initialize [ 
 
 	originalFastNodes := OrderedCollection new.
 	transformedFastNodes := OrderedCollection new
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 JavaMethodToTransformWrapper >> originalFastMethod [
 
 	^ originalFastMethod
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 JavaMethodToTransformWrapper >> originalFastMethod: anObject [
 
 	originalFastMethod := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 JavaMethodToTransformWrapper >> originalFastNodes [
 
 	^ originalFastNodes
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 JavaMethodToTransformWrapper >> originalFastNodes: anObject [
 
 	originalFastNodes := anObject
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 JavaMethodToTransformWrapper >> runMotionQuery: aMotionQuery [
 	"run motion query on both FAST (original and transformed), save the nodes from original tree for highlighting, and returns the nodes from the transformed FAST"
 	
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 JavaMethodToTransformWrapper >> transformedFastMethod [
 
 	^ transformedFastMethod
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 JavaMethodToTransformWrapper >> transformedFastMethod: anObject [
 
 	transformedFastMethod := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 JavaMethodToTransformWrapper >> transformedFastNodes [
 
 	^ transformedFastNodes
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 JavaMethodToTransformWrapper >> transformedFastNodes: anObject [
 
 	transformedFastNodes := anObject

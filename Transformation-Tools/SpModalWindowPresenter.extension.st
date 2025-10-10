@@ -1,6 +1,6 @@
-Extension { #name : #SpModalWindowPresenter }
+Extension { #name : 'SpModalWindowPresenter' }
 
-{ #category : #'*Transformation-Tools' }
+{ #category : '*Transformation-Tools' }
 SpModalWindowPresenter >> fetchEditedCode [
 
 	^ presenter editingTextPresenter morph text asString

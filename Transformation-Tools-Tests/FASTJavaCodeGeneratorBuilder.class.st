@@ -1,10 +1,11 @@
 Class {
-	#name : #FASTJavaCodeGeneratorBuilder,
-	#superclass : #Object,
-	#category : #'Transformation-Tools-Tests'
+	#name : 'FASTJavaCodeGeneratorBuilder',
+	#superclass : 'Object',
+	#category : 'Transformation-Tools-Tests',
+	#package : 'Transformation-Tools-Tests'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 FASTJavaCodeGeneratorBuilder >> codeGeneratorFor: sourceCode withOps: aCollection [
 
 	^ FASTJavaCodeGeneratorKeepingFormatting
@@ -12,7 +13,7 @@ FASTJavaCodeGeneratorBuilder >> codeGeneratorFor: sourceCode withOps: aCollectio
 		  forOperations: aCollection
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 FASTJavaCodeGeneratorBuilder >> collectionOfAllTransformations [
 
 	^ OrderedCollection new
@@ -29,7 +30,7 @@ FASTJavaCodeGeneratorBuilder >> collectionOfAllTransformations [
 		  yourself
 ]
 
-{ #category : #test }
+{ #category : 'test' }
 FASTJavaCodeGeneratorBuilder >> declarationInsertionOperation1 [
 
 	| anchorNode newNode |
@@ -55,7 +56,7 @@ FASTJavaCodeGeneratorBuilder >> declarationInsertionOperation1 [
 		  yourself
 ]
 
-{ #category : #test }
+{ #category : 'test' }
 FASTJavaCodeGeneratorBuilder >> declarationInsertionOperation2 [
 
 	| anchorNode newNode |
@@ -80,7 +81,7 @@ FASTJavaCodeGeneratorBuilder >> declarationInsertionOperation2 [
 		  yourself
 ]
 
-{ #category : #test }
+{ #category : 'test' }
 FASTJavaCodeGeneratorBuilder >> deleteOperation1 [
 
 	| nodeToDelete |
@@ -91,7 +92,7 @@ FASTJavaCodeGeneratorBuilder >> deleteOperation1 [
 		  yourself
 ]
 
-{ #category : #test }
+{ #category : 'test' }
 FASTJavaCodeGeneratorBuilder >> deleteOperation2 [
 
 	| nodeToDelete |
@@ -102,7 +103,7 @@ FASTJavaCodeGeneratorBuilder >> deleteOperation2 [
 		  yourself
 ]
 
-{ #category : #test }
+{ #category : 'test' }
 FASTJavaCodeGeneratorBuilder >> fastClassGetCat [
 
 	^ self fastClassWithTestMethod allChildren do: [ :s | 
@@ -111,7 +112,7 @@ FASTJavaCodeGeneratorBuilder >> fastClassGetCat [
 			  ^ s declarators first expression ] ]
 ]
 
-{ #category : #test }
+{ #category : 'test' }
 FASTJavaCodeGeneratorBuilder >> fastClassGetReturnExpression [
 
 	^ self fastClassWithTestMethod allChildren do: [ :s | 
@@ -119,7 +120,7 @@ FASTJavaCodeGeneratorBuilder >> fastClassGetReturnExpression [
 			  ^ s expression ] ]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 FASTJavaCodeGeneratorBuilder >> fastClassGetSitsExpression [
 
 	^ self fastClassWithTestMethod allChildren do: [ :s | 
@@ -127,7 +128,7 @@ FASTJavaCodeGeneratorBuilder >> fastClassGetSitsExpression [
 			  ifTrue: [ ^ s expressionStatementOwner ] ]
 ]
 
-{ #category : #test }
+{ #category : 'test' }
 FASTJavaCodeGeneratorBuilder >> fastClassMethodTableNode [
 
 	^ self fastClassWithTestMethod allChildren do: [ :s | 
@@ -136,34 +137,34 @@ FASTJavaCodeGeneratorBuilder >> fastClassMethodTableNode [
 			  ^ s ] ]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 FASTJavaCodeGeneratorBuilder >> fastClassWithTestMethod [
 
 	^ (JavaSmaCCProgramNodeImporterVisitor new parseCodeMethodString:
 		   self sourceClassWithTestMethod) allFASTJavaClassDeclaration first
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 FASTJavaCodeGeneratorBuilder >> fastClassWithTestMethodMethod [
 
 	^ self fastClassWithTestMethod declarations first
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 FASTJavaCodeGeneratorBuilder >> fastMethodGetEdges [
 
 	^ (JavaSmaCCProgramNodeImporterVisitor new parseCodeMethodString:
 		   self sourceMethodGetEdges) allFASTNamedBehaviouralEntity first
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 FASTJavaCodeGeneratorBuilder >> fastMethodGetEdgesIfNode [
 
 	^ self fastMethodGetEdges statements do: [ :s | 
 		  s class = FASTJavaIfStatement ifTrue: [ ^ s ] ]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 FASTJavaCodeGeneratorBuilder >> fastMethodGetEdgesSuperNode [
 
 	^ self fastMethodGetEdges statements do: [ :s | 
@@ -171,14 +172,14 @@ FASTJavaCodeGeneratorBuilder >> fastMethodGetEdgesSuperNode [
 			  ^ s expression receiver ] ]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 FASTJavaCodeGeneratorBuilder >> fastMethodTestMethod [
 
 	^ (JavaSmaCCProgramNodeImporterVisitor new parseCodeMethodString:
 		   self sourceMethodTestMethod) allFASTNamedBehaviouralEntity first
 ]
 
-{ #category : #test }
+{ #category : 'test' }
 FASTJavaCodeGeneratorBuilder >> fastMethodTestMethodGetCat [
 
 	^ self fastMethodTestMethod statements do: [ :s | 
@@ -187,7 +188,7 @@ FASTJavaCodeGeneratorBuilder >> fastMethodTestMethodGetCat [
 			  ^ s declarators first expression ] ]
 ]
 
-{ #category : #test }
+{ #category : 'test' }
 FASTJavaCodeGeneratorBuilder >> fastMethodTestMethodTableNode [
 
 	^ self fastMethodTestMethod statements do: [ :s | 
@@ -196,7 +197,7 @@ FASTJavaCodeGeneratorBuilder >> fastMethodTestMethodTableNode [
 			  ^ s ] ]
 ]
 
-{ #category : #test }
+{ #category : 'test' }
 FASTJavaCodeGeneratorBuilder >> insertionOperation1 [
 
 	| parentNode newNode |
@@ -213,7 +214,7 @@ FASTJavaCodeGeneratorBuilder >> insertionOperation1 [
 		  yourself
 ]
 
-{ #category : #test }
+{ #category : 'test' }
 FASTJavaCodeGeneratorBuilder >> insertionOperation2 [
 
 	| parentNode newNode |
@@ -230,7 +231,7 @@ FASTJavaCodeGeneratorBuilder >> insertionOperation2 [
 		  yourself
 ]
 
-{ #category : #test }
+{ #category : 'test' }
 FASTJavaCodeGeneratorBuilder >> replacingOperation1 [
 
 	| nodeToReplace newNode |
@@ -246,7 +247,7 @@ FASTJavaCodeGeneratorBuilder >> replacingOperation1 [
 		  yourself
 ]
 
-{ #category : #test }
+{ #category : 'test' }
 FASTJavaCodeGeneratorBuilder >> replacingOperation2 [
 
 	| nodeToReplace newNode |
@@ -265,7 +266,7 @@ FASTJavaCodeGeneratorBuilder >> replacingOperation2 [
 		  yourself
 ]
 
-{ #category : #test }
+{ #category : 'test' }
 FASTJavaCodeGeneratorBuilder >> signatureInsertionOperation1 [
 
 	| parentNode newNode |
@@ -283,7 +284,7 @@ FASTJavaCodeGeneratorBuilder >> signatureInsertionOperation1 [
 		  selector: #addThrow: yourself
 ]
 
-{ #category : #test }
+{ #category : 'test' }
 FASTJavaCodeGeneratorBuilder >> signatureInsertionOperation2 [
 
 	| parentNode newNode |
@@ -301,7 +302,7 @@ FASTJavaCodeGeneratorBuilder >> signatureInsertionOperation2 [
 		  selector: #superclass: yourself
 ]
 
-{ #category : #test }
+{ #category : 'test' }
 FASTJavaCodeGeneratorBuilder >> signatureInsertionOperation3 [
 
 	| parentNode newNode |
@@ -319,7 +320,7 @@ FASTJavaCodeGeneratorBuilder >> signatureInsertionOperation3 [
 		  selector: #addInterface: yourself
 ]
 
-{ #category : #test }
+{ #category : 'test' }
 FASTJavaCodeGeneratorBuilder >> signatureInsertionOperation4 [
 
 	| parentNode newNode |
@@ -337,7 +338,7 @@ FASTJavaCodeGeneratorBuilder >> signatureInsertionOperation4 [
 		  selector: #addThrow: yourself
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 FASTJavaCodeGeneratorBuilder >> sourceClassWithTestMethod [
 
 	^ 
@@ -353,7 +354,7 @@ FASTJavaCodeGeneratorBuilder >> sourceClassWithTestMethod [
 }'
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 FASTJavaCodeGeneratorBuilder >> sourceClassWithTestMethodAndAllTransformations [
 
 	^ 
@@ -373,7 +374,7 @@ FASTJavaCodeGeneratorBuilder >> sourceClassWithTestMethodAndAllTransformations [
 }'
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 FASTJavaCodeGeneratorBuilder >> sourceClassWithTestMethodAndConstructorAfter [
 
 	^ 
@@ -393,7 +394,7 @@ FASTJavaCodeGeneratorBuilder >> sourceClassWithTestMethodAndConstructorAfter [
 }'
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 FASTJavaCodeGeneratorBuilder >> sourceClassWithTestMethodAndConstructorBefore [
 
 	^ 
@@ -413,7 +414,7 @@ FASTJavaCodeGeneratorBuilder >> sourceClassWithTestMethodAndConstructorBefore [
 }'
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 FASTJavaCodeGeneratorBuilder >> sourceClassWithTestMethodAndSuperclass [
 
 	^ 
@@ -429,7 +430,7 @@ FASTJavaCodeGeneratorBuilder >> sourceClassWithTestMethodAndSuperclass [
 }'
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 FASTJavaCodeGeneratorBuilder >> sourceClassWithTestMethodAndSuperclassAndInterface [
 
 	^ 
@@ -445,7 +446,7 @@ FASTJavaCodeGeneratorBuilder >> sourceClassWithTestMethodAndSuperclassAndInterfa
 }'
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 FASTJavaCodeGeneratorBuilder >> sourceMethodGetEdges [
 
 	^ 
@@ -457,7 +458,7 @@ FASTJavaCodeGeneratorBuilder >> sourceMethodGetEdges [
 }'
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 FASTJavaCodeGeneratorBuilder >> sourceMethodGetEdgesDeletingIf [
 
 	^ 
@@ -466,7 +467,7 @@ FASTJavaCodeGeneratorBuilder >> sourceMethodGetEdgesDeletingIf [
 }'
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 FASTJavaCodeGeneratorBuilder >> sourceMethodGetEdgesReplacingSuperNode [
 
 	^ 
@@ -478,7 +479,7 @@ FASTJavaCodeGeneratorBuilder >> sourceMethodGetEdgesReplacingSuperNode [
 }'
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 FASTJavaCodeGeneratorBuilder >> sourceMethodTestMethod [
 
 	^ 'public boolean testMethod() {
@@ -489,7 +490,7 @@ FASTJavaCodeGeneratorBuilder >> sourceMethodTestMethod [
 }'
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 FASTJavaCodeGeneratorBuilder >> sourceMethodTestMethodWithCatColor [
 
 	^ 'public boolean testMethod() {
@@ -500,7 +501,7 @@ FASTJavaCodeGeneratorBuilder >> sourceMethodTestMethodWithCatColor [
 }'
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 FASTJavaCodeGeneratorBuilder >> sourceMethodTestMethodWithCatMeows [
 
 	^ 'public boolean testMethod() {
@@ -512,7 +513,7 @@ FASTJavaCodeGeneratorBuilder >> sourceMethodTestMethodWithCatMeows [
 }'
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 FASTJavaCodeGeneratorBuilder >> sourceMethodTestMethodWithCatMeowsBeforeTable [
 
 	^ 'public boolean testMethod() {
@@ -524,7 +525,7 @@ FASTJavaCodeGeneratorBuilder >> sourceMethodTestMethodWithCatMeowsBeforeTable [
 }'
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 FASTJavaCodeGeneratorBuilder >> sourceMethodTestMethodWithException [
 
 	^ 'public boolean testMethod()  throws NotFedError {
@@ -535,7 +536,7 @@ FASTJavaCodeGeneratorBuilder >> sourceMethodTestMethodWithException [
 }'
 ]
 
-{ #category : #test }
+{ #category : 'test' }
 FASTJavaCodeGeneratorBuilder >> statementInsertionOperation1 [
 
 	| anchorNode newNode |
@@ -555,7 +556,7 @@ FASTJavaCodeGeneratorBuilder >> statementInsertionOperation1 [
 		  yourself
 ]
 
-{ #category : #test }
+{ #category : 'test' }
 FASTJavaCodeGeneratorBuilder >> statementInsertionOperation2 [
 
 	| anchorNode newNode |
@@ -576,7 +577,7 @@ FASTJavaCodeGeneratorBuilder >> statementInsertionOperation2 [
 		  yourself
 ]
 
-{ #category : #test }
+{ #category : 'test' }
 FASTJavaCodeGeneratorBuilder >> statementInsertionOperation3 [
 
 	| anchorNode newNode |

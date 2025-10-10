@@ -1,10 +1,11 @@
 Class {
-	#name : #FASTJavaCopyVisitor,
-	#superclass : #FASTJavaVisitor,
-	#category : #'Transformation-Tools'
+	#name : 'FASTJavaCopyVisitor',
+	#superclass : 'FASTJavaVisitor',
+	#category : 'Transformation-Tools',
+	#package : 'Transformation-Tools'
 }
 
-{ #category : #copying }
+{ #category : 'copying' }
 FASTJavaCopyVisitor >> copy: aNode [
 
 	aNode ifNil: [ ^nil ].
@@ -14,7 +15,7 @@ FASTJavaCopyVisitor >> copy: aNode [
 
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 FASTJavaCopyVisitor >> visitFASTJavaAnnotation: aFASTJavaAnnotation [
 	<generated>
 	| copy |
@@ -33,7 +34,7 @@ FASTJavaCopyVisitor >> visitFASTJavaAnnotation: aFASTJavaAnnotation [
 	^ copy
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 FASTJavaCopyVisitor >> visitFASTJavaArrayAccess: aFASTJavaArrayAccess [
 	<generated>
 	| copy |
@@ -52,7 +53,7 @@ FASTJavaCopyVisitor >> visitFASTJavaArrayAccess: aFASTJavaArrayAccess [
 	^ copy
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 FASTJavaCopyVisitor >> visitFASTJavaArrayAnnotationElement: aFASTJavaArrayAnnotationElement [
 	<generated>
 	| copy |
@@ -70,7 +71,7 @@ FASTJavaCopyVisitor >> visitFASTJavaArrayAnnotationElement: aFASTJavaArrayAnnota
 	^ copy
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 FASTJavaCopyVisitor >> visitFASTJavaArrayInitializer: aFASTJavaArrayInitializer [
 	<generated>
 	| copy |
@@ -88,7 +89,7 @@ FASTJavaCopyVisitor >> visitFASTJavaArrayInitializer: aFASTJavaArrayInitializer 
 	^ copy
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 FASTJavaCopyVisitor >> visitFASTJavaArrayTypeExpression: aFASTJavaArrayTypeExpression [
 	<generated>
 	| copy |
@@ -108,7 +109,7 @@ FASTJavaCopyVisitor >> visitFASTJavaArrayTypeExpression: aFASTJavaArrayTypeExpre
 	^ copy
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 FASTJavaCopyVisitor >> visitFASTJavaAssertStatement: aFASTJavaAssertStatement [
 	<generated>
 	| copy |
@@ -126,7 +127,7 @@ FASTJavaCopyVisitor >> visitFASTJavaAssertStatement: aFASTJavaAssertStatement [
 	^ copy
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 FASTJavaCopyVisitor >> visitFASTJavaAssignmentExpression: aFASTJavaAssignmentExpression [
 	<generated>
 	| copy |
@@ -146,7 +147,7 @@ FASTJavaCopyVisitor >> visitFASTJavaAssignmentExpression: aFASTJavaAssignmentExp
 	^ copy
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 FASTJavaCopyVisitor >> visitFASTJavaBooleanLiteral: aFASTJavaBooleanLiteral [
 	<generated>
 	| copy |
@@ -164,7 +165,7 @@ FASTJavaCopyVisitor >> visitFASTJavaBooleanLiteral: aFASTJavaBooleanLiteral [
 	^ copy
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 FASTJavaCopyVisitor >> visitFASTJavaBooleanTypeExpression: aFASTJavaBooleanTypeExpression [
 	<generated>
 	| copy |
@@ -183,7 +184,7 @@ FASTJavaCopyVisitor >> visitFASTJavaBooleanTypeExpression: aFASTJavaBooleanTypeE
 	^ copy
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 FASTJavaCopyVisitor >> visitFASTJavaBreakStatement: aFASTJavaBreakStatement [
 	<generated>
 	| copy |
@@ -199,7 +200,7 @@ FASTJavaCopyVisitor >> visitFASTJavaBreakStatement: aFASTJavaBreakStatement [
 	^ copy
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 FASTJavaCopyVisitor >> visitFASTJavaByteTypeExpression: aFASTJavaByteTypeExpression [
 	<generated>
 	| copy |
@@ -218,7 +219,7 @@ FASTJavaCopyVisitor >> visitFASTJavaByteTypeExpression: aFASTJavaByteTypeExpress
 	^ copy
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 FASTJavaCopyVisitor >> visitFASTJavaCaseStatement: aFASTJavaCaseStatement [
 	<generated>
 	| copy |
@@ -235,7 +236,7 @@ FASTJavaCopyVisitor >> visitFASTJavaCaseStatement: aFASTJavaCaseStatement [
 	^ copy
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 FASTJavaCopyVisitor >> visitFASTJavaCastExpression: aFASTJavaCastExpression [
 	<generated>
 	| copy |
@@ -254,7 +255,7 @@ FASTJavaCopyVisitor >> visitFASTJavaCastExpression: aFASTJavaCastExpression [
 	^ copy
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 FASTJavaCopyVisitor >> visitFASTJavaCatchPartStatement: aFASTJavaCatchPartStatement [
 	<generated>
 	| copy |
@@ -273,7 +274,7 @@ FASTJavaCopyVisitor >> visitFASTJavaCatchPartStatement: aFASTJavaCatchPartStatem
 	^ copy
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 FASTJavaCopyVisitor >> visitFASTJavaCharTypeExpression: aFASTJavaCharTypeExpression [
 	<generated>
 	| copy |
@@ -292,7 +293,7 @@ FASTJavaCopyVisitor >> visitFASTJavaCharTypeExpression: aFASTJavaCharTypeExpress
 	^ copy
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 FASTJavaCopyVisitor >> visitFASTJavaCharacterLiteral: aFASTJavaCharacterLiteral [
 	<generated>
 	| copy |
@@ -310,7 +311,7 @@ FASTJavaCopyVisitor >> visitFASTJavaCharacterLiteral: aFASTJavaCharacterLiteral 
 	^ copy
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 FASTJavaCopyVisitor >> visitFASTJavaClassDeclaration: aFASTJavaClassDeclaration [
 	<generated>
 	| copy |
@@ -332,7 +333,7 @@ FASTJavaCopyVisitor >> visitFASTJavaClassDeclaration: aFASTJavaClassDeclaration 
 	^ copy
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 FASTJavaCopyVisitor >> visitFASTJavaClassProperty: aFASTJavaClassProperty [
 	<generated>
 	| copy |
@@ -353,7 +354,7 @@ FASTJavaCopyVisitor >> visitFASTJavaClassProperty: aFASTJavaClassProperty [
 	^ copy
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 FASTJavaCopyVisitor >> visitFASTJavaClassTypeExpression: aFASTJavaClassTypeExpression [
 	<generated>
 	| copy |
@@ -374,7 +375,7 @@ FASTJavaCopyVisitor >> visitFASTJavaClassTypeExpression: aFASTJavaClassTypeExpre
 	^ copy
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 FASTJavaCopyVisitor >> visitFASTJavaComment: aFASTJavaComment [
 	<generated>
 	| copy |
@@ -392,7 +393,7 @@ FASTJavaCopyVisitor >> visitFASTJavaComment: aFASTJavaComment [
 	^ copy
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 FASTJavaCopyVisitor >> visitFASTJavaCompilationUnit: aFASTJavaCompilationUnit [
 	<generated>
 	| copy |
@@ -413,7 +414,7 @@ FASTJavaCopyVisitor >> visitFASTJavaCompilationUnit: aFASTJavaCompilationUnit [
 	^ copy
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 FASTJavaCopyVisitor >> visitFASTJavaConditionalExpression: aFASTJavaConditionalExpression [
 	<generated>
 	| copy |
@@ -433,7 +434,7 @@ FASTJavaCopyVisitor >> visitFASTJavaConditionalExpression: aFASTJavaConditionalE
 	^ copy
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 FASTJavaCopyVisitor >> visitFASTJavaContinueStatement: aFASTJavaContinueStatement [
 	<generated>
 	| copy |
@@ -449,7 +450,7 @@ FASTJavaCopyVisitor >> visitFASTJavaContinueStatement: aFASTJavaContinueStatemen
 	^ copy
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 FASTJavaCopyVisitor >> visitFASTJavaDefaultCaseStatement: aFASTJavaDefaultCaseStatement [
 	<generated>
 	| copy |
@@ -466,7 +467,7 @@ FASTJavaCopyVisitor >> visitFASTJavaDefaultCaseStatement: aFASTJavaDefaultCaseSt
 	^ copy
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 FASTJavaCopyVisitor >> visitFASTJavaDoWhileStatement: aFASTJavaDoWhileStatement [
 	<generated>
 	| copy |
@@ -484,7 +485,7 @@ FASTJavaCopyVisitor >> visitFASTJavaDoWhileStatement: aFASTJavaDoWhileStatement 
 	^ copy
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 FASTJavaCopyVisitor >> visitFASTJavaDoubleLiteral: aFASTJavaDoubleLiteral [
 	<generated>
 	| copy |
@@ -502,7 +503,7 @@ FASTJavaCopyVisitor >> visitFASTJavaDoubleLiteral: aFASTJavaDoubleLiteral [
 	^ copy
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 FASTJavaCopyVisitor >> visitFASTJavaDoubleTypeExpression: aFASTJavaDoubleTypeExpression [
 	<generated>
 	| copy |
@@ -521,7 +522,7 @@ FASTJavaCopyVisitor >> visitFASTJavaDoubleTypeExpression: aFASTJavaDoubleTypeExp
 	^ copy
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 FASTJavaCopyVisitor >> visitFASTJavaEmptyDimExpression: aFASTJavaEmptyDimExpression [
 	<generated>
 	| copy |
@@ -538,7 +539,7 @@ FASTJavaCopyVisitor >> visitFASTJavaEmptyDimExpression: aFASTJavaEmptyDimExpress
 	^ copy
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 FASTJavaCopyVisitor >> visitFASTJavaEmptyMethodDeclaration: aFASTJavaEmptyMethodDeclaration [
 	<generated>
 	| copy |
@@ -562,7 +563,7 @@ FASTJavaCopyVisitor >> visitFASTJavaEmptyMethodDeclaration: aFASTJavaEmptyMethod
 	^ copy
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 FASTJavaCopyVisitor >> visitFASTJavaEntity: aFASTJavaEntity [
 	<generated>
 	| copy |
@@ -578,7 +579,7 @@ FASTJavaCopyVisitor >> visitFASTJavaEntity: aFASTJavaEntity [
 	^ copy
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 FASTJavaCopyVisitor >> visitFASTJavaEnumConstant: aFASTJavaEnumConstant [
 	<generated>
 	| copy |
@@ -597,7 +598,7 @@ FASTJavaCopyVisitor >> visitFASTJavaEnumConstant: aFASTJavaEnumConstant [
 	^ copy
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 FASTJavaCopyVisitor >> visitFASTJavaEnumDeclaration: aFASTJavaEnumDeclaration [
 	<generated>
 	| copy |
@@ -619,7 +620,7 @@ FASTJavaCopyVisitor >> visitFASTJavaEnumDeclaration: aFASTJavaEnumDeclaration [
 	^ copy
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 FASTJavaCopyVisitor >> visitFASTJavaExpressionStatement: aFASTJavaExpressionStatement [
 	<generated>
 	| copy |
@@ -636,7 +637,7 @@ FASTJavaCopyVisitor >> visitFASTJavaExpressionStatement: aFASTJavaExpressionStat
 	^ copy
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 FASTJavaCopyVisitor >> visitFASTJavaFieldAccess: aFASTJavaFieldAccess [
 	<generated>
 	| copy |
@@ -655,7 +656,7 @@ FASTJavaCopyVisitor >> visitFASTJavaFieldAccess: aFASTJavaFieldAccess [
 	^ copy
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 FASTJavaCopyVisitor >> visitFASTJavaFloatLiteral: aFASTJavaFloatLiteral [
 	<generated>
 	| copy |
@@ -673,7 +674,7 @@ FASTJavaCopyVisitor >> visitFASTJavaFloatLiteral: aFASTJavaFloatLiteral [
 	^ copy
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 FASTJavaCopyVisitor >> visitFASTJavaFloatTypeExpression: aFASTJavaFloatTypeExpression [
 	<generated>
 	| copy |
@@ -692,7 +693,7 @@ FASTJavaCopyVisitor >> visitFASTJavaFloatTypeExpression: aFASTJavaFloatTypeExpre
 	^ copy
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 FASTJavaCopyVisitor >> visitFASTJavaForEachStatement: aFASTJavaForEachStatement [
 	<generated>
 	| copy |
@@ -712,7 +713,7 @@ FASTJavaCopyVisitor >> visitFASTJavaForEachStatement: aFASTJavaForEachStatement 
 	^ copy
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 FASTJavaCopyVisitor >> visitFASTJavaForStatement: aFASTJavaForStatement [
 	<generated>
 	| copy |
@@ -732,7 +733,7 @@ FASTJavaCopyVisitor >> visitFASTJavaForStatement: aFASTJavaForStatement [
 	^ copy
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 FASTJavaCopyVisitor >> visitFASTJavaIdentifier: aFASTJavaIdentifier [
 	<generated>
 	| copy |
@@ -751,7 +752,7 @@ FASTJavaCopyVisitor >> visitFASTJavaIdentifier: aFASTJavaIdentifier [
 	^ copy
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 FASTJavaCopyVisitor >> visitFASTJavaIfStatement: aFASTJavaIfStatement [
 	<generated>
 	| copy |
@@ -770,7 +771,7 @@ FASTJavaCopyVisitor >> visitFASTJavaIfStatement: aFASTJavaIfStatement [
 	^ copy
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 FASTJavaCopyVisitor >> visitFASTJavaImportDeclaration: aFASTJavaImportDeclaration [
 	<generated>
 	| copy |
@@ -789,7 +790,7 @@ FASTJavaCopyVisitor >> visitFASTJavaImportDeclaration: aFASTJavaImportDeclaratio
 	^ copy
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 FASTJavaCopyVisitor >> visitFASTJavaInfixOperation: aFASTJavaInfixOperation [
 	<generated>
 	| copy |
@@ -809,7 +810,7 @@ FASTJavaCopyVisitor >> visitFASTJavaInfixOperation: aFASTJavaInfixOperation [
 	^ copy
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 FASTJavaCopyVisitor >> visitFASTJavaInitializer: aFASTJavaInitializer [
 	<generated>
 	| copy |
@@ -826,7 +827,7 @@ FASTJavaCopyVisitor >> visitFASTJavaInitializer: aFASTJavaInitializer [
 	^ copy
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 FASTJavaCopyVisitor >> visitFASTJavaIntTypeExpression: aFASTJavaIntTypeExpression [
 	<generated>
 	| copy |
@@ -845,7 +846,7 @@ FASTJavaCopyVisitor >> visitFASTJavaIntTypeExpression: aFASTJavaIntTypeExpressio
 	^ copy
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 FASTJavaCopyVisitor >> visitFASTJavaIntegerLiteral: aFASTJavaIntegerLiteral [
 	<generated>
 	| copy |
@@ -863,7 +864,7 @@ FASTJavaCopyVisitor >> visitFASTJavaIntegerLiteral: aFASTJavaIntegerLiteral [
 	^ copy
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 FASTJavaCopyVisitor >> visitFASTJavaInterfaceDeclaration: aFASTJavaInterfaceDeclaration [
 	<generated>
 	| copy |
@@ -884,7 +885,7 @@ FASTJavaCopyVisitor >> visitFASTJavaInterfaceDeclaration: aFASTJavaInterfaceDecl
 	^ copy
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 FASTJavaCopyVisitor >> visitFASTJavaLabeledCaseStatement: aFASTJavaLabeledCaseStatement [
 	<generated>
 	| copy |
@@ -902,7 +903,7 @@ FASTJavaCopyVisitor >> visitFASTJavaLabeledCaseStatement: aFASTJavaLabeledCaseSt
 	^ copy
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 FASTJavaCopyVisitor >> visitFASTJavaLabeledStatement: aFASTJavaLabeledStatement [
 	<generated>
 	| copy |
@@ -920,7 +921,7 @@ FASTJavaCopyVisitor >> visitFASTJavaLabeledStatement: aFASTJavaLabeledStatement 
 	^ copy
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 FASTJavaCopyVisitor >> visitFASTJavaLambdaExpression: aFASTJavaLambdaExpression [
 	<generated>
 	| copy |
@@ -939,7 +940,7 @@ FASTJavaCopyVisitor >> visitFASTJavaLambdaExpression: aFASTJavaLambdaExpression 
 	^ copy
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 FASTJavaCopyVisitor >> visitFASTJavaLiteral: aFASTJavaLiteral [
 	<generated>
 	| copy |
@@ -955,7 +956,7 @@ FASTJavaCopyVisitor >> visitFASTJavaLiteral: aFASTJavaLiteral [
 	^ copy
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 FASTJavaCopyVisitor >> visitFASTJavaLongLiteral: aFASTJavaLongLiteral [
 	<generated>
 	| copy |
@@ -973,7 +974,7 @@ FASTJavaCopyVisitor >> visitFASTJavaLongLiteral: aFASTJavaLongLiteral [
 	^ copy
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 FASTJavaCopyVisitor >> visitFASTJavaLongTypeExpression: aFASTJavaLongTypeExpression [
 	<generated>
 	| copy |
@@ -992,7 +993,7 @@ FASTJavaCopyVisitor >> visitFASTJavaLongTypeExpression: aFASTJavaLongTypeExpress
 	^ copy
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 FASTJavaCopyVisitor >> visitFASTJavaMethodEntity: aFASTJavaMethodEntity [
 	<generated>
 	| copy |
@@ -1016,7 +1017,7 @@ FASTJavaCopyVisitor >> visitFASTJavaMethodEntity: aFASTJavaMethodEntity [
 	^ copy
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 FASTJavaCopyVisitor >> visitFASTJavaMethodInvocation: aFASTJavaMethodInvocation [
 	<generated>
 	| copy |
@@ -1038,7 +1039,7 @@ FASTJavaCopyVisitor >> visitFASTJavaMethodInvocation: aFASTJavaMethodInvocation 
 	^ copy
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 FASTJavaCopyVisitor >> visitFASTJavaMethodReference: aFASTJavaMethodReference [
 	<generated>
 	| copy |
@@ -1058,7 +1059,7 @@ FASTJavaCopyVisitor >> visitFASTJavaMethodReference: aFASTJavaMethodReference [
 	^ copy
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 FASTJavaCopyVisitor >> visitFASTJavaModifier: aFASTJavaModifier [
 	<generated>
 	| copy |
@@ -1076,7 +1077,7 @@ FASTJavaCopyVisitor >> visitFASTJavaModifier: aFASTJavaModifier [
 	^ copy
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 FASTJavaCopyVisitor >> visitFASTJavaNewArray: aFASTJavaNewArray [
 	<generated>
 	| copy |
@@ -1097,7 +1098,7 @@ FASTJavaCopyVisitor >> visitFASTJavaNewArray: aFASTJavaNewArray [
 	^ copy
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 FASTJavaCopyVisitor >> visitFASTJavaNewClassExpression: aFASTJavaNewClassExpression [
 	<generated>
 	| copy |
@@ -1118,7 +1119,7 @@ FASTJavaCopyVisitor >> visitFASTJavaNewClassExpression: aFASTJavaNewClassExpress
 	^ copy
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 FASTJavaCopyVisitor >> visitFASTJavaNewExpression: aFASTJavaNewExpression [
 	<generated>
 	| copy |
@@ -1138,7 +1139,7 @@ FASTJavaCopyVisitor >> visitFASTJavaNewExpression: aFASTJavaNewExpression [
 	^ copy
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 FASTJavaCopyVisitor >> visitFASTJavaNullLiteral: aFASTJavaNullLiteral [
 	<generated>
 	| copy |
@@ -1156,7 +1157,7 @@ FASTJavaCopyVisitor >> visitFASTJavaNullLiteral: aFASTJavaNullLiteral [
 	^ copy
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 FASTJavaCopyVisitor >> visitFASTJavaOuterThis: aFASTJavaOuterThis [
 	<generated>
 	| copy |
@@ -1174,7 +1175,7 @@ FASTJavaCopyVisitor >> visitFASTJavaOuterThis: aFASTJavaOuterThis [
 	^ copy
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 FASTJavaCopyVisitor >> visitFASTJavaPackageDeclaration: aFASTJavaPackageDeclaration [
 	<generated>
 	| copy |
@@ -1191,7 +1192,7 @@ FASTJavaCopyVisitor >> visitFASTJavaPackageDeclaration: aFASTJavaPackageDeclarat
 	^ copy
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 FASTJavaCopyVisitor >> visitFASTJavaParameter: aFASTJavaParameter [
 	<generated>
 	| copy |
@@ -1212,7 +1213,7 @@ FASTJavaCopyVisitor >> visitFASTJavaParameter: aFASTJavaParameter [
 	^ copy
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 FASTJavaCopyVisitor >> visitFASTJavaPrimitiveTypeExpression: aFASTJavaPrimitiveTypeExpression [
 	<generated>
 	| copy |
@@ -1231,7 +1232,7 @@ FASTJavaCopyVisitor >> visitFASTJavaPrimitiveTypeExpression: aFASTJavaPrimitiveT
 	^ copy
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 FASTJavaCopyVisitor >> visitFASTJavaQualifiedName: aFASTJavaQualifiedName [
 	<generated>
 	| copy |
@@ -1250,7 +1251,7 @@ FASTJavaCopyVisitor >> visitFASTJavaQualifiedName: aFASTJavaQualifiedName [
 	^ copy
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 FASTJavaCopyVisitor >> visitFASTJavaQualifiedTypeName: aFASTJavaQualifiedTypeName [
 	<generated>
 	| copy |
@@ -1270,7 +1271,7 @@ FASTJavaCopyVisitor >> visitFASTJavaQualifiedTypeName: aFASTJavaQualifiedTypeNam
 	^ copy
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 FASTJavaCopyVisitor >> visitFASTJavaReturnStatement: aFASTJavaReturnStatement [
 	<generated>
 	| copy |
@@ -1287,7 +1288,7 @@ FASTJavaCopyVisitor >> visitFASTJavaReturnStatement: aFASTJavaReturnStatement [
 	^ copy
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 FASTJavaCopyVisitor >> visitFASTJavaShortTypeExpression: aFASTJavaShortTypeExpression [
 	<generated>
 	| copy |
@@ -1306,7 +1307,7 @@ FASTJavaCopyVisitor >> visitFASTJavaShortTypeExpression: aFASTJavaShortTypeExpre
 	^ copy
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 FASTJavaCopyVisitor >> visitFASTJavaStatement: aFASTJavaStatement [
 	<generated>
 	| copy |
@@ -1322,7 +1323,7 @@ FASTJavaCopyVisitor >> visitFASTJavaStatement: aFASTJavaStatement [
 	^ copy
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 FASTJavaCopyVisitor >> visitFASTJavaStatementBlock: aFASTJavaStatementBlock [
 	<generated>
 	| copy |
@@ -1339,7 +1340,7 @@ FASTJavaCopyVisitor >> visitFASTJavaStatementBlock: aFASTJavaStatementBlock [
 	^ copy
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 FASTJavaCopyVisitor >> visitFASTJavaStringLiteral: aFASTJavaStringLiteral [
 	<generated>
 	| copy |
@@ -1357,7 +1358,7 @@ FASTJavaCopyVisitor >> visitFASTJavaStringLiteral: aFASTJavaStringLiteral [
 	^ copy
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 FASTJavaCopyVisitor >> visitFASTJavaSwitchStatement: aFASTJavaSwitchStatement [
 	<generated>
 	| copy |
@@ -1375,7 +1376,7 @@ FASTJavaCopyVisitor >> visitFASTJavaSwitchStatement: aFASTJavaSwitchStatement [
 	^ copy
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 FASTJavaCopyVisitor >> visitFASTJavaSynchronizedStatement: aFASTJavaSynchronizedStatement [
 	<generated>
 	| copy |
@@ -1393,7 +1394,7 @@ FASTJavaCopyVisitor >> visitFASTJavaSynchronizedStatement: aFASTJavaSynchronized
 	^ copy
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 FASTJavaCopyVisitor >> visitFASTJavaThis: aFASTJavaThis [
 	<generated>
 	| copy |
@@ -1412,7 +1413,7 @@ FASTJavaCopyVisitor >> visitFASTJavaThis: aFASTJavaThis [
 	^ copy
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 FASTJavaCopyVisitor >> visitFASTJavaThrowStatement: aFASTJavaThrowStatement [
 	<generated>
 	| copy |
@@ -1429,7 +1430,7 @@ FASTJavaCopyVisitor >> visitFASTJavaThrowStatement: aFASTJavaThrowStatement [
 	^ copy
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 FASTJavaCopyVisitor >> visitFASTJavaTryCatchStatement: aFASTJavaTryCatchStatement [
 	<generated>
 	| copy |
@@ -1449,7 +1450,7 @@ FASTJavaCopyVisitor >> visitFASTJavaTryCatchStatement: aFASTJavaTryCatchStatemen
 	^ copy
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 FASTJavaCopyVisitor >> visitFASTJavaTypeExpression: aFASTJavaTypeExpression [
 	<generated>
 	| copy |
@@ -1468,7 +1469,7 @@ FASTJavaCopyVisitor >> visitFASTJavaTypeExpression: aFASTJavaTypeExpression [
 	^ copy
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 FASTJavaCopyVisitor >> visitFASTJavaTypeName: aFASTJavaTypeName [
 	<generated>
 	| copy |
@@ -1487,7 +1488,7 @@ FASTJavaCopyVisitor >> visitFASTJavaTypeName: aFASTJavaTypeName [
 	^ copy
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 FASTJavaCopyVisitor >> visitFASTJavaTypeParameterExpression: aFASTJavaTypeParameterExpression [
 	<generated>
 	| copy |
@@ -1507,7 +1508,7 @@ FASTJavaCopyVisitor >> visitFASTJavaTypeParameterExpression: aFASTJavaTypeParame
 	^ copy
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 FASTJavaCopyVisitor >> visitFASTJavaUnaryExpression: aFASTJavaUnaryExpression [
 	<generated>
 	| copy |
@@ -1527,7 +1528,7 @@ FASTJavaCopyVisitor >> visitFASTJavaUnaryExpression: aFASTJavaUnaryExpression [
 	^ copy
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 FASTJavaCopyVisitor >> visitFASTJavaVarDeclStatement: aFASTJavaVarDeclStatement [
 	<generated>
 	| copy |
@@ -1546,7 +1547,7 @@ FASTJavaCopyVisitor >> visitFASTJavaVarDeclStatement: aFASTJavaVarDeclStatement 
 	^ copy
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 FASTJavaCopyVisitor >> visitFASTJavaVariableDeclarator: aFASTJavaVariableDeclarator [
 	<generated>
 	| copy |
@@ -1564,7 +1565,7 @@ FASTJavaCopyVisitor >> visitFASTJavaVariableDeclarator: aFASTJavaVariableDeclara
 	^ copy
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 FASTJavaCopyVisitor >> visitFASTJavaVariableExpression: aFASTJavaVariableExpression [
 	<generated>
 	| copy |
@@ -1583,7 +1584,7 @@ FASTJavaCopyVisitor >> visitFASTJavaVariableExpression: aFASTJavaVariableExpress
 	^ copy
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 FASTJavaCopyVisitor >> visitFASTJavaVoidTypeExpression: aFASTJavaVoidTypeExpression [
 	<generated>
 	| copy |
@@ -1602,7 +1603,7 @@ FASTJavaCopyVisitor >> visitFASTJavaVoidTypeExpression: aFASTJavaVoidTypeExpress
 	^ copy
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 FASTJavaCopyVisitor >> visitFASTJavaWhileStatement: aFASTJavaWhileStatement [
 	<generated>
 	| copy |
@@ -1620,7 +1621,7 @@ FASTJavaCopyVisitor >> visitFASTJavaWhileStatement: aFASTJavaWhileStatement [
 	^ copy
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 FASTJavaCopyVisitor >> visitFASTTExpressionStatement: aFASTJavaExpressionStatement [
 	<generated>
 	| copy |
@@ -1637,7 +1638,7 @@ FASTJavaCopyVisitor >> visitFASTTExpressionStatement: aFASTJavaExpressionStateme
 	^ copy
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 FASTJavaCopyVisitor >> visitFASTTLiteral: aFASTJavaLiteral [
 	<generated>
 	| copy |
@@ -1653,7 +1654,7 @@ FASTJavaCopyVisitor >> visitFASTTLiteral: aFASTJavaLiteral [
 	^ copy
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 FASTJavaCopyVisitor >> visitFASTTReturnStatement: aFASTJavaReturnStatement [
 	<generated>
 	| copy |
@@ -1670,7 +1671,7 @@ FASTJavaCopyVisitor >> visitFASTTReturnStatement: aFASTJavaReturnStatement [
 	^ copy
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 FASTJavaCopyVisitor >> visitFASTTStatementBlock: aFASTJavaStatementBlock [
 	<generated>
 	| copy |

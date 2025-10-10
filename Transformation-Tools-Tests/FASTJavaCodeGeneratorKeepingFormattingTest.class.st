@@ -2,15 +2,16 @@
 A FASTJavaCodeGeneratorKeepingFormattingTest is a test class for testing the behavior of FASTJavaCodeGeneratorKeepingFormatting
 "
 Class {
-	#name : #FASTJavaCodeGeneratorKeepingFormattingTest,
-	#superclass : #TestCase,
+	#name : 'FASTJavaCodeGeneratorKeepingFormattingTest',
+	#superclass : 'TestCase',
 	#instVars : [
 		'builder'
 	],
-	#category : #'Transformation-Tools-Tests'
+	#category : 'Transformation-Tools-Tests',
+	#package : 'Transformation-Tools-Tests'
 }
 
-{ #category : #test }
+{ #category : 'test' }
 FASTJavaCodeGeneratorKeepingFormattingTest >> applyDeclarationInsertionOperationTest [
 
 	| fast op tool |
@@ -39,7 +40,7 @@ FASTJavaCodeGeneratorKeepingFormattingTest >> applyDeclarationInsertionOperation
 		equals: builder sourceClassWithTestMethodAndConstructorAfter
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 FASTJavaCodeGeneratorKeepingFormattingTest >> applyGroupTransformationOperation [
 
 	| fast op op1 op2 list tool |
@@ -66,7 +67,7 @@ FASTJavaCodeGeneratorKeepingFormattingTest >> applyGroupTransformationOperation 
 		equals: builder sourceClassWithTestMethodAndSuperclassAndInterface
 ]
 
-{ #category : #test }
+{ #category : 'test' }
 FASTJavaCodeGeneratorKeepingFormattingTest >> applyReplacingOperationTest [
 
 	| fastMethod op tool |
@@ -87,7 +88,7 @@ FASTJavaCodeGeneratorKeepingFormattingTest >> applyReplacingOperationTest [
 		IsOnAnchorNodePos: op anchorNode
 ]
 
-{ #category : #test }
+{ #category : 'test' }
 FASTJavaCodeGeneratorKeepingFormattingTest >> applySimpleInsertionOperationTest [
 
 	| fastMethod op tool |
@@ -108,7 +109,7 @@ FASTJavaCodeGeneratorKeepingFormattingTest >> applySimpleInsertionOperationTest 
 		IsOnAnchorNodePos: op anchorNode
 ]
 
-{ #category : #test }
+{ #category : 'test' }
 FASTJavaCodeGeneratorKeepingFormattingTest >> applySimpleSignatureInsertionOperation [
 
 	| fast op tool |
@@ -137,7 +138,7 @@ FASTJavaCodeGeneratorKeepingFormattingTest >> applySimpleSignatureInsertionOpera
 		equals: builder sourceClassWithTestMethodAndSuperclass
 ]
 
-{ #category : #test }
+{ #category : 'test' }
 FASTJavaCodeGeneratorKeepingFormattingTest >> applyStatementInsertionOperationTest [
 
 	| fast op tool |
@@ -166,14 +167,14 @@ FASTJavaCodeGeneratorKeepingFormattingTest >> applyStatementInsertionOperationTe
 		equals: builder sourceMethodTestMethodWithCatMeowsBeforeTable.
 ]
 
-{ #category : #asserting }
-FASTJavaCodeGeneratorKeepingFormattingTest >> assertRemovedHighlight: aPoint IsOnAnchorNodePos: aFASTNode [
+{ #category : 'asserting' }
+FASTJavaCodeGeneratorKeepingFormattingTest >> assertRemovedHighlight: anInterval IsOnAnchorNodePos: aFASTNode [
 
-	self assert: aPoint x equals: aFASTNode startPos.
-	self assert: aPoint y equals: aFASTNode endPos
+	self assert: anInterval first equals: aFASTNode startPos.
+	self assert: anInterval last equals: aFASTNode endPos
 ]
 
-{ #category : #running }
+{ #category : 'running' }
 FASTJavaCodeGeneratorKeepingFormattingTest >> setUp [
 	super setUp.
 	
@@ -181,7 +182,7 @@ FASTJavaCodeGeneratorKeepingFormattingTest >> setUp [
 	builder := FASTJavaCodeGeneratorBuilder new.
 ]
 
-{ #category : #test }
+{ #category : 'test' }
 FASTJavaCodeGeneratorKeepingFormattingTest >> testApplyCodeTransformation [
 
 	| tool fastClass opList |
@@ -198,7 +199,7 @@ FASTJavaCodeGeneratorKeepingFormattingTest >> testApplyCodeTransformation [
 		equals: builder sourceClassWithTestMethodAndAllTransformations
 ]
 
-{ #category : #test }
+{ #category : 'test' }
 FASTJavaCodeGeneratorKeepingFormattingTest >> testApplyDeleteOperation [
 
 	| fastMethod op tool |
@@ -219,21 +220,21 @@ FASTJavaCodeGeneratorKeepingFormattingTest >> testApplyDeleteOperation [
 		IsOnAnchorNodePos: op anchorNode
 ]
 
-{ #category : #test }
+{ #category : 'test' }
 FASTJavaCodeGeneratorKeepingFormattingTest >> testApplyReplacingOperation [
 
 	self applySimpleInsertionOperationTest.
 	self applyReplacingOperationTest
 ]
 
-{ #category : #test }
+{ #category : 'test' }
 FASTJavaCodeGeneratorKeepingFormattingTest >> testApplySignatureInsertionOperation [
 
 	self applySimpleSignatureInsertionOperation.
 	self applyGroupTransformationOperation
 ]
 
-{ #category : #test }
+{ #category : 'test' }
 FASTJavaCodeGeneratorKeepingFormattingTest >> testApplyStatementOrDeclarationInsertionOperation [
 
 	self applyStatementInsertionOperationTest.

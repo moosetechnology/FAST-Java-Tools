@@ -22,8 +22,8 @@ Internal Representation and Key Implementation Points.
     Implementation Points
 "
 Class {
-	#name : #TransformationApplyerOnSourceAnchor,
-	#superclass : #Object,
+	#name : 'TransformationApplyerOnSourceAnchor',
+	#superclass : 'Object',
 	#instVars : [
 		'fileSourceText',
 		'importStrings',
@@ -31,10 +31,11 @@ Class {
 		'transformedEntityEndPos',
 		'entityToTransform'
 	],
-	#category : #'Transformation-Tools'
+	#category : 'Transformation-Tools',
+	#package : 'Transformation-Tools'
 }
 
-{ #category : #transformation }
+{ #category : 'transformation' }
 TransformationApplyerOnSourceAnchor >> addImportStringsIfNeeded [
 
 	| stringToInsert insertIndex packageDeclarationString |
@@ -69,7 +70,7 @@ TransformationApplyerOnSourceAnchor >> addImportStringsIfNeeded [
 	self updateEntityPosValuesWithSize: stringToInsert size
 ]
 
-{ #category : #transformation }
+{ #category : 'transformation' }
 TransformationApplyerOnSourceAnchor >> buildPackageDeclarationString [
 
 	| packagesStack currentPackage |
@@ -92,7 +93,7 @@ TransformationApplyerOnSourceAnchor >> buildPackageDeclarationString [
 			  nextPut: $; ]
 ]
 
-{ #category : #adding }
+{ #category : 'adding' }
 TransformationApplyerOnSourceAnchor >> carriageReturn [
 
 	^ (fileSourceText includes: Character lf)
@@ -100,7 +101,7 @@ TransformationApplyerOnSourceAnchor >> carriageReturn [
 		  ifFalse: [ String cr ]
 ]
 
-{ #category : #copying }
+{ #category : 'copying' }
 TransformationApplyerOnSourceAnchor >> copyOriginalFileContent [
 	
 	| stream content |
@@ -111,25 +112,25 @@ TransformationApplyerOnSourceAnchor >> copyOriginalFileContent [
 	fileSourceText := content
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 TransformationApplyerOnSourceAnchor >> entityToTransform [
 
 	^ entityToTransform
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 TransformationApplyerOnSourceAnchor >> entityToTransform: anObject [
 
 	entityToTransform := anObject
 ]
 
-{ #category : #'private - accessing' }
+{ #category : 'private - accessing' }
 TransformationApplyerOnSourceAnchor >> fileSourceText [
 
 	^ fileSourceText
 ]
 
-{ #category : #'updating entity' }
+{ #category : 'updating entity' }
 TransformationApplyerOnSourceAnchor >> findAndUpdatePosOfNextEntitiesInFile [
 
 	| entitiesInFile |
@@ -142,7 +143,7 @@ TransformationApplyerOnSourceAnchor >> findAndUpdatePosOfNextEntitiesInFile [
 				ifFalse: [ self updateEndPosValueOfEntity: entity ] ] ]
 ]
 
-{ #category : #'updating entity' }
+{ #category : 'updating entity' }
 TransformationApplyerOnSourceAnchor >> findEntitiesInFile [
 
 	| rootClass |
@@ -152,7 +153,7 @@ TransformationApplyerOnSourceAnchor >> findEntitiesInFile [
 		  select: [ :e | e usesFamixTrait: FamixTSourceEntity ]
 ]
 
-{ #category : #'updating entity' }
+{ #category : 'updating entity' }
 TransformationApplyerOnSourceAnchor >> findRootClass [
 
 	^ entityToTransform withAllParents detect: [ :e |
@@ -160,31 +161,31 @@ TransformationApplyerOnSourceAnchor >> findRootClass [
 			  e typeContainer class = FamixJavaPackage ] ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 TransformationApplyerOnSourceAnchor >> importStrings [
 
 	^ importStrings
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 TransformationApplyerOnSourceAnchor >> importStrings: anObject [
 
 	importStrings := anObject
 ]
 
-{ #category : #adding }
+{ #category : 'adding' }
 TransformationApplyerOnSourceAnchor >> initialize [
 
 	importStrings := OrderedCollection new
 ]
 
-{ #category : #'private - accessing' }
+{ #category : 'private - accessing' }
 TransformationApplyerOnSourceAnchor >> offset: anObject [
 
 	offset := anObject
 ]
 
-{ #category : #transformation }
+{ #category : 'transformation' }
 TransformationApplyerOnSourceAnchor >> transformClass: aFamixJavaClass withNewSource: aString [
 
 	entityToTransform := aFamixJavaClass.
@@ -199,7 +200,7 @@ TransformationApplyerOnSourceAnchor >> transformClass: aFamixJavaClass withNewSo
 	self transformSourceFile
 ]
 
-{ #category : #transformation }
+{ #category : 'transformation' }
 TransformationApplyerOnSourceAnchor >> transformEntity: aFamixEntity withNewSource: aString [
 
 	fileSourceText := String streamContents: [ :s | 
@@ -215,7 +216,7 @@ TransformationApplyerOnSourceAnchor >> transformEntity: aFamixEntity withNewSour
 			                  yourself ]
 ]
 
-{ #category : #transformation }
+{ #category : 'transformation' }
 TransformationApplyerOnSourceAnchor >> transformMethod: aFamixJavaMethod withNewSource: aString [
 
 	entityToTransform := aFamixJavaMethod.
@@ -230,7 +231,7 @@ TransformationApplyerOnSourceAnchor >> transformMethod: aFamixJavaMethod withNew
 	self transformSourceFile
 ]
 
-{ #category : #transformation }
+{ #category : 'transformation' }
 TransformationApplyerOnSourceAnchor >> transformSourceFile [
 
 	| fileReference stream |
@@ -242,26 +243,26 @@ TransformationApplyerOnSourceAnchor >> transformSourceFile [
 	stream close
 ]
 
-{ #category : #'private - accessing' }
+{ #category : 'private - accessing' }
 TransformationApplyerOnSourceAnchor >> transformedEntityEndPos: anInt [
 
 	transformedEntityEndPos := anInt
 ]
 
-{ #category : #'updating entity' }
+{ #category : 'updating entity' }
 TransformationApplyerOnSourceAnchor >> updateEndPosValueOfEntity: entity [
 
 	entity sourceAnchor endPos:
 		entity sourceAnchor endPos + offset
 ]
 
-{ #category : #'updating entity' }
+{ #category : 'updating entity' }
 TransformationApplyerOnSourceAnchor >> updateEntityEndPosValue [
 
 	entityToTransform sourceAnchor endPos: transformedEntityEndPos + offset
 ]
 
-{ #category : #'updating entity' }
+{ #category : 'updating entity' }
 TransformationApplyerOnSourceAnchor >> updateEntityPosValuesWithSize: aNumber [
 
 	entityToTransform sourceAnchor startPos:
@@ -271,7 +272,7 @@ TransformationApplyerOnSourceAnchor >> updateEntityPosValuesWithSize: aNumber [
 		entityToTransform sourceAnchor endPos + aNumber
 ]
 
-{ #category : #'updating entity' }
+{ #category : 'updating entity' }
 TransformationApplyerOnSourceAnchor >> updatePosValuesOfEntity: entity [
 
 	entity sourceAnchor startPos:

@@ -17,58 +17,59 @@ The methods that subclasses must implements are :
 
 "
 Class {
-	#name : #AbstractTransformationOperation,
-	#superclass : #Object,
+	#name : 'AbstractTransformationOperation',
+	#superclass : 'Object',
 	#instVars : [
 		'transformedNode',
 		'anchorNode'
 	],
-	#category : #'Transformation-Tools'
+	#category : 'Transformation-Tools',
+	#package : 'Transformation-Tools'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 AbstractTransformationOperation >> anchorNode [
 
 	^ anchorNode
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 AbstractTransformationOperation >> anchorNode: anObject [
 
 	anchorNode := anObject
 ]
 
-{ #category : #'applying operation' }
+{ #category : 'applying operation' }
 AbstractTransformationOperation >> buildNewNode [
 	"returns the new node created using the anchor and transformed node"
 	^ self subclassResponsibility
 ]
 
-{ #category : #copying }
+{ #category : 'copying' }
 AbstractTransformationOperation >> copyAnchorNode [
 
 	^ self copyNode: anchorNode 
 ]
 
-{ #category : #copying }
+{ #category : 'copying' }
 AbstractTransformationOperation >> copyNode: aFASTJavaNode [
 
 	^ FASTJavaCopyVisitor new copy: aFASTJavaNode 
 ]
 
-{ #category : #sorting }
+{ #category : 'sorting' }
 AbstractTransformationOperation >> getPosForSorting [
 	"returns a position in the source code string, used to sort the operation list"
 	^ self subclassResponsibility 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 AbstractTransformationOperation >> transformedNode [
 
 	^ transformedNode
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 AbstractTransformationOperation >> transformedNode: anObject [
 
 	transformedNode := anObject

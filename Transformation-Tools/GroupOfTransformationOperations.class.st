@@ -6,21 +6,22 @@ Using the setter `operations: aCollection`, this object takes a list of `Abstrac
 This group is only necessary for insertions, as a delete or replacement operation would be overwritten by the next one. Also, the `anchorNode` must be the same for every operation to ensure the correct behaviour of the chain of operations.
 "
 Class {
-	#name : #GroupOfTransformationOperations,
-	#superclass : #AbstractTransformationOperation,
+	#name : 'GroupOfTransformationOperations',
+	#superclass : 'AbstractTransformationOperation',
 	#instVars : [
 		'operations'
 	],
-	#category : #'Transformation-Tools'
+	#category : 'Transformation-Tools',
+	#package : 'Transformation-Tools'
 }
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 GroupOfTransformationOperations >> addOperation: anOperation [
 
 	operations add: anOperation 
 ]
 
-{ #category : #'applying operation' }
+{ #category : 'applying operation' }
 GroupOfTransformationOperations >> buildNewNode [
 
 	"returns the new node created using the anchor and transformed node"
@@ -40,27 +41,27 @@ GroupOfTransformationOperations >> buildNewNode [
 	^ operations last buildNewNode
 ]
 
-{ #category : #sorting }
+{ #category : 'sorting' }
 GroupOfTransformationOperations >> getPosForSorting [
 	"returns a position in the source code string, used to sort the operation list"
 	"operations should all apply on the same node, so any operation should have a good return value"
 	^ self operations first getPosForSorting
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 GroupOfTransformationOperations >> initialize [ 
 
 	super initialize.
 	operations := OrderedCollection new
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GroupOfTransformationOperations >> operations [
 
 	^ operations
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GroupOfTransformationOperations >> operations: aCollection [
 
 	operations := aCollection

@@ -9,7 +9,8 @@ This operation also has an `insertBefore` instance variable, by default set to f
 An example of use is shown in the test in the method `applyDeclarationInsertionOperationTest` of class `FASTJavaCodeGeneratorKeepingFormattingTest`.
 "
 Class {
-	#name : #DeclarationInsertionOperation,
-	#superclass : #StatementInsertionOperation,
-	#category : #'Transformation-Tools'
+	#name : 'DeclarationInsertionOperation',
+	#superclass : 'StatementInsertionOperation',
+	#category : 'Transformation-Tools',
+	#package : 'Transformation-Tools'
 }

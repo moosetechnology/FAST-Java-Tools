@@ -1,6 +1,6 @@
 Class {
-	#name : #TransformationApplyerOnSourceAnchorTestBuilder,
-	#superclass : #Object,
+	#name : 'TransformationApplyerOnSourceAnchorTestBuilder',
+	#superclass : 'Object',
 	#instVars : [
 		'memorySystem',
 		'printMethod',
@@ -10,10 +10,11 @@ Class {
 		'testClass',
 		'mooseModel'
 	],
-	#category : #'Transformation-Tools-Tests'
+	#category : 'Transformation-Tools-Tests',
+	#package : 'Transformation-Tools-Tests'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 TransformationApplyerOnSourceAnchorTestBuilder >> buildFullClass [
 
 	| writeStream package |
@@ -75,7 +76,7 @@ TransformationApplyerOnSourceAnchorTestBuilder >> buildFullClass [
 		
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 TransformationApplyerOnSourceAnchorTestBuilder >> classText [
 
 	^ 
@@ -108,7 +109,7 @@ public ClasseDeTest {
 }'
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 TransformationApplyerOnSourceAnchorTestBuilder >> classTextWithAllImports [
 
 	^ 
@@ -146,7 +147,7 @@ public ClasseDeTest {
 }'
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 TransformationApplyerOnSourceAnchorTestBuilder >> classTextWithFirstImports [
 
 	^ 
@@ -182,7 +183,7 @@ public ClasseDeTest {
 }'
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 TransformationApplyerOnSourceAnchorTestBuilder >> classTextWithNewMethod [
 
 	^ 
@@ -219,7 +220,7 @@ public ClasseDeTest {
 }'
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 TransformationApplyerOnSourceAnchorTestBuilder >> classTextWithTransformedIncrement [
 
 	^ 
@@ -253,7 +254,7 @@ public ClasseDeTest {
 }'
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 TransformationApplyerOnSourceAnchorTestBuilder >> createMemoryDirectories [
 
 	memorySystem store createDirectory:
@@ -262,7 +263,7 @@ TransformationApplyerOnSourceAnchorTestBuilder >> createMemoryDirectories [
 		(FileSystem memory / 'testapp' / 'src') asPath
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 TransformationApplyerOnSourceAnchorTestBuilder >> createSourceAnchorForStartPos: aStartPos andEndPos: anEndPos [
 
 	| sourceAnchor |
@@ -276,20 +277,20 @@ TransformationApplyerOnSourceAnchorTestBuilder >> createSourceAnchorForStartPos:
 	^ sourceAnchor
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 TransformationApplyerOnSourceAnchorTestBuilder >> fileReference [
 
 	^ (memorySystem / 'testapp' / 'src' / 'ClasseDeTest.java')
 		  asFileReference
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 TransformationApplyerOnSourceAnchorTestBuilder >> firstConstructor [
 
 	^ firstConstructor
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 TransformationApplyerOnSourceAnchorTestBuilder >> firstConstructorSource [
 
 	^ 
@@ -299,25 +300,25 @@ TransformationApplyerOnSourceAnchorTestBuilder >> firstConstructorSource [
 	}'
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 TransformationApplyerOnSourceAnchorTestBuilder >> importsToAddFirst [
 
 	^ { 'import some.thing.package;' . 'import com.animals.cats;' }
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 TransformationApplyerOnSourceAnchorTestBuilder >> importsToAddSecond [
 
 	^ { 'import com.animals.dogs;' }
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 TransformationApplyerOnSourceAnchorTestBuilder >> incrementMethod [
 
 	^ incrementMethod
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 TransformationApplyerOnSourceAnchorTestBuilder >> incrementNewSource [
 
 	^ 
@@ -327,7 +328,7 @@ TransformationApplyerOnSourceAnchorTestBuilder >> incrementNewSource [
 	}'
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 TransformationApplyerOnSourceAnchorTestBuilder >> incrementSource [
 
 	^ 
@@ -336,18 +337,18 @@ TransformationApplyerOnSourceAnchorTestBuilder >> incrementSource [
 	}'
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 TransformationApplyerOnSourceAnchorTestBuilder >> initialize [ 
 	self buildFullClass 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 TransformationApplyerOnSourceAnchorTestBuilder >> printMethod [
 
 	^ printMethod
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 TransformationApplyerOnSourceAnchorTestBuilder >> printSource [
 
 	^ 
@@ -357,19 +358,19 @@ TransformationApplyerOnSourceAnchorTestBuilder >> printSource [
 	}'
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 TransformationApplyerOnSourceAnchorTestBuilder >> rootFolderReference [
 
 	^ (memorySystem / 'testapp' / 'src') asFileReference
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 TransformationApplyerOnSourceAnchorTestBuilder >> secondConstructor [
 
 	^ secondConstructor
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 TransformationApplyerOnSourceAnchorTestBuilder >> secondConstructorSource [
 
 	^ 
@@ -379,7 +380,7 @@ TransformationApplyerOnSourceAnchorTestBuilder >> secondConstructorSource [
 	}'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 TransformationApplyerOnSourceAnchorTestBuilder >> testClass [
 
 	^ testClass
