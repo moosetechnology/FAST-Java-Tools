@@ -229,7 +229,7 @@ TransformationEditor >> initializeWindow: aWindowPresenter [
 	super initializeWindow: aWindowPresenter.
 	aWindowPresenter
 		title: self defaultTitle;
-		initialExtent: 1920 @ 1080
+		initialExtent: 1500 @ 750
 ]
 
 { #category : 'initialization' }

@@ -150,7 +150,8 @@ TransformationApplyerOnSourceAnchor >> findEntitiesInFile [
 	rootClass := self findRootClass.
 
 	^ (rootClass withAllChildren reject: [ :e | e = entityToTransform ])
-		  select: [ :e | e usesFamixTrait: FamixTSourceEntity ]
+		  select: [ :e |
+			  (e usesFamixTrait: FamixTSourceEntity) and: [ e hasSourceAnchor ] ]
 ]
 
 { #category : 'updating entity' }
