@@ -40,13 +40,13 @@ DeleteOperation >> getPosForSorting [
 ]
 
 { #category : 'accessing' }
-DeleteOperation >> parentNode [
+DeleteOperation >> nodeToDelete [
 
 	^ anchorNode
 ]
 
 { #category : 'accessing' }
-DeleteOperation >> parentNode: anObject [
+DeleteOperation >> nodeToDelete: anObject [
 
 	anchorNode := anObject
 ]

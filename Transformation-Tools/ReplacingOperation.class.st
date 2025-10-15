@@ -35,3 +35,15 @@ ReplacingOperation >> originalNode: anObject [
 
 	anchorNode := anObject
 ]
+
+{ #category : 'accessing' }
+ReplacingOperation >> replacingNode [
+
+	^ transformedNode 
+]
+
+{ #category : 'accessing' }
+ReplacingOperation >> replacingNode: anObject [
+
+	transformedNode := anObject
+]

@@ -38,6 +38,18 @@ InsertionOperation >> getPosForSorting [
 ]
 
 { #category : 'accessing' }
+InsertionOperation >> nodeToInsert [
+
+	^ transformedNode 
+]
+
+{ #category : 'accessing' }
+InsertionOperation >> nodeToInsert: anObject [
+
+	transformedNode := anObject
+]
+
+{ #category : 'accessing' }
 InsertionOperation >> parentNode [
 
 	^ anchorNode
