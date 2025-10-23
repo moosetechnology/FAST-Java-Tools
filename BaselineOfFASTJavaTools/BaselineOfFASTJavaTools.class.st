@@ -21,5 +21,5 @@ BaselineOfFASTJavaTools >> fastJava: spec [
 	spec
 		baseline: 'FASTJava'
 		with: [ 
-		spec repository: 'github://moosetechnology/FAST-JAVA:v3/src'; loads: 'tools' ]
+		spec repository: 'github://moosetechnology/FAST-JAVA:v3/src'; loads: #( 'tools' 'smacc' ) ]
 ]
